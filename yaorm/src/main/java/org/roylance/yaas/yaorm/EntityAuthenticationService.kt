@@ -25,16 +25,17 @@ class EntityAuthenticationService(
     override fun registerUser(user: YaasModels.User): YaasModels.UIAuthentication {
         val hashedPassword = DigestUtils.md5Hex(user.password)
 
-        val existingUser = this.entityMessageService.get(YaasModels.User.getDefaultInstance(), user.id)
-        if (existingUser != null) {
+        val existingUser = this.entityMessageService.get(user, user.id)
+        if (existingUser == null) {
             // register
             this.logger.info("registering new user: " + user.userName)
-            this.entityMessageService.merge(user)
+            val builder = user.toBuilder().setPassword(hashedPassword).build()
+            this.entityMessageService.merge(builder)
 
-            return this.tokenService.generateToken(user)
+            return this.tokenService.generateToken(builder)
         }
 
-        if (user.password.equals(hashedPassword)) {
+        if (existingUser.password.equals(hashedPassword)) {
             // ok
             this.logger.info("user exists already, password correct")
             return this.tokenService.generateToken(user)
@@ -55,11 +56,11 @@ class EntityAuthenticationService(
                 limit,
                 offset)
 
-        return users.map {
+        return users.map { user ->
             YaasModels.UIAuthentication.newBuilder()
-                .setUserName(it.userName)
-                .setDisplay(it.display)
-                .setIsAdmin(it.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN) })
+                .setUserName(user.userName)
+                .setDisplay(user.display)
+                .setIsAdmin(user.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) })
                 .build()
         }
     }
@@ -90,7 +91,7 @@ class EntityAuthenticationService(
     }
 
     override fun authenticateUser(token: String): YaasModels.UIAuthentication {
-        return this.authenticateUser(token)
+        return this.tokenService.validateUser(token)
     }
 
     override fun isUserAdmin(user: YaasModels.User): Boolean {

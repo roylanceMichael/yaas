@@ -64,7 +64,7 @@ dependencies {
 
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
-    compile 'org.roylance:yaorm:0.75-SNAPSHOT'
+    compile 'org.roylance:yaorm:0.76-SNAPSHOT'
     compile 'org.roylance.yaas:api:0.5-SNAPSHOT'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

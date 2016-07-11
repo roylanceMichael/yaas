@@ -1,0 +1,78 @@
+syntax = "proto3";
+package org.roylance.yaas.models;
+
+enum UserDeviceType {
+    ANDROID = 0;
+    IOS = 1;
+    JAVASCRIPT = 2;
+}
+
+enum UserRole {
+    NORMAL = 0;
+    ADMIN = 1;
+}
+
+message UserDevice {
+    string id = 1;
+    UserDeviceType user_device_type = 2;
+    string user_device_token = 3;
+    int64 last_updated = 4;
+    User user = 5;
+}
+
+message Image {
+    string id = 1;
+    string name = 2;
+    string actual_image = 3;
+}
+
+message User {
+    string id = 1;
+    string user_name = 2;
+    string password = 3;
+    string display = 4;
+    string first_name = 5;
+    string last_name = 6;
+    Image image = 7;
+    repeated UserRole roles = 8;
+}
+
+message Token {
+    string id = 1;
+    string user_id = 2;
+    int64 issued = 3;
+    int64 expiration = 4;
+}
+
+message UIAuthentication {
+    bool authenticated = 1;
+    string token = 2;
+    string user_name = 3;
+    string display = 4;
+    bool is_admin = 5;
+}
+
+message UIChangePassword {
+    string user_name = 1;
+    string old_password = 2;
+    string new_password = 3;
+}
+
+message UIRequest {
+    string token = 1;
+    string content = 2;
+}
+
+message UIResponse {
+    bool authenticated = 1;
+    string error_message = 2;
+    bool successful = 3;
+    string content = 4;
+    bool is_admin = 5;
+    UIAuthentication user = 6;
+    UIAuthentications users = 7;
+}
+
+message UIAuthentications {
+    repeated UIAuthentication users = 1;
+}

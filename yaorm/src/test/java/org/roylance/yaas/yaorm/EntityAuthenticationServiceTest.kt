@@ -11,20 +11,20 @@ import org.roylance.yaorm.services.proto.EntityMessageService
 import org.roylance.yaorm.services.proto.EntityProtoService
 import org.roylance.yaorm.services.sqlite.SQLiteConnectionSourceFactory
 import org.roylance.yaorm.services.sqlite.SQLiteGeneratorService
-import org.roylance.yaorm.utilities.ProtobufUtils
 import java.io.File
 import java.util.*
 
 class EntityAuthenticationServiceTest {
-//    @Test
+    @Test
     fun userNameExistsPostgresTest() {
         // arrange
         val sourceConnection = PostgresConnectionSourceFactory(
-                "",
-                "",
-                "",
-                "",
-                "")
+                "localhost",
+                "5432",
+                "postgres",
+                "postgres",
+                "postgres",
+                false)
         val granularDatabaseService = JDBCGranularDatabaseProtoService(
                 sourceConnection.connectionSource,
                 false)
@@ -33,9 +33,9 @@ class EntityAuthenticationServiceTest {
         val protoService = YaasGeneratedMessageBuilder()
         val entityMessageService = EntityMessageService(protoService, entityService)
 
-        entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+        entityMessageService.dropAndCreateEntireSchema(YaasModels.getDescriptor())
 
-        val newUser = YaasModels.UserModel.newBuilder()
+        val newUser = YaasModels.User.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
@@ -72,7 +72,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.UserModel.newBuilder()
+            val newUser = YaasModels.User.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
@@ -113,7 +113,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.UserModel.newBuilder()
+            val newUser = YaasModels.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -162,7 +162,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.UserModel.newBuilder()
+            val newUser = YaasModels.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -209,7 +209,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.UserModel.newBuilder()
+            val newUser = YaasModels.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -256,7 +256,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.UserModel.newBuilder()
+            val newUser = YaasModels.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -306,7 +306,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.UserModel.newBuilder()
+            val newUser = YaasModels.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")

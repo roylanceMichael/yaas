@@ -27,7 +27,7 @@ export class RestAuthenticationService implements IRestAuthenticationService {
             onError);
     }
 
-    login(userModel:org.roylance.yaas.models.UserModel,
+    login(userModel:org.roylance.yaas.models.User,
           onSuccess:(response:org.roylance.yaas.models.UIAuthentication)=>void,
           onError:(response:any)=>void) {
         const self = this;
@@ -52,7 +52,7 @@ export class RestAuthenticationService implements IRestAuthenticationService {
             onError);
     }
 
-    register(userModel:org.roylance.yaas.models.UserModel,
+    register(userModel:org.roylance.yaas.models.User,
              onSuccess:(response:org.roylance.yaas.models.UIAuthentication)=>void,
              onError:(response:any)=>void) {
         const self = this;

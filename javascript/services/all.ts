@@ -22,9 +22,9 @@ export interface IGuidService {
 
 export interface IRestAuthenticationService {
     save(requestModel:org.roylance.yaas.models.UIRequest, onSuccess:(response:org.roylance.yaas.models.UIResponse)=>void, onError:(response:any)=>void)
-    login(userModel:org.roylance.yaas.models.UserModel, onSuccess:(response:org.roylance.yaas.models.UIAuthentication)=>void, onError:(response:any)=>void)
+    login(userModel:org.roylance.yaas.models.User, onSuccess:(response:org.roylance.yaas.models.UIAuthentication)=>void, onError:(response:any)=>void)
     exists(userName:string, onSuccess:(response:org.roylance.yaas.models.UIResponse)=>void, onError:(response:any)=>void)
-    register(userModel:org.roylance.yaas.models.UserModel, onSuccess:(response:org.roylance.yaas.models.UIAuthentication)=>void, onError:(response:any)=>void)
+    register(userModel:org.roylance.yaas.models.User, onSuccess:(response:org.roylance.yaas.models.UIAuthentication)=>void, onError:(response:any)=>void)
 }
 
 export interface IRestAdminService {

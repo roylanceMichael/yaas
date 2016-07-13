@@ -32,8 +32,8 @@ var _root = <org.roylance.yaas.models.ProtoBufBuilder>dcodeIO.ProtoBuf.newBuilde
                 },
                 {
                     "rule": "optional",
-                    "type": "UserModel",
-                    "name": "user_model",
+                    "type": "User",
+                    "name": "user",
                     "id": 5
                 }
             ]
@@ -62,7 +62,7 @@ var _root = <org.roylance.yaas.models.ProtoBufBuilder>dcodeIO.ProtoBuf.newBuilde
             ]
         },
         {
-            "name": "UserModel",
+            "name": "User",
             "fields": [
                 {
                     "rule": "optional",

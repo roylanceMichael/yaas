@@ -30,8 +30,8 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
                 },
                 {
                     "rule": "optional",
-                    "type": "UserModel",
-                    "name": "user_model",
+                    "type": "User",
+                    "name": "user",
                     "id": 5
                 }
             ]
@@ -60,7 +60,7 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
             ]
         },
         {
-            "name": "UserModel",
+            "name": "User",
             "fields": [
                 {
                     "rule": "optional",

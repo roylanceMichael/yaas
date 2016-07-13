@@ -12,7 +12,7 @@ class EntityAuthenticationService(
         private val entityMessageService:IEntityMessageService,
         private val tokenService: ITokenService,
         private val logger: ILogger):IAuthenticationService {
-    override fun setUserAsAdmin(user: YaasModels.UserModel): Boolean {
+    override fun setUserAsAdmin(user: YaasModels.User): Boolean {
         if (!user.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) }) {
             val builder = user.toBuilder()
             builder.addRoles(YaasModels.UserRole.ADMIN)
@@ -22,7 +22,7 @@ class EntityAuthenticationService(
         return true
     }
 
-    override fun registerUser(user: YaasModels.UserModel): YaasModels.UIAuthentication {
+    override fun registerUser(user: YaasModels.User): YaasModels.UIAuthentication {
         val hashedPassword = DigestUtils.md5Hex(user.password)
 
         val existingUser = this.entityMessageService.get(user, user.id)
@@ -52,7 +52,7 @@ class EntityAuthenticationService(
 
     override fun getAllUsers(limit: Int, offset: Int): List<YaasModels.UIAuthentication> {
         val users = this.entityMessageService
-                .getMany(YaasModels.UserModel.getDefaultInstance(),
+                .getMany(YaasModels.User.getDefaultInstance(),
                 limit,
                 offset)
 
@@ -71,15 +71,15 @@ class EntityAuthenticationService(
                     YaormModel.Column.newBuilder()
                             .setDefinition(YaormModel.ColumnDefinition.newBuilder()
                                     .setType(YaormModel.ProtobufType.STRING)
-                                    .setName(YaasModels.UserModel.getDescriptor()
-                                            .findFieldByNumber(YaasModels.UserModel.USER_NAME_FIELD_NUMBER).name))
+                                    .setName(YaasModels.User.getDescriptor()
+                                            .findFieldByNumber(YaasModels.User.USER_NAME_FIELD_NUMBER).name))
                     .setStringHolder(userName))
 
-        val records = this.entityMessageService.where(YaasModels.UserModel.getDefaultInstance(), whereClause.build())
+        val records = this.entityMessageService.where(YaasModels.User.getDefaultInstance(), whereClause.build())
         return records.size > 0
     }
 
-    override fun authenticateUser(user: YaasModels.UserModel): YaasModels.UIAuthentication {
+    override fun authenticateUser(user: YaasModels.User): YaasModels.UIAuthentication {
         val hashedPassword = DigestUtils.md5Hex(user.password)
 
         val existingUser = this.entityMessageService.get(user, user.id)
@@ -94,13 +94,13 @@ class EntityAuthenticationService(
         return this.tokenService.validateUser(token)
     }
 
-    override fun isUserAdmin(user: YaasModels.UserModel): Boolean {
+    override fun isUserAdmin(user: YaasModels.User): Boolean {
         val foundUser = this.entityMessageService.get(user, user.id)
                 ?: return  false
         return foundUser.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) }
     }
 
-    override fun saveInfo(user: YaasModels.UserModel, token: String): Boolean {
+    override fun saveInfo(user: YaasModels.User, token: String): Boolean {
 
         if (user.password.length > 0) {
             this.entityMessageService.merge(user)
@@ -120,7 +120,7 @@ class EntityAuthenticationService(
         return true
     }
 
-    override fun changePasswordForUser(userModel: YaasModels.UserModel): Boolean {
+    override fun changePasswordForUser(userModel: YaasModels.User): Boolean {
         val foundUser = this.entityMessageService.get(userModel, userModel.id)
                 ?: return false
 
@@ -131,7 +131,7 @@ class EntityAuthenticationService(
         return true
     }
 
-    override fun removeUserAsAdmin(user: YaasModels.UserModel): Boolean {
+    override fun removeUserAsAdmin(user: YaasModels.User): Boolean {
         val foundUser = this.entityMessageService.get(user, user.id)
                 ?: return false
 
@@ -147,7 +147,7 @@ class EntityAuthenticationService(
     }
 
     override fun changePassword(model: YaasModels.UIChangePassword): YaasModels.UIAuthentication {
-        val tempUser = YaasModels.UserModel.newBuilder()
+        val tempUser = YaasModels.User.newBuilder()
                 .setUserName(model.userName)
                 .setPassword(model.oldPassword)
 
@@ -155,8 +155,8 @@ class EntityAuthenticationService(
             .setNameAndProperty(YaormModel.Column.newBuilder()
                 .setStringHolder(model.userName)
                 .setDefinition(YaormModel.ColumnDefinition.newBuilder()
-                    .setName(YaasModels.UserModel.getDescriptor().findFieldByNumber(
-                            YaasModels.UserModel.USER_NAME_FIELD_NUMBER
+                    .setName(YaasModels.User.getDescriptor().findFieldByNumber(
+                            YaasModels.User.USER_NAME_FIELD_NUMBER
                     ).name)
                     .setType(YaormModel.ProtobufType.STRING)))
             .build()
@@ -183,7 +183,7 @@ class EntityAuthenticationService(
         return this.tokenService.generateToken(tempUser.build())
     }
 
-    override fun deleteUser(user: YaasModels.UserModel): Boolean {
+    override fun deleteUser(user: YaasModels.User): Boolean {
         this.entityMessageService.delete(user)
 
         val whereClause = YaormModel.WhereClause.newBuilder()

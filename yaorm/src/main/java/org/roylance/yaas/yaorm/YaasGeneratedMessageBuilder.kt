@@ -30,8 +30,8 @@ class YaasGeneratedMessageBuilder: IProtoGeneratedMessageBuilder {
         if (YaasModels.UserDevice.getDescriptor().name.equals(name)) {
             return YaasModels.UserDevice.getDefaultInstance()
         }
-        if (YaasModels.UserModel.getDescriptor().name.equals(name)) {
-            return YaasModels.UserModel.getDefaultInstance()
+        if (YaasModels.User.getDescriptor().name.equals(name)) {
+            return YaasModels.User.getDefaultInstance()
         }
 
         throw UnsupportedOperationException()

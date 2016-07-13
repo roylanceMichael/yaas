@@ -19,7 +19,7 @@ class EntityTokenService(
             return this.buildUnauthenticated()
         }
         val foundToken = records.first()
-        val foundUser = this.entityMessageService.get(YaasModels.User.getDefaultInstance(), foundToken.userId)
+        val foundUser = this.entityMessageService.get(YaasModels.UserModel.getDefaultInstance(), foundToken.userId)
                 ?: return this.buildUnauthenticated()
 
         this.logger.info("found user with key: " + token)
@@ -33,7 +33,7 @@ class EntityTokenService(
 
     }
 
-    override fun generateToken(userModel: YaasModels.User): YaasModels.UIAuthentication {
+    override fun generateToken(userModel: YaasModels.UserModel): YaasModels.UIAuthentication {
         val whereClause = YaormModel.WhereClause.newBuilder()
                 .setNameAndProperty(
                         YaormModel.Column.newBuilder()

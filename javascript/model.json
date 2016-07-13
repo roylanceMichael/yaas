@@ -30,8 +30,8 @@
                 },
                 {
                     "rule": "optional",
-                    "type": "User",
-                    "name": "user",
+                    "type": "UserModel",
+                    "name": "user_model",
                     "id": 5
                 }
             ]
@@ -60,7 +60,7 @@
             ]
         },
         {
-            "name": "User",
+            "name": "UserModel",
             "fields": [
                 {
                     "rule": "optional",

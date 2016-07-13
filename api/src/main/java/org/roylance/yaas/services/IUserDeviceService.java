@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IUserDeviceService {
     void saveUserDevice(final YaasModels.UserDevice userDevice);
-    List<YaasModels.UserDevice> getUserDevices(final YaasModels.User user);
+    List<YaasModels.UserDevice> getUserDevices(final YaasModels.UserModel user);
 }

@@ -17,7 +17,7 @@ message UserDevice {
     UserDeviceType user_device_type = 2;
     string user_device_token = 3;
     int64 last_updated = 4;
-    User user = 5;
+    UserModel user_model = 5;
 }
 
 message Image {
@@ -26,7 +26,7 @@ message Image {
     string actual_image = 3;
 }
 
-message User {
+message UserModel {
     string id = 1;
     string user_name = 2;
     string password = 3;

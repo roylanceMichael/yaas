@@ -11,7 +11,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.1-SNAPSHOT'
+version '0.2-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -61,10 +61,11 @@ artifactory {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.xerial:sqlite-jdbc:3.8.10.1'
+    testCompile 'org.postgresql:postgresql:9.4.1208'
 
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
     compile 'org.roylance:yaorm:0.76-SNAPSHOT'
-    compile 'org.roylance.yaas:api:0.5-SNAPSHOT'
+    compile 'org.roylance.yaas:api:0.7-SNAPSHOT'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

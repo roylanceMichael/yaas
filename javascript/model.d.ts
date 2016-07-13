@@ -12,7 +12,7 @@ declare module org.roylance.yaas.models {
 	export interface ProtoBufBuilder {
 		UserDevice: UserDeviceBuilder;
 		Image: ImageBuilder;
-		User: UserBuilder;
+		UserModel: UserModelBuilder;
 		Token: TokenBuilder;
 		UIAuthentication: UIAuthenticationBuilder;
 		UIChangePassword: UIChangePasswordBuilder;
@@ -40,9 +40,9 @@ declare module org.roylance.yaas.models {
 		last_updated?: number;
 		getLastUpdated() : number;
 		setLastUpdated(lastUpdated : number): void;
-		user?: User;
-		getUser() : User;
-		setUser(user : User): void;
+		user_model?: UserModel;
+		getUserModel() : UserModel;
+		setUserModel(userModel : UserModel): void;
 		
 	}
 	
@@ -83,7 +83,7 @@ declare module org.roylance.yaas.models {
 
 declare module org.roylance.yaas.models {
 
-	export interface User extends ProtoBufModel {
+	export interface UserModel extends ProtoBufModel {
 		id?: string;
 		getId() : string;
 		setId(id : string): void;
@@ -111,12 +111,12 @@ declare module org.roylance.yaas.models {
 		
 	}
 	
-	export interface UserBuilder {
-		new(): User;
-		decode(buffer: ArrayBuffer) : User;
-		//decode(buffer: NodeBuffer) : User;
-		//decode(buffer: ByteArrayBuffer) : User;
-		decode64(buffer: string) : User;
+	export interface UserModelBuilder {
+		new(): UserModel;
+		decode(buffer: ArrayBuffer) : UserModel;
+		//decode(buffer: NodeBuffer) : UserModel;
+		//decode(buffer: ByteArrayBuffer) : UserModel;
+		decode64(buffer: string) : UserModel;
 		
 	}	
 }

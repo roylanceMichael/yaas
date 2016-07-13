@@ -5,14 +5,57 @@ import org.junit.Test
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.services.ILogger
 import org.roylance.yaorm.services.jdbc.JDBCGranularDatabaseProtoService
+import org.roylance.yaorm.services.postgres.PostgresConnectionSourceFactory
+import org.roylance.yaorm.services.postgres.PostgresGeneratorService
 import org.roylance.yaorm.services.proto.EntityMessageService
 import org.roylance.yaorm.services.proto.EntityProtoService
 import org.roylance.yaorm.services.sqlite.SQLiteConnectionSourceFactory
 import org.roylance.yaorm.services.sqlite.SQLiteGeneratorService
+import org.roylance.yaorm.utilities.ProtobufUtils
 import java.io.File
 import java.util.*
 
 class EntityAuthenticationServiceTest {
+//    @Test
+    fun userNameExistsPostgresTest() {
+        // arrange
+        val sourceConnection = PostgresConnectionSourceFactory(
+                "",
+                "",
+                "",
+                "",
+                "")
+        val granularDatabaseService = JDBCGranularDatabaseProtoService(
+                sourceConnection.connectionSource,
+                false)
+        val postgresGeneratorService = PostgresGeneratorService()
+        val entityService = EntityProtoService(granularDatabaseService, postgresGeneratorService)
+        val protoService = YaasGeneratedMessageBuilder()
+        val entityMessageService = EntityMessageService(protoService, entityService)
+
+        entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+
+        val newUser = YaasModels.UserModel.newBuilder()
+                .setId(UUID.randomUUID().toString())
+                .setUserName("roylance.michael@gmail.com")
+                .setPassword("blah")
+                .setDisplay("mike roylance")
+                .build()
+
+        val authenticationService = EntityAuthenticationService(
+                entityMessageService,
+                EntityTokenService(entityMessageService, logger),
+                logger)
+
+        entityMessageService.merge(newUser)
+
+        // act
+        val userNameExists = authenticationService.userNameExists(newUser.userName)
+
+        // assert
+        Assert.assertTrue(userNameExists)
+    }
+
     @Test
     fun userNameExistsTest() {
         // arrange
@@ -27,12 +70,9 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService)
 
-            entityMessageService.createEntireSchema(YaasModels.Image.getDefaultInstance())
-            entityMessageService.createEntireSchema(YaasModels.User.getDefaultInstance())
-            entityMessageService.createEntireSchema(YaasModels.Token.getDefaultInstance())
-            entityMessageService.createEntireSchema(YaasModels.UserDevice.getDefaultInstance())
+            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModels.UserModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
@@ -73,7 +113,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModels.UserModel.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -122,7 +162,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModels.UserModel.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -169,7 +209,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModels.UserModel.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -216,7 +256,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModels.UserModel.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -266,7 +306,7 @@ class EntityAuthenticationServiceTest {
 
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModels.UserModel.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")

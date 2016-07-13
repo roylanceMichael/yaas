@@ -9,7 +9,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.5-SNAPSHOT'
+version '0.7-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: "com.jfrog.artifactory"

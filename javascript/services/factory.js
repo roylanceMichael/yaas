@@ -1,5 +1,6 @@
+"use strict";
 /// <reference path="../model" />
-var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
+exports.YaasFactory = dcodeIO.ProtoBuf.newBuilder({})['import']({
     "package": "org.roylance.yaas.models",
     "messages": [
         {

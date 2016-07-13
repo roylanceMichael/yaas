@@ -11,7 +11,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.3-SNAPSHOT'
+version '0.4-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -38,8 +38,8 @@ artifactory {
     publish {
         repository {
             repoKey = 'libs-snapshot-local'
-            username = 'admin'
-            password = 'Anatanomoto!2'
+            username = ''
+            password = ''
         }
 
         defaults {

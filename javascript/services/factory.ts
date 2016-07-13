@@ -1,6 +1,6 @@
 /// <reference path="../model" />
 declare var dcodeIO:any;
-var _root = <org.roylance.yaas.models.ProtoBufBuilder>dcodeIO.ProtoBuf.newBuilder({})['import']({
+export var YaasFactory = <org.roylance.yaas.models.ProtoBufBuilder>dcodeIO.ProtoBuf.newBuilder({})['import']({
     "package": "org.roylance.yaas.models",
     "messages": [
         {

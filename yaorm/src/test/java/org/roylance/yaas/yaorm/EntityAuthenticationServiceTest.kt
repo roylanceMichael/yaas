@@ -36,7 +36,7 @@ class EntityAuthenticationServiceTest {
         entityMessageService.dropAndCreateEntireSchema(YaasModels.getDescriptor())
 
         val newUser = YaasModels.User.newBuilder()
-                .setId(UUID.randomUUID().toString())
+                .setId("roylance.michael@gmail.com")
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
                 .setDisplay("mike roylance")
@@ -73,7 +73,7 @@ class EntityAuthenticationServiceTest {
             entityMessageService.createEntireSchema(YaasModels.getDescriptor())
 
             val newUser = YaasModels.User.newBuilder()
-                .setId(UUID.randomUUID().toString())
+                .setId("roylance.michael@gmail.com")
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
                 .setDisplay("mike roylance")

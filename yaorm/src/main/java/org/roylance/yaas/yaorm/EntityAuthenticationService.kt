@@ -66,17 +66,7 @@ class EntityAuthenticationService(
     }
 
     override fun userNameExists(userName: String): Boolean {
-        val whereClause = YaormModel.WhereClause.newBuilder()
-            .setNameAndProperty(
-                    YaormModel.Column.newBuilder()
-                            .setDefinition(YaormModel.ColumnDefinition.newBuilder()
-                                    .setType(YaormModel.ProtobufType.STRING)
-                                    .setName(YaasModels.User.getDescriptor()
-                                            .findFieldByNumber(YaasModels.User.USER_NAME_FIELD_NUMBER).name))
-                    .setStringHolder(userName))
-
-        val records = this.entityMessageService.where(YaasModels.User.getDefaultInstance(), whereClause.build())
-        return records.size > 0
+        return this.entityMessageService.get(YaasModels.User.getDefaultInstance(), userName) != null
     }
 
     override fun authenticateUser(user: YaasModels.User): YaasModels.UIAuthentication {
@@ -96,12 +86,11 @@ class EntityAuthenticationService(
 
     override fun isUserAdmin(user: YaasModels.User): Boolean {
         val foundUser = this.entityMessageService.get(user, user.id)
-                ?: return  false
+                ?: return false
         return foundUser.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) }
     }
 
     override fun saveInfo(user: YaasModels.User, token: String): Boolean {
-
         if (user.password.length > 0) {
             this.entityMessageService.merge(user)
         }

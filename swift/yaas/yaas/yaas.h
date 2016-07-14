@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KeychainWrapper.h"
 
 //! Project version number for yaas.
 FOUNDATION_EXPORT double yaasVersionNumber;

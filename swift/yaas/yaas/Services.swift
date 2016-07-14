@@ -19,8 +19,8 @@ protocol IUserService{
 }
 
 protocol IHttpExecuteService {
-    func performGet(url:String, onSuccess:(String), onError:(String))
-    func performPost(url:String, data:AnyObject, onSuccess:(String), onError:(String))
+    func performGet(url:String, onSuccess:(response:String)->Void, onError:(response:String)->Void)
+    func performPost(url:String, data:AnyObject, onSuccess:(response:String)->Void, onError:(response:String)->Void)
 }
 
 protocol IGuidService {

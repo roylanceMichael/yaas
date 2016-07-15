@@ -10,7 +10,9 @@ import Foundation
 import Alamofire
 
 class HttpExecuteService:IHttpExecuteService {
-    func performGet(url:String, onSuccess:(response:String)->Void, onError:(response:String)->Void) {
+    func performGet(url:String,
+                    onSuccess:(response:String)->Void,
+                    onError:(response:String)->Void) {
         Alamofire.request(.GET,
                           url)
             .validate()
@@ -25,7 +27,10 @@ class HttpExecuteService:IHttpExecuteService {
             })
     }
     
-    func performPost(url:String, data:AnyObject, onSuccess:(response:String)->Void, onError:(response:String)->Void) {
+    func performPost(url:String,
+                     data:AnyObject,
+                     onSuccess:(response:String)->Void,
+                     onError:(response:String)->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string:url)!)
         request.HTTPMethod = "POST"
         request.HTTPBody = NSData(contentsOfFile: data.string!)

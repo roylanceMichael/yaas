@@ -12,10 +12,13 @@
 		FD11614D1D370C1800EADE5E /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11614C1D370C1800EADE5E /* Services.swift */; };
 		FD1161511D37197E00EADE5E /* HttpExecuteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1161501D37197E00EADE5E /* HttpExecuteService.swift */; };
 		FD1161531D376FEF00EADE5E /* GuidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1161521D376FEF00EADE5E /* GuidService.swift */; };
+		FD1161551D385CDC00EADE5E /* RestAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1161541D385CDC00EADE5E /* RestAuthenticationService.swift */; };
+		FD1161571D389A5A00EADE5E /* RestAdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1161561D389A5A00EADE5E /* RestAdminService.swift */; };
 		FD5B987F1D37067A00714B16 /* yaas.h in Headers */ = {isa = PBXBuildFile; fileRef = FD5B987E1D37067A00714B16 /* yaas.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD5B98861D37067A00714B16 /* yaas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5B987B1D37067A00714B16 /* yaas.framework */; };
 		FD5B988B1D37067A00714B16 /* yaasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B988A1D37067A00714B16 /* yaasTests.swift */; };
 		FD7E46661D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E46651D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift */; };
+		FDE4BDC01D38A2E5006E0866 /* UrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4BDBF1D38A2E5006E0866 /* UrlService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 		FD11614C1D370C1800EADE5E /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		FD1161501D37197E00EADE5E /* HttpExecuteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpExecuteService.swift; sourceTree = "<group>"; };
 		FD1161521D376FEF00EADE5E /* GuidService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidService.swift; sourceTree = "<group>"; };
+		FD1161541D385CDC00EADE5E /* RestAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAuthenticationService.swift; sourceTree = "<group>"; };
+		FD1161561D389A5A00EADE5E /* RestAdminService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAdminService.swift; sourceTree = "<group>"; };
 		FD5B987B1D37067A00714B16 /* yaas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = yaas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5B987E1D37067A00714B16 /* yaas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yaas.h; sourceTree = "<group>"; };
 		FD5B98801D37067A00714B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +50,7 @@
 		FD5B988A1D37067A00714B16 /* yaasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yaasTests.swift; sourceTree = "<group>"; };
 		FD5B988C1D37067A00714B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD7E46651D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Org.Roylance.Yaas.Models.YaasModels.proto.swift; sourceTree = "<group>"; };
+		FDE4BDBF1D38A2E5006E0866 /* UrlService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 				FD11614C1D370C1800EADE5E /* Services.swift */,
 				FD1161501D37197E00EADE5E /* HttpExecuteService.swift */,
 				FD1161521D376FEF00EADE5E /* GuidService.swift */,
+				FD1161541D385CDC00EADE5E /* RestAuthenticationService.swift */,
+				FD1161561D389A5A00EADE5E /* RestAdminService.swift */,
+				FDE4BDBF1D38A2E5006E0866 /* UrlService.swift */,
 			);
 			path = yaas;
 			sourceTree = "<group>";
@@ -324,6 +333,9 @@
 				FD7E46661D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift in Sources */,
 				FD1161511D37197E00EADE5E /* HttpExecuteService.swift in Sources */,
 				FD1161531D376FEF00EADE5E /* GuidService.swift in Sources */,
+				FD1161571D389A5A00EADE5E /* RestAdminService.swift in Sources */,
+				FD1161551D385CDC00EADE5E /* RestAuthenticationService.swift in Sources */,
+				FDE4BDC01D38A2E5006E0866 /* UrlService.swift in Sources */,
 				FD11614D1D370C1800EADE5E /* Services.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

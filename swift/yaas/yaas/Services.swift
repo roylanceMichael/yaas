@@ -29,32 +29,32 @@ protocol IGuidService {
 
 protocol IRestAuthenticationService {
     func save(request:Org.Roylance.Yaas.Models.Uirequest,
-              onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-              onError:(Org.Roylance.Yaas.Models.Uiresponse))
+              onSuccess:(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+              onError:(response:Any) -> Void)
     func login(user:Org.Roylance.Yaas.Models.User,
-              onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-              onError:(Org.Roylance.Yaas.Models.Uiresponse))
+               onSuccess:(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+               onError:(response:Any) -> Void)
     func exists(userName:String,
-              onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-              onError:(Org.Roylance.Yaas.Models.User))
-    func register(user:Org.Roylance.Yaas.Models.Uirequest,
-              onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-              onError:(Org.Roylance.Yaas.Models.Uiresponse))
+                onSuccess:(response: Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+                onError:(response: Any) -> Void)
+    func register(user:Org.Roylance.Yaas.Models.User,
+                  onSuccess:(response: Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+                  onError:(response:Any) -> Void)
 }
 
 protocol IRestAdminService {
     func getAllUsers(request:Org.Roylance.Yaas.Models.Uirequest,
-              onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-              onError:(Org.Roylance.Yaas.Models.Uiresponse))
+              onSuccess:(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+              onError:(response:Any) -> Void)
     func setAdmin(request:Org.Roylance.Yaas.Models.Uirequest,
-               onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-               onError:(Org.Roylance.Yaas.Models.Uiresponse))
+               onSuccess:(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+               onError:(response:Any) -> Void)
     func deleteUser(request:Org.Roylance.Yaas.Models.Uirequest,
-                onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-                onError:(Org.Roylance.Yaas.Models.User))
+                onSuccess:(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+                onError:(response:Any) -> Void)
     func changePasswordForUser(request:Org.Roylance.Yaas.Models.Uirequest,
-                  onSuccess:(Org.Roylance.Yaas.Models.Uiresponse),
-                  onError:(Org.Roylance.Yaas.Models.Uiresponse))
+                  onSuccess:(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void,
+                  onError:(response:Any) -> Void)
 }
 
 protocol IUrlService {

@@ -22,8 +22,31 @@ class yaasTests: XCTestCase {
     }
     
     func testExample() {
+        // arrange
+        let urlService = UrlService(baseUrl: "http://localhost:8080")
+        let httpExecuteService = HttpExecuteService()
+        let authService = RestAuthenticationService(httpExecuteService: httpExecuteService, urlService: urlService)
+        
+        let newUser = try! Org.Roylance.Yaas.Models.User().toBuilder()
+        newUser.userName = "test@test.com"
+        newUser.password = "testing"
+        newUser.display = "test"
+
+        let onSuccess = {(response:Org.Roylance.Yaas.Models.Uiresponse) -> Void in
+            print(response)
+        }
+        
+        let onError = {(response:Any) -> Void in
+            print(response)
+        }
+        
+        // act
+         authService.register(try! newUser.build(), onSuccess: onSuccess, onError: onError)
+        
+        // assert
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertTrue(true)
     }
     
     func testPerformanceExample() {

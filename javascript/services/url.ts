@@ -17,7 +17,7 @@ export class UrlService implements IUrlService {
         this.loginUrl = pathLocation + "auth/login";
         this.registerUrl = pathLocation + "auth/register";
         this.updateProfileUrl = pathLocation + "auth/save";
-        this.userExistsUrl = pathLocation + "auth/auth/exists/";
+        this.userExistsUrl = pathLocation + "auth/exists/";
 
         this.getUserInformationsUrl = pathLocation + "admin/all-users";
         this.setAdminUrl = pathLocation + "admin/set-admin";

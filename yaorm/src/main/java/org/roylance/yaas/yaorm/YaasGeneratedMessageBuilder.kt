@@ -2,9 +2,10 @@ package org.roylance.yaas.yaorm
 
 import com.google.protobuf.GeneratedMessage
 import org.roylance.yaas.models.YaasModels
+import org.roylance.yaorm.services.proto.BaseProtoGeneratedMessageBuilder
 import org.roylance.yaorm.services.proto.IProtoGeneratedMessageBuilder
 
-class YaasGeneratedMessageBuilder: IProtoGeneratedMessageBuilder {
+class YaasGeneratedMessageBuilder: BaseProtoGeneratedMessageBuilder() {
     override fun buildGeneratedMessage(name: String): GeneratedMessage {
         if (YaasModels.Image.getDescriptor().name.equals(name)) {
             return YaasModels.Image.getDefaultInstance()
@@ -34,6 +35,6 @@ class YaasGeneratedMessageBuilder: IProtoGeneratedMessageBuilder {
             return YaasModels.User.getDefaultInstance()
         }
 
-        throw UnsupportedOperationException()
+        return super.buildGeneratedMessage(name)
     }
 }

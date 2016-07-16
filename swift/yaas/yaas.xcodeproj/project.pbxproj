@@ -16,7 +16,6 @@
 		FD1161571D389A5A00EADE5E /* RestAdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1161561D389A5A00EADE5E /* RestAdminService.swift */; };
 		FD5B987F1D37067A00714B16 /* yaas.h in Headers */ = {isa = PBXBuildFile; fileRef = FD5B987E1D37067A00714B16 /* yaas.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD5B98861D37067A00714B16 /* yaas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5B987B1D37067A00714B16 /* yaas.framework */; };
-		FD5B988B1D37067A00714B16 /* yaasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5B988A1D37067A00714B16 /* yaasTests.swift */; };
 		FD7E46661D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E46651D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift */; };
 		FDE4BDC01D38A2E5006E0866 /* UrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4BDBF1D38A2E5006E0866 /* UrlService.swift */; };
 /* End PBXBuildFile section */
@@ -47,8 +46,6 @@
 		FD5B987E1D37067A00714B16 /* yaas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yaas.h; sourceTree = "<group>"; };
 		FD5B98801D37067A00714B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD5B98851D37067A00714B16 /* yaasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yaasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD5B988A1D37067A00714B16 /* yaasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yaasTests.swift; sourceTree = "<group>"; };
-		FD5B988C1D37067A00714B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD7E46651D3708EB00E21C60 /* Org.Roylance.Yaas.Models.YaasModels.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Org.Roylance.Yaas.Models.YaasModels.proto.swift; sourceTree = "<group>"; };
 		FDE4BDBF1D38A2E5006E0866 /* UrlService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,8 +94,8 @@
 		FD5B98711D37067A00714B16 = {
 			isa = PBXGroup;
 			children = (
+				FD9389EE1D3989710031C52D /* tests */,
 				FD5B987D1D37067A00714B16 /* yaas */,
-				FD5B98891D37067A00714B16 /* yaasTests */,
 				FD5B987C1D37067A00714B16 /* Products */,
 				F7943B3D87528DC0F59D3032 /* Pods */,
 				E960251CD8181C353B59D9C2 /* Frameworks */,
@@ -130,13 +127,11 @@
 			path = yaas;
 			sourceTree = "<group>";
 		};
-		FD5B98891D37067A00714B16 /* yaasTests */ = {
+		FD9389EE1D3989710031C52D /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				FD5B988A1D37067A00714B16 /* yaasTests.swift */,
-				FD5B988C1D37067A00714B16 /* Info.plist */,
 			);
-			path = yaasTests;
+			name = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,7 +339,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD5B988B1D37067A00714B16 /* yaasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

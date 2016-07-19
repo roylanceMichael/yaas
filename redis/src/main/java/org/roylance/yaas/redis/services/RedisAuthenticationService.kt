@@ -3,9 +3,9 @@ package org.roylance.yaas.redis.services
 import org.apache.commons.codec.digest.DigestUtils
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
-import org.roylance.yaas.services.IAuthenticationService
 import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.ITokenService
+import org.roylance.yaas.services.server.IAuthenticationService
+import org.roylance.yaas.services.server.ITokenService
 import redis.clients.jedis.Jedis
 import java.util.*
 

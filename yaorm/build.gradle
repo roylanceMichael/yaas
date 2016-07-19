@@ -11,7 +11,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.7-SNAPSHOT'
+version '0.8-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -66,6 +66,6 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
     compile 'org.roylance:yaorm:0.85-SNAPSHOT'
-    compile 'org.roylance.yaas:api:0.9-SNAPSHOT'
+    compile 'org.roylance.yaas:api:0.10-SNAPSHOT'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

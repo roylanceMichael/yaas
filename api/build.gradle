@@ -1,15 +1,18 @@
 buildscript {
+    ext.kotlin_version = '1.0.3'
+
     repositories {
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 group 'org.roylance.yaas'
-version '0.9-SNAPSHOT'
+version '0.10-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: "com.jfrog.artifactory"
@@ -60,4 +63,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.google.protobuf:protobuf-java:3.0.0-beta-3'
     compile group: 'org.jetbrains', name: 'annotations', version: '15.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

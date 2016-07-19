@@ -2,7 +2,7 @@ package org.roylance.yaas.yaorm
 
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.ITokenService
+import org.roylance.yaas.services.server.ITokenService
 import org.roylance.yaorm.models.YaormModel
 import org.roylance.yaorm.services.proto.IEntityMessageService
 import java.util.*

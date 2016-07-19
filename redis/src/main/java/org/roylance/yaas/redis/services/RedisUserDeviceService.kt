@@ -2,7 +2,7 @@ package org.roylance.yaas.redis.services
 
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
-import org.roylance.yaas.services.IUserDeviceService
+import org.roylance.yaas.services.server.IUserDeviceService
 import java.util.*
 
 class RedisUserDeviceService(

@@ -2,16 +2,16 @@ package org.roylance.yaas.yaorm
 
 import org.apache.commons.codec.digest.DigestUtils
 import org.roylance.yaas.models.YaasModels
-import org.roylance.yaas.services.IAuthenticationService
 import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.ITokenService
+import org.roylance.yaas.services.server.IAuthenticationService
+import org.roylance.yaas.services.server.ITokenService
 import org.roylance.yaorm.models.YaormModel
 import org.roylance.yaorm.services.proto.IEntityMessageService
 
 class EntityAuthenticationService(
         private val entityMessageService:IEntityMessageService,
         private val tokenService: ITokenService,
-        private val logger: ILogger):IAuthenticationService {
+        private val logger: ILogger): IAuthenticationService {
     override fun setUserAsAdmin(user: YaasModels.User): Boolean {
         if (!user.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) }) {
             val builder = user.toBuilder()

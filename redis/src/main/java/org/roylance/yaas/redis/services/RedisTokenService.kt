@@ -3,7 +3,7 @@ package org.roylance.yaas.redis.services
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
 import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.ITokenService
+import org.roylance.yaas.services.server.ITokenService
 import java.util.*
 
 class RedisTokenService(host: String,

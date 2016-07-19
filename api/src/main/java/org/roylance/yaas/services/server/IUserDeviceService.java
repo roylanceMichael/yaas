@@ -1,4 +1,4 @@
-package org.roylance.yaas.services;
+package org.roylance.yaas.services.server;
 
 import org.roylance.yaas.models.YaasModels;
 

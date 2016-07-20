@@ -61,6 +61,11 @@ message UIChangePassword {
 message UIRequest {
     optional string token = 1;
     optional string content = 2;
+    optional User user = 3;
+    optional UserDevice user_device = 4;
+    optional Image image = 5;
+    optional int32 offset = 6;
+    optional int32 limit = 7;
 }
 
 message UIResponse {
@@ -71,6 +76,7 @@ message UIResponse {
     optional bool is_admin = 5;
     optional UIAuthentication user = 6;
     optional UIAuthentications users = 7;
+    repeated UserDevice user_devices = 8;
 }
 
 message UIAuthentications {

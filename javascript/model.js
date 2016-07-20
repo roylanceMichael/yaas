@@ -213,6 +213,36 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
                     "type": "string",
                     "name": "content",
                     "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "type": "User",
+                    "name": "user",
+                    "id": 3
+                },
+                {
+                    "rule": "optional",
+                    "type": "UserDevice",
+                    "name": "user_device",
+                    "id": 4
+                },
+                {
+                    "rule": "optional",
+                    "type": "Image",
+                    "name": "image",
+                    "id": 5
+                },
+                {
+                    "rule": "optional",
+                    "type": "int32",
+                    "name": "offset",
+                    "id": 6
+                },
+                {
+                    "rule": "optional",
+                    "type": "int32",
+                    "name": "limit",
+                    "id": 7
                 }
             ]
         },
@@ -260,6 +290,12 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
                     "type": "UIAuthentications",
                     "name": "users",
                     "id": 7
+                },
+                {
+                    "rule": "repeated",
+                    "type": "UserDevice",
+                    "name": "user_devices",
+                    "id": 8
                 }
             ]
         },

@@ -12,7 +12,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.12-SNAPSHOT'
+version '0.14-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -62,7 +62,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
     compile 'com.google.protobuf:protobuf-java:3.0.0-beta-3'
     compile group: 'org.jetbrains', name: 'annotations', version: '15.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile "org.roylance:common:0.1-SNAPSHOT"
 }

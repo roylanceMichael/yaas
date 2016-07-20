@@ -1,15 +1,15 @@
 package org.roylance.yaas.redis.services
 
+import org.roylance.common.service.ILogger
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
-import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.server.ITokenService
+import org.roylance.yaas.services.server.IServerTokenService
 import java.util.*
 
 class RedisTokenService(host: String,
                         port: Int,
                         password: String,
-                        private val logger: ILogger): RedisBase(host, port, password), ITokenService {
+                        private val logger: ILogger): RedisBase(host, port, password), IServerTokenService {
     override fun validateUser(token: String): YaasModels.UIAuthentication {
         val client = this.buildJedisClient()
         try {

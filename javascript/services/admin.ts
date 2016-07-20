@@ -68,4 +68,30 @@ export class RestAdminService implements IRestAdminService {
             },
             onError);
     }
+
+    isAdmin(requestModel:org.roylance.yaas.models.UIRequest,
+            onSuccess:(response:org.roylance.yaas.models.UIResponse)=>void,
+            onError:(response:any)=>void) {
+        const self = this;
+        this.httpExecuteService.performPost(
+            this.urlService.isAdminUrl,
+            requestModel.toBase64(),
+            function(result:string) {
+                onSuccess(self.modelFactory.UIResponse.decode64(result));
+            },
+            onError);
+    }
+
+    removeUserAsAdmin(requestModel:org.roylance.yaas.models.UIRequest,
+                      onSuccess:(response:org.roylance.yaas.models.UIResponse)=>void,
+                      onError:(response:any)=>void) {
+        const self = this;
+        this.httpExecuteService.performPost(
+            this.urlService.removeUserAsAdminUrl,
+            requestModel.toBase64(),
+            function(result:string) {
+                onSuccess(self.modelFactory.UIResponse.decode64(result));
+            },
+            onError);
+    }
 }

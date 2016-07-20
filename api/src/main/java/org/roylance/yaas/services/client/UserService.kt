@@ -5,9 +5,7 @@ import org.roylance.yaas.models.YaasModels
 import java.io.IOException
 import java.net.Socket
 
-class LoggedInService(
-        private val secureCachingService: ISecureCachingService
-): IUserService {
+class UserService(private val secureCachingService: ISecureCachingService): IUserService {
     private var inMemoryAuthentication: YaasModels.UIAuthentication? = null
     private var inMemoryUserDeviceToken: String? = null
 

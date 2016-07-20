@@ -214,6 +214,21 @@ declare module org.roylance.yaas.models {
 		content?: string;
 		getContent() : string;
 		setContent(content : string): void;
+		user?: User;
+		getUser() : User;
+		setUser(user : User): void;
+		user_device?: UserDevice;
+		getUserDevice() : UserDevice;
+		setUserDevice(userDevice : UserDevice): void;
+		image?: Image;
+		getImage() : Image;
+		setImage(image : Image): void;
+		offset?: number;
+		getOffset() : number;
+		setOffset(offset : number): void;
+		limit?: number;
+		getLimit() : number;
+		setLimit(limit : number): void;
 		
 	}
 	
@@ -251,6 +266,9 @@ declare module org.roylance.yaas.models {
 		users?: UIAuthentications;
 		getUsers() : UIAuthentications;
 		setUsers(users : UIAuthentications): void;
+		user_devices: UserDevice[];
+		getUserDevices() : UserDevice[];
+		setUserDevices(userDevices : UserDevice[]): void;
 		
 	}
 	

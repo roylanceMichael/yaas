@@ -30,6 +30,18 @@ var RestAdminService = (function () {
             onSuccess(self.modelFactory.UIResponse.decode64(result));
         }, onError);
     };
+    RestAdminService.prototype.isAdmin = function (requestModel, onSuccess, onError) {
+        var self = this;
+        this.httpExecuteService.performPost(this.urlService.isAdminUrl, requestModel.toBase64(), function (result) {
+            onSuccess(self.modelFactory.UIResponse.decode64(result));
+        }, onError);
+    };
+    RestAdminService.prototype.removeUserAsAdmin = function (requestModel, onSuccess, onError) {
+        var self = this;
+        this.httpExecuteService.performPost(this.urlService.removeUserAsAdminUrl, requestModel.toBase64(), function (result) {
+            onSuccess(self.modelFactory.UIResponse.decode64(result));
+        }, onError);
+    };
     return RestAdminService;
 }());
 exports.RestAdminService = RestAdminService;

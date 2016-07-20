@@ -27,6 +27,12 @@ var RestAuthenticationService = (function () {
             onSuccess(self.modelFactory.UIAuthentication.decode64(result));
         }, onError);
     };
+    RestAuthenticationService.prototype.changePassword = function (model, onSuccess, onError) {
+        var self = this;
+        this.httpExecuteService.performPost(this.urlService.changePasswordUrl, model.toBase64(), function (result) {
+            onSuccess(self.modelFactory.UIResponse.decode64(result));
+        }, onError);
+    };
     return RestAuthenticationService;
 }());
 exports.RestAuthenticationService = RestAuthenticationService;

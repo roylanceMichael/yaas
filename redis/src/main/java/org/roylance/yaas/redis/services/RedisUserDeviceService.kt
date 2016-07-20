@@ -2,19 +2,27 @@ package org.roylance.yaas.redis.services
 
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
-import org.roylance.yaas.services.server.IUserDeviceService
+import org.roylance.yaas.services.IUserDeviceService
+import org.roylance.yaas.services.server.IServerTokenService
 import java.util.*
 
 class RedisUserDeviceService(
         host: String,
         port: Int,
+        private val tokenService: IServerTokenService,
         password: String):RedisBase(host, port, password), IUserDeviceService {
-    override fun saveUserDevice(userDevice: YaasModels.UserDevice) {
+    override fun all(request: YaasModels.UIRequest): YaasModels.UIResponse {
+        val auth = this.tokenService.validateUser(request.token)
+
+        if (!auth.authenticated) {
+            return YaasModels.UIResponse.getDefaultInstance()
+        }
+
         val client = this.buildJedisClient()
         try {
-            val key = this.buildKey(userDevice.user.userName)
-            val subKey = userDevice.userDeviceToken
-            val builder = userDevice.toBuilder()
+            val key = this.buildKey(request.userDevice.user.userName)
+            val subKey = request.userDevice.userDeviceToken
+            val builder = request.userDevice.toBuilder()
             builder.lastUpdated = Date().time
 
             client.hset(key, subKey, Base64.getEncoder().encodeToString(builder.build().toByteArray()))
@@ -22,23 +30,30 @@ class RedisUserDeviceService(
         finally {
             client.close()
         }
+
+        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun getUserDevices(user: YaasModels.User): List<YaasModels.UserDevice>? {
+    override fun save(request: YaasModels.UIRequest): YaasModels.UIResponse {
+        val auth = this.tokenService.validateUser(request.token)
+
+        if (!auth.authenticated) {
+            return YaasModels.UIResponse.getDefaultInstance()
+        }
+
         val client = this.buildJedisClient()
         try {
-            val key = this.buildKey(user.userName)
-            val items = client.hgetAll(key)
-            return items
-                    .values
-                    .map {
-                        YaasModels.UserDevice.parseFrom(Base64.getDecoder().decode(it))
-                    }
-                    .toList()
+            val key = this.buildKey(request.userDevice.user.userName)
+            val subKey = request.userDevice.userDeviceToken
+            val builder = request.userDevice.toBuilder()
+            builder.lastUpdated = Date().time
+
+            client.hset(key, subKey, Base64.getEncoder().encodeToString(builder.build().toByteArray()))
         }
         finally {
             client.close()
         }
+        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
     }
 
     private fun buildKey(userName: String): String {

@@ -96,6 +96,11 @@ public func == (lhs: Org.Roylance.Yaas.Models.Uirequest, rhs: Org.Roylance.Yaas.
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasToken == rhs.hasToken) && (!lhs.hasToken || lhs.token == rhs.token)
   fieldCheck = fieldCheck && (lhs.hasContent == rhs.hasContent) && (!lhs.hasContent || lhs.content == rhs.content)
+  fieldCheck = fieldCheck && (lhs.hasUser == rhs.hasUser) && (!lhs.hasUser || lhs.user == rhs.user)
+  fieldCheck = fieldCheck && (lhs.hasUserDevice == rhs.hasUserDevice) && (!lhs.hasUserDevice || lhs.userDevice == rhs.userDevice)
+  fieldCheck = fieldCheck && (lhs.hasImage == rhs.hasImage) && (!lhs.hasImage || lhs.image == rhs.image)
+  fieldCheck = fieldCheck && (lhs.hasOffset == rhs.hasOffset) && (!lhs.hasOffset || lhs.offset == rhs.offset)
+  fieldCheck = fieldCheck && (lhs.hasLimit == rhs.hasLimit) && (!lhs.hasLimit || lhs.limit == rhs.limit)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -112,6 +117,7 @@ public func == (lhs: Org.Roylance.Yaas.Models.Uiresponse, rhs: Org.Roylance.Yaas
   fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
   fieldCheck = fieldCheck && (lhs.hasUser == rhs.hasUser) && (!lhs.hasUser || lhs.user == rhs.user)
   fieldCheck = fieldCheck && (lhs.hasUsers == rhs.hasUsers) && (!lhs.hasUsers || lhs.users == rhs.users)
+  fieldCheck = fieldCheck && (lhs.userDevices == rhs.userDevices)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -2435,6 +2441,18 @@ public extension Org.Roylance.Yaas.Models {
     public private(set) var content:String = ""
 
     public private(set) var hasContent:Bool = false
+    public private(set) var user:Org.Roylance.Yaas.Models.User!
+    public private(set) var hasUser:Bool = false
+    public private(set) var userDevice:Org.Roylance.Yaas.Models.UserDevice!
+    public private(set) var hasUserDevice:Bool = false
+    public private(set) var image:Org.Roylance.Yaas.Models.Image!
+    public private(set) var hasImage:Bool = false
+    public private(set) var offset:Int32 = Int32(0)
+
+    public private(set) var hasOffset:Bool = false
+    public private(set) var limit:Int32 = Int32(0)
+
+    public private(set) var hasLimit:Bool = false
     required public init() {
          super.init()
     }
@@ -2447,6 +2465,21 @@ public extension Org.Roylance.Yaas.Models {
       }
       if hasContent {
         try output.writeString(2, value:content)
+      }
+      if hasUser {
+        try output.writeMessage(3, value:user)
+      }
+      if hasUserDevice {
+        try output.writeMessage(4, value:userDevice)
+      }
+      if hasImage {
+        try output.writeMessage(5, value:image)
+      }
+      if hasOffset {
+        try output.writeInt32(6, value:offset)
+      }
+      if hasLimit {
+        try output.writeInt32(7, value:limit)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -2462,6 +2495,27 @@ public extension Org.Roylance.Yaas.Models {
       }
       if hasContent {
         serialize_size += content.computeStringSize(2)
+      }
+      if hasUser {
+          if let varSizeuser = user?.computeMessageSize(3) {
+              serialize_size += varSizeuser
+          }
+      }
+      if hasUserDevice {
+          if let varSizeuserDevice = userDevice?.computeMessageSize(4) {
+              serialize_size += varSizeuserDevice
+          }
+      }
+      if hasImage {
+          if let varSizeimage = image?.computeMessageSize(5) {
+              serialize_size += varSizeimage
+          }
+      }
+      if hasOffset {
+        serialize_size += offset.computeInt32Size(6)
+      }
+      if hasLimit {
+        serialize_size += limit.computeInt32Size(7)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2521,6 +2575,33 @@ public extension Org.Roylance.Yaas.Models {
       if hasContent {
         output += "\(indent) content: \(content) \n"
       }
+      if hasUser {
+        output += "\(indent) user {\n"
+        if let outDescUser = user {
+          output += try outDescUser.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasUserDevice {
+        output += "\(indent) userDevice {\n"
+        if let outDescUserDevice = userDevice {
+          output += try outDescUserDevice.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasImage {
+        output += "\(indent) image {\n"
+        if let outDescImage = image {
+          output += try outDescImage.getDescription("\(indent)  ")
+        }
+        output += "\(indent) }\n"
+      }
+      if hasOffset {
+        output += "\(indent) offset: \(offset) \n"
+      }
+      if hasLimit {
+        output += "\(indent) limit: \(limit) \n"
+      }
       output += unknownFields.getDescription(indent)
       return output
     }
@@ -2532,6 +2613,27 @@ public extension Org.Roylance.Yaas.Models {
             }
             if hasContent {
                hashCode = (hashCode &* 31) &+ content.hashValue
+            }
+            if hasUser {
+                if let hashValueuser = user?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueuser
+                }
+            }
+            if hasUserDevice {
+                if let hashValueuserDevice = userDevice?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueuserDevice
+                }
+            }
+            if hasImage {
+                if let hashValueimage = image?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueimage
+                }
+            }
+            if hasOffset {
+               hashCode = (hashCode &* 31) &+ offset.hashValue
+            }
+            if hasLimit {
+               hashCode = (hashCode &* 31) &+ limit.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2607,6 +2709,205 @@ public extension Org.Roylance.Yaas.Models {
            builderResult.content = ""
            return self
       }
+      public var hasUser:Bool {
+           get {
+               return builderResult.hasUser
+           }
+      }
+      public var user:Org.Roylance.Yaas.Models.User! {
+           get {
+               if userBuilder_ != nil {
+                  builderResult.user = userBuilder_.getMessage()
+               }
+               return builderResult.user
+           }
+           set (value) {
+               builderResult.hasUser = true
+               builderResult.user = value
+           }
+      }
+      private var userBuilder_:Org.Roylance.Yaas.Models.User.Builder! {
+           didSet {
+              builderResult.hasUser = true
+           }
+      }
+      public func getUserBuilder() -> Org.Roylance.Yaas.Models.User.Builder {
+        if userBuilder_ == nil {
+           userBuilder_ = Org.Roylance.Yaas.Models.User.Builder()
+           builderResult.user = userBuilder_.getMessage()
+           if user != nil {
+              try! userBuilder_.mergeFrom(user)
+           }
+        }
+        return userBuilder_
+      }
+      public func setUser(value:Org.Roylance.Yaas.Models.User!) -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        self.user = value
+        return self
+      }
+      public func mergeUser(value:Org.Roylance.Yaas.Models.User) throws -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        if builderResult.hasUser {
+          builderResult.user = try Org.Roylance.Yaas.Models.User.builderWithPrototype(builderResult.user).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.user = value
+        }
+        builderResult.hasUser = true
+        return self
+      }
+      public func clearUser() -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        userBuilder_ = nil
+        builderResult.hasUser = false
+        builderResult.user = nil
+        return self
+      }
+      public var hasUserDevice:Bool {
+           get {
+               return builderResult.hasUserDevice
+           }
+      }
+      public var userDevice:Org.Roylance.Yaas.Models.UserDevice! {
+           get {
+               if userDeviceBuilder_ != nil {
+                  builderResult.userDevice = userDeviceBuilder_.getMessage()
+               }
+               return builderResult.userDevice
+           }
+           set (value) {
+               builderResult.hasUserDevice = true
+               builderResult.userDevice = value
+           }
+      }
+      private var userDeviceBuilder_:Org.Roylance.Yaas.Models.UserDevice.Builder! {
+           didSet {
+              builderResult.hasUserDevice = true
+           }
+      }
+      public func getUserDeviceBuilder() -> Org.Roylance.Yaas.Models.UserDevice.Builder {
+        if userDeviceBuilder_ == nil {
+           userDeviceBuilder_ = Org.Roylance.Yaas.Models.UserDevice.Builder()
+           builderResult.userDevice = userDeviceBuilder_.getMessage()
+           if userDevice != nil {
+              try! userDeviceBuilder_.mergeFrom(userDevice)
+           }
+        }
+        return userDeviceBuilder_
+      }
+      public func setUserDevice(value:Org.Roylance.Yaas.Models.UserDevice!) -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        self.userDevice = value
+        return self
+      }
+      public func mergeUserDevice(value:Org.Roylance.Yaas.Models.UserDevice) throws -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        if builderResult.hasUserDevice {
+          builderResult.userDevice = try Org.Roylance.Yaas.Models.UserDevice.builderWithPrototype(builderResult.userDevice).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.userDevice = value
+        }
+        builderResult.hasUserDevice = true
+        return self
+      }
+      public func clearUserDevice() -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        userDeviceBuilder_ = nil
+        builderResult.hasUserDevice = false
+        builderResult.userDevice = nil
+        return self
+      }
+      public var hasImage:Bool {
+           get {
+               return builderResult.hasImage
+           }
+      }
+      public var image:Org.Roylance.Yaas.Models.Image! {
+           get {
+               if imageBuilder_ != nil {
+                  builderResult.image = imageBuilder_.getMessage()
+               }
+               return builderResult.image
+           }
+           set (value) {
+               builderResult.hasImage = true
+               builderResult.image = value
+           }
+      }
+      private var imageBuilder_:Org.Roylance.Yaas.Models.Image.Builder! {
+           didSet {
+              builderResult.hasImage = true
+           }
+      }
+      public func getImageBuilder() -> Org.Roylance.Yaas.Models.Image.Builder {
+        if imageBuilder_ == nil {
+           imageBuilder_ = Org.Roylance.Yaas.Models.Image.Builder()
+           builderResult.image = imageBuilder_.getMessage()
+           if image != nil {
+              try! imageBuilder_.mergeFrom(image)
+           }
+        }
+        return imageBuilder_
+      }
+      public func setImage(value:Org.Roylance.Yaas.Models.Image!) -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        self.image = value
+        return self
+      }
+      public func mergeImage(value:Org.Roylance.Yaas.Models.Image) throws -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        if builderResult.hasImage {
+          builderResult.image = try Org.Roylance.Yaas.Models.Image.builderWithPrototype(builderResult.image).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.image = value
+        }
+        builderResult.hasImage = true
+        return self
+      }
+      public func clearImage() -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        imageBuilder_ = nil
+        builderResult.hasImage = false
+        builderResult.image = nil
+        return self
+      }
+      public var hasOffset:Bool {
+           get {
+                return builderResult.hasOffset
+           }
+      }
+      public var offset:Int32 {
+           get {
+                return builderResult.offset
+           }
+           set (value) {
+               builderResult.hasOffset = true
+               builderResult.offset = value
+           }
+      }
+      public func setOffset(value:Int32) -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        self.offset = value
+        return self
+      }
+      public func clearOffset() -> Org.Roylance.Yaas.Models.Uirequest.Builder{
+           builderResult.hasOffset = false
+           builderResult.offset = Int32(0)
+           return self
+      }
+      public var hasLimit:Bool {
+           get {
+                return builderResult.hasLimit
+           }
+      }
+      public var limit:Int32 {
+           get {
+                return builderResult.limit
+           }
+           set (value) {
+               builderResult.hasLimit = true
+               builderResult.limit = value
+           }
+      }
+      public func setLimit(value:Int32) -> Org.Roylance.Yaas.Models.Uirequest.Builder {
+        self.limit = value
+        return self
+      }
+      public func clearLimit() -> Org.Roylance.Yaas.Models.Uirequest.Builder{
+           builderResult.hasLimit = false
+           builderResult.limit = Int32(0)
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -2637,6 +2938,21 @@ public extension Org.Roylance.Yaas.Models {
         if other.hasContent {
              content = other.content
         }
+        if (other.hasUser) {
+            try mergeUser(other.user)
+        }
+        if (other.hasUserDevice) {
+            try mergeUserDevice(other.userDevice)
+        }
+        if (other.hasImage) {
+            try mergeImage(other.image)
+        }
+        if other.hasOffset {
+             offset = other.offset
+        }
+        if other.hasLimit {
+             limit = other.limit
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -2657,6 +2973,36 @@ public extension Org.Roylance.Yaas.Models {
 
           case 18 :
             content = try input.readString()
+
+          case 26 :
+            let subBuilder:Org.Roylance.Yaas.Models.User.Builder = Org.Roylance.Yaas.Models.User.Builder()
+            if hasUser {
+              try subBuilder.mergeFrom(user)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            user = subBuilder.buildPartial()
+
+          case 34 :
+            let subBuilder:Org.Roylance.Yaas.Models.UserDevice.Builder = Org.Roylance.Yaas.Models.UserDevice.Builder()
+            if hasUserDevice {
+              try subBuilder.mergeFrom(userDevice)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            userDevice = subBuilder.buildPartial()
+
+          case 42 :
+            let subBuilder:Org.Roylance.Yaas.Models.Image.Builder = Org.Roylance.Yaas.Models.Image.Builder()
+            if hasImage {
+              try subBuilder.mergeFrom(image)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            image = subBuilder.buildPartial()
+
+          case 48 :
+            offset = try input.readInt32()
+
+          case 56 :
+            limit = try input.readInt32()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {
@@ -2690,6 +3036,7 @@ public extension Org.Roylance.Yaas.Models {
     public private(set) var hasUser:Bool = false
     public private(set) var users:Org.Roylance.Yaas.Models.Uiauthentications!
     public private(set) var hasUsers:Bool = false
+    public private(set) var userDevices:Array<Org.Roylance.Yaas.Models.UserDevice>  = Array<Org.Roylance.Yaas.Models.UserDevice>()
     required public init() {
          super.init()
     }
@@ -2717,6 +3064,9 @@ public extension Org.Roylance.Yaas.Models {
       }
       if hasUsers {
         try output.writeMessage(7, value:users)
+      }
+      for oneElementuserDevices in userDevices {
+          try output.writeMessage(8, value:oneElementuserDevices)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -2751,6 +3101,9 @@ public extension Org.Roylance.Yaas.Models {
           if let varSizeusers = users?.computeMessageSize(7) {
               serialize_size += varSizeusers
           }
+      }
+      for oneElementuserDevices in userDevices {
+          serialize_size += oneElementuserDevices.computeMessageSize(8)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2833,6 +3186,13 @@ public extension Org.Roylance.Yaas.Models {
         }
         output += "\(indent) }\n"
       }
+      var userDevicesElementIndex:Int = 0
+      for oneElementuserDevices in userDevices {
+          output += "\(indent) userDevices[\(userDevicesElementIndex)] {\n"
+          output += try oneElementuserDevices.getDescription("\(indent)  ")
+          output += "\(indent)}\n"
+          userDevicesElementIndex += 1
+      }
       output += unknownFields.getDescription(indent)
       return output
     }
@@ -2863,6 +3223,9 @@ public extension Org.Roylance.Yaas.Models {
                 if let hashValueusers = users?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueusers
                 }
+            }
+            for oneElementuserDevices in userDevices {
+                hashCode = (hashCode &* 31) &+ oneElementuserDevices.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -3109,6 +3472,22 @@ public extension Org.Roylance.Yaas.Models {
         builderResult.users = nil
         return self
       }
+      public var userDevices:Array<Org.Roylance.Yaas.Models.UserDevice> {
+           get {
+               return builderResult.userDevices
+           }
+           set (value) {
+               builderResult.userDevices = value
+           }
+      }
+      public func setUserDevices(value:Array<Org.Roylance.Yaas.Models.UserDevice>) -> Org.Roylance.Yaas.Models.Uiresponse.Builder {
+        self.userDevices = value
+        return self
+      }
+      public func clearUserDevices() -> Org.Roylance.Yaas.Models.Uiresponse.Builder {
+        builderResult.userDevices.removeAll(keepCapacity: false)
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -3153,6 +3532,9 @@ public extension Org.Roylance.Yaas.Models {
         }
         if (other.hasUsers) {
             try mergeUsers(other.users)
+        }
+        if !other.userDevices.isEmpty  {
+           builderResult.userDevices += other.userDevices
         }
         try mergeUnknownFields(other.unknownFields)
         return self
@@ -3199,6 +3581,11 @@ public extension Org.Roylance.Yaas.Models {
             }
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             users = subBuilder.buildPartial()
+
+          case 66 :
+            let subBuilder = Org.Roylance.Yaas.Models.UserDevice.Builder()
+            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+            userDevices += [subBuilder.buildPartial()]
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:protobufTag))) {

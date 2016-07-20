@@ -1,33 +1,65 @@
 package org.roylance.yaas.redis.services
 
 import org.apache.commons.codec.digest.DigestUtils
+import org.roylance.common.service.ILogger
+import org.roylance.common.service.IProtoSerializerService
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
-import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.server.IAuthenticationService
-import org.roylance.yaas.services.server.ITokenService
+import org.roylance.yaas.services.IAuthenticationService
+import org.roylance.yaas.services.server.IServerTokenService
 import redis.clients.jedis.Jedis
-import java.util.*
 
 class RedisAuthenticationService(
         host: String,
         port: Int,
         password: String,
-        private val tokenService: ITokenService,
+        private val serializerService: IProtoSerializerService,
+        private val tokenService: IServerTokenService,
         private val logger: ILogger): RedisBase(host, port, password), IAuthenticationService {
-    override fun setUserAsAdmin(user: YaasModels.User): Boolean {
+    override fun exists(userName: String): Boolean {
         val client = this.buildJedisClient()
         try {
-            client.sadd(CommonKeys.UserAdminsKey, user.userName)
+            val key = "${CommonKeys.UserTemplate}$userName"
+
+            logger.info("checking key if exists: " + key)
+            return client
+                    .get(key) != null
         }
         finally {
             client.close()
         }
-
-        return true
     }
 
-    override fun registerUser(user: YaasModels.User): YaasModels.UIAuthentication {
+    override fun login(request: YaasModels.UIRequest): YaasModels.UIAuthentication {
+        return this.tokenService.validateUser(request.token)
+    }
+
+    override fun login(user: YaasModels.User): YaasModels.UIAuthentication {
+        val client = this.buildJedisClient()
+        try {
+            val key = "${CommonKeys.UserTemplate}${user.userName}"
+            val hashedPassword = DigestUtils.md5Hex(user.password)
+
+            val existingHashedPassword = client.get(key)
+            if (existingHashedPassword == null ||
+                    !hashedPassword.equals(existingHashedPassword)) {
+
+                return YaasModels.UIAuthentication.newBuilder()
+                        .setAuthenticated(false)
+                        .setUserName(user.userName)
+                        .setDisplay(user.display)
+                        .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
+                        .build()
+            }
+
+            return this.tokenService.generateToken(user)
+        }
+        finally {
+            client.close()
+        }
+    }
+
+    override fun register(user: YaasModels.User): YaasModels.UIAuthentication {
         val client = this.buildJedisClient()
         try {
             val key = "${CommonKeys.UserTemplate}${user.userName}"
@@ -61,118 +93,24 @@ class RedisAuthenticationService(
         }
     }
 
-    override fun getAllUsers(limit:Int, offset:Int): List<YaasModels.UIAuthentication> {
+    override fun save(request: YaasModels.UIRequest): YaasModels.UIResponse {
         val client = this.buildJedisClient()
         try {
-            val allUsers = client.smembers(CommonKeys.AllUsersKey)
-            val admins = client.smembers(CommonKeys.UserAdminsKey)
-
-            return allUsers
-                    .map {
-                        YaasModels.UIAuthentication.newBuilder()
-                                .setUserName(it)
-                                .setIsAdmin(admins.contains(it))
-                                .build()
-                    }
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun userNameExists(userName: String): Boolean {
-        val client = this.buildJedisClient()
-        try {
-            val key = "${CommonKeys.UserTemplate}$userName"
-
-            logger.info("checking key if exists: " + key)
-            return client
-                    .get(key) != null
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun authenticateUser(user: YaasModels.User): YaasModels.UIAuthentication {
-        val client = this.buildJedisClient()
-        try {
-            val key = "${CommonKeys.UserTemplate}${user.userName}"
-            val hashedPassword = DigestUtils.md5Hex(user.password)
-
-            val existingHashedPassword = client.get(key)
-            if (existingHashedPassword == null ||
-                    !hashedPassword.equals(existingHashedPassword)) {
-
-                return YaasModels.UIAuthentication.newBuilder()
-                        .setAuthenticated(false)
-                        .setUserName(user.userName)
-                        .setDisplay(user.display)
-                        .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
-                        .build()
-            }
-
-            return this.tokenService.generateToken(user)
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun authenticateUser(token: String): YaasModels.UIAuthentication {
-        return this.tokenService.validateUser(token)
-    }
-
-    override fun isUserAdmin(user: YaasModels.User): Boolean {
-        val client = this.buildJedisClient()
-        try {
-            return client.sismember(CommonKeys.UserAdminsKey, user.userName)
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun saveInfo(user: YaasModels.User, token: String): Boolean {
-        val client = this.buildJedisClient()
-        try {
-            val key = "${CommonKeys.TokenTemplate}$token"
-            val value = Base64.getEncoder().encodeToString(user.toByteArray())
+            val key = "${CommonKeys.TokenTemplate}${request.token}"
+            val value = this.serializerService.serializeToBase64(request.user)
             client.set(key, value)
 
-            if (user.password.length > 0) {
-                this.updateUserPassword(user.userName, user.password, client)
+            if (request.user.password.length > 0) {
+                this.updateUserPassword(request.user.userName, request.user.password, client)
             }
         }
         finally {
             client.close()
         }
 
-        return true
+        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun changePasswordForUser(userModel: YaasModels.User): Boolean {
-        val client = this.buildJedisClient()
-        try {
-            this.updateUserPassword(userModel.userName, userModel.password, client)
-            return true
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun removeUserAsAdmin(user: YaasModels.User): Boolean {
-        val client = this.buildJedisClient()
-        try {
-            client.srem(CommonKeys.UserAdminsKey, user.userName)
-        }
-        finally {
-            client.close()
-        }
-
-        return true
-    }
 
     override fun changePassword(model: YaasModels.UIChangePassword): YaasModels.UIAuthentication {
         val client = this.buildJedisClient()
@@ -181,7 +119,7 @@ class RedisAuthenticationService(
                     .setUserName(model.userName)
                     .setPassword(model.oldPassword)
 
-            val authModel = this.authenticateUser(tempUserModel.build())
+            val authModel = this.login(tempUserModel.build())
 
             if (!authModel.authenticated) {
                 this.logger.info("unable to authenticate user: " + model.userName)
@@ -204,28 +142,6 @@ class RedisAuthenticationService(
 
             this.logger.info("updated password for user: " + model.userName)
             return this.tokenService.generateToken(tempUserModel.build())
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun deleteUser(user: YaasModels.User): Boolean {
-        val client = this.buildJedisClient()
-        try {
-            // just remove all the keys
-            client.del("${CommonKeys.UserTemplate}${user.userName}")
-            val token = client.get("${CommonKeys.TokenUserTemplate}${user.userName}")
-
-            if (token != null) {
-                client.del("${CommonKeys.TokenTemplate}$token")
-            }
-
-            this.logger.info("deleting user: " + user.userName)
-            client.del("${CommonKeys.TokenUserTemplate}${user.userName}")
-            client.srem(CommonKeys.AllUsersKey, user.userName)
-
-            return true
         }
         finally {
             client.close()

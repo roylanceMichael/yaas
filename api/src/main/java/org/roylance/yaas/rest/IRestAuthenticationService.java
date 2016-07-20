@@ -14,6 +14,9 @@ public interface IRestAuthenticationService {
     @POST("/rest/auth/login")
     Call<String> login(@NotNull @Body String base64User);
 
+    @POST("/rest/auth/authenticate")
+    Call<String> authenticate(@NotNull @Body String base64Request);
+
     @GET("/rest/auth/exists/{userName}")
     Call<String> exists(@NotNull @Path("userName") String userName);
 
@@ -21,5 +24,5 @@ public interface IRestAuthenticationService {
     Call<String> register(@NotNull @Body String base64User);
 
     @POST("/rest/auth/change-password")
-    String changePassword(@NotNull @Body String base64ChangePassword);
+    Call<String> changePassword(@NotNull @Body String base64ChangePassword);
 }

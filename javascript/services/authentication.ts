@@ -64,4 +64,17 @@ export class RestAuthenticationService implements IRestAuthenticationService {
             },
             onError);
     }
+
+    changePassword(model:org.roylance.yaas.models.UIChangePassword,
+                   onSuccess:(response:org.roylance.yaas.models.UIResponse)=>void,
+                   onError:(response:any)=>void) {
+        const self = this;
+        this.httpExecuteService.performPost(
+            this.urlService.changePasswordUrl,
+            model.toBase64(),
+            function(result:string) {
+                onSuccess(self.modelFactory.UIResponse.decode64(result));
+            },
+            onError);
+    }
 }

@@ -1,15 +1,15 @@
 package org.roylance.yaas.yaorm
 
+import org.roylance.common.service.ILogger
 import org.roylance.yaas.models.YaasModels
-import org.roylance.yaas.services.ILogger
-import org.roylance.yaas.services.server.ITokenService
+import org.roylance.yaas.services.server.IServerTokenService
 import org.roylance.yaorm.models.YaormModel
 import org.roylance.yaorm.services.proto.IEntityMessageService
 import java.util.*
 
 class EntityTokenService(
         private val entityMessageService: IEntityMessageService,
-        private val logger: ILogger): ITokenService {
+        private val logger: ILogger): IServerTokenService {
     override fun validateUser(token: String): YaasModels.UIAuthentication {
         val whereClause = this.buildWhereClauseForToken(token)
         val records = this.entityMessageService.where(YaasModels.Token.getDefaultInstance(), whereClause)

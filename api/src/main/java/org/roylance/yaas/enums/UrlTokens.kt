@@ -27,7 +27,7 @@ object UrlTokens {
     const val Auth = "/auth"
     const val Save = "/save"
     const val Login = "/login"
-    const val Exists = "/exists/{userName}"
+    const val Exists = "/exists"
     const val Register = "/register"
     const val Authenticate = "/authenticate"
     const val AuthSave = "$Auth$Save"

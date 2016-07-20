@@ -1,6 +1,7 @@
 package org.roylance.yaas.rest;
 
 import org.jetbrains.annotations.NotNull;
+import org.roylance.yaas.enums.UrlTokens;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -8,21 +9,21 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface IRestAuthenticationService {
-    @POST("/rest/auth/save")
+    @POST(UrlTokens.FullAuthSave)
     Call<String> save(@NotNull @Body String base64Request);
 
-    @POST("/rest/auth/login")
+    @POST(UrlTokens.FullAuthLogin)
     Call<String> login(@NotNull @Body String base64User);
 
-    @POST("/rest/auth/authenticate")
+    @POST(UrlTokens.FullAuthAuthenticate)
     Call<String> authenticate(@NotNull @Body String base64Request);
 
-    @GET("/rest/auth/exists/{userName}")
+    @GET(UrlTokens.FullAuthExists)
     Call<String> exists(@NotNull @Path("userName") String userName);
 
-    @POST("/rest/auth/register")
+    @POST(UrlTokens.FullAuthRegister)
     Call<String> register(@NotNull @Body String base64User);
 
-    @POST("/rest/auth/change-password")
+    @POST(UrlTokens.FullAuthChangePassword)
     Call<String> changePassword(@NotNull @Body String base64ChangePassword);
 }

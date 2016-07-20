@@ -1,10 +1,10 @@
 package org.roylance.yaas.services.server
 
+import org.roylance.common.service.ICallback
 import org.roylance.common.service.IProtoSerializerService
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.rest.IRestAdminService
 import org.roylance.yaas.services.IAdminService
-import org.roylance.yaas.services.ICallback
 import retrofit2.Call
 
 class ServerAdminService(

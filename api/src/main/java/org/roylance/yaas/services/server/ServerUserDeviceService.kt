@@ -1,9 +1,9 @@
 package org.roylance.yaas.services.server
 
+import org.roylance.common.service.ICallback
 import org.roylance.common.service.IProtoSerializerService
 import org.roylance.yaas.models.YaasModels
 import org.roylance.yaas.rest.IRestUserDeviceService
-import org.roylance.yaas.services.ICallback
 import org.roylance.yaas.services.IUserDeviceService
 import retrofit2.Call
 

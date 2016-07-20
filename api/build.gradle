@@ -12,7 +12,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.14-SNAPSHOT'
+version '0.16-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -68,5 +68,5 @@ dependencies {
     compile group: 'org.jetbrains', name: 'annotations', version: '15.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile "org.roylance:common:0.1-SNAPSHOT"
+    compile "org.roylance:common:0.2-SNAPSHOT"
 }

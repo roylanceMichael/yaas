@@ -1,26 +1,27 @@
 package org.roylance.yaas.rest;
 
 import org.jetbrains.annotations.NotNull;
+import org.roylance.yaas.enums.UrlTokens;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface IRestAdminService {
-    @POST("/rest/admin/all-users")
+    @POST(UrlTokens.FullAdminAllUsers)
     Call<String> allUsers(@NotNull @Body String base64Request);
 
-    @POST("/rest/admin/is-admin")
+    @POST(UrlTokens.FullAdminIsAdmin)
     Call<String> isAdmin(@NotNull @Body String base64Request);
 
-    @POST("/rest/admin/set-admin")
+    @POST(UrlTokens.FullAdminSetAdmin)
     Call<String> setAdmin(@NotNull @Body String base64Request);
 
-    @POST("/rest/admin/remove-admin")
+    @POST(UrlTokens.FullAdminRemoveAdmin)
     Call<String> removeAdmin(@NotNull @Body String base64Request);
 
-    @POST("/rest/admin/delete-user")
+    @POST(UrlTokens.FullAdminDeleteUser)
     Call<String> deleteUser(@NotNull @Body String base64Request);
 
-    @POST("/rest/admin/change-password")
+    @POST(UrlTokens.FullAdminChangePassword)
     Call<String> changePassword(@NotNull @Body String base64Request);
 }

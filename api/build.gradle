@@ -12,7 +12,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.18-SNAPSHOT'
+version '0.19-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'

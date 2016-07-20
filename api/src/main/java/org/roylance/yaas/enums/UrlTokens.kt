@@ -33,7 +33,7 @@ object UrlTokens {
     const val AuthSave = "$Auth$Save"
     const val AuthLogin = "$Auth$Login"
     const val AuthAuthenticate = "$Auth$Authenticate"
-    const val AuthExists = "$Auth$Exists"
+    const val AuthExists = "$Auth$Exists/{userName}"
     const val AuthRegister = "$Auth$Register"
     const val AuthChangePassword = "$Auth$ChangePassword"
 

@@ -13,55 +13,86 @@ class ServerAdminService(
         private val valueCallback: ICallback<String>
 ): IRestAdminService {
     override fun allUsers(base64Request: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.adminService.getAllUsers(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.adminService.getAllUsers(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch(e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIAuthentications.getDefaultInstance()))
+        }
 
         return null
     }
 
     override fun isAdmin(base64Request: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.adminService.isUserAdmin(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.adminService.isUserAdmin(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch (e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
 
         return null
     }
 
     override fun setAdmin(base64Request: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.adminService.setUserAsAdmin(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.adminService.setUserAsAdmin(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch (e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
+
 
         return null
     }
 
     override fun removeAdmin(base64Request: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.adminService.removeUserAsAdmin(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.adminService.removeUserAsAdmin(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch (e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
 
         return null
     }
 
     override fun deleteUser(base64Request: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.adminService.deleteUser(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.adminService.deleteUser(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch (e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
 
         return null
     }
 
     override fun changePassword(base64Request: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.adminService.changePasswordForUser(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(base64Request, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.adminService.changePasswordForUser(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch (e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
 
         return null
     }

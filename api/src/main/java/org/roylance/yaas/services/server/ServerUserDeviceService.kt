@@ -13,19 +13,29 @@ class ServerUserDeviceService(
         private val valueCallback: ICallback<String>
 ): IRestUserDeviceService {
     override fun save(requestModel: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(requestModel, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.userDeviceService.save(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(requestModel, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.userDeviceService.save(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch(e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
 
         return null
     }
 
     override fun all(requestModel: String): Call<String>? {
-        val request = this.protoSerializerService.deserializeFromBase64(requestModel, YaasModels.UIRequest.getDefaultInstance())
-        val response = this.userDeviceService.all(request)
-        val response64 = this.protoSerializerService.serializeToBase64(response)
-        this.valueCallback.callback(response64)
+        try {
+            val request = this.protoSerializerService.deserializeFromBase64(requestModel, YaasModels.UIRequest.getDefaultInstance())
+            val response = this.userDeviceService.all(request)
+            val response64 = this.protoSerializerService.serializeToBase64(response)
+            this.valueCallback.callback(response64)
+        }
+        catch(e: Exception) {
+            this.valueCallback.callback(this.protoSerializerService.serializeToBase64(YaasModels.UIResponse.getDefaultInstance()))
+        }
 
         return null
     }

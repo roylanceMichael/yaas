@@ -1,9 +1,8 @@
 package org.roylance.yaas.redis.services
 
 import org.roylance.common.service.ILogger
-import org.roylance.yaas.models.YaasModels
+import org.roylance.yaas.YaasModels
 import org.roylance.yaas.redis.enums.CommonKeys
-import org.roylance.yaas.services.server.IServerTokenService
 import java.util.*
 
 class RedisTokenService(host: String,
@@ -40,10 +39,10 @@ class RedisTokenService(host: String,
         }
     }
 
-    override fun generateToken(userModel: YaasModels.User): YaasModels.UIAuthentication {
+    override fun generateToken(user: YaasModels.User): YaasModels.UIAuthentication {
         val client = this.buildJedisClient()
         try {
-            val key = "${CommonKeys.TokenUserTemplate}${userModel.userName}"
+            val key = "${CommonKeys.TokenUserTemplate}${user.userName}"
             val existingToken = client.get(key)
 
             if (existingToken != null) {
@@ -53,26 +52,26 @@ class RedisTokenService(host: String,
 
                 return YaasModels.UIAuthentication.newBuilder()
                         .setAuthenticated(true)
-                        .setUserName(userModel.userName)
+                        .setUserName(user.userName)
                         .setToken(existingToken)
                         .setDisplay(existingUserModel.display)
-                        .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, userModel.userName))
+                        .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
                         .build()
             }
 
             val newToken = UUID.randomUUID().toString()
             // set both places
             client.set(key, newToken)
-            val base64 = Base64.getEncoder().encodeToString(userModel.toByteArray())
+            val base64 = Base64.getEncoder().encodeToString(user.toByteArray())
             client.set("${CommonKeys.TokenTemplate}$newToken", base64)
             this.logger.info("generated token for user with key: " + newToken)
 
             return YaasModels.UIAuthentication.newBuilder()
                     .setAuthenticated(true)
-                    .setUserName(userModel.userName)
+                    .setUserName(user.userName)
                     .setToken(newToken)
-                    .setDisplay(userModel.display)
-                    .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, userModel.userName))
+                    .setDisplay(user.display)
+                    .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
                     .build()
         }
         finally {

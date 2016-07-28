@@ -1,7 +1,7 @@
 package org.roylance.yaas.services.client
 
+import org.roylance.yaas.YaasModels
 import org.roylance.yaas.enums.UserInfoEnums
-import org.roylance.yaas.models.YaasModels
 import java.io.IOException
 import java.net.Socket
 

@@ -1,9 +1,8 @@
 package org.roylance.yaas.yaorm
 
 import com.google.protobuf.GeneratedMessage
-import org.roylance.yaas.models.YaasModels
+import org.roylance.yaas.YaasModels
 import org.roylance.yaorm.services.proto.BaseProtoGeneratedMessageBuilder
-import org.roylance.yaorm.services.proto.IProtoGeneratedMessageBuilder
 
 class YaasGeneratedMessageBuilder: BaseProtoGeneratedMessageBuilder() {
     override fun buildGeneratedMessage(name: String): GeneratedMessage {

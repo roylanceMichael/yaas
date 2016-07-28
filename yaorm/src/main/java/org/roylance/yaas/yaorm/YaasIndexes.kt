@@ -1,6 +1,6 @@
 package org.roylance.yaas.yaorm
 
-import org.roylance.yaas.models.YaasModels
+import org.roylance.yaas.YaasModels
 import org.roylance.yaorm.models.YaormModel
 import org.roylance.yaorm.utilities.YaormUtils
 import java.util.*

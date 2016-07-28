@@ -11,7 +11,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.11-SNAPSHOT'
+version '0.12-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -38,8 +38,8 @@ artifactory {
     publish {
         repository {
             repoKey = 'libs-snapshot-local'
-            username = ''
-            password = ''
+            username = System.getenv('ARTIFACTORY_USER')
+            password = System.getenv('ARTIFACTORY_PASSWORD')
         }
 
         defaults {
@@ -63,7 +63,8 @@ dependencies {
     compile 'redis.clients:jedis:2.6.0'
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
-    compile 'org.roylance.yaas:api:0.24-SNAPSHOT'
+    compile 'org.roylance.yaas:api:0.27-SNAPSHOT'
+    compile 'org.roylance.yaas:capi:0.27-SNAPSHOT'
     compile 'org.roylance:common:0.3-SNAPSHOT'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

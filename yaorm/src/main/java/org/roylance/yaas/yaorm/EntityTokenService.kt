@@ -1,8 +1,7 @@
 package org.roylance.yaas.yaorm
 
 import org.roylance.common.service.ILogger
-import org.roylance.yaas.models.YaasModels
-import org.roylance.yaas.services.server.IServerTokenService
+import org.roylance.yaas.YaasModels
 import org.roylance.yaorm.models.YaormModel
 import org.roylance.yaorm.services.proto.IEntityMessageService
 import java.util.*
@@ -33,11 +32,11 @@ class EntityTokenService(
 
     }
 
-    override fun generateToken(userModel: YaasModels.User): YaasModels.UIAuthentication {
+    override fun generateToken(user: YaasModels.User): YaasModels.UIAuthentication {
         val whereClause = YaormModel.WhereClause.newBuilder()
                 .setNameAndProperty(
                         YaormModel.Column.newBuilder()
-                                .setStringHolder(userModel.id)
+                                .setStringHolder(user.id)
                                 .setDefinition(YaormModel.ColumnDefinition.newBuilder()
                                         .setName(YaasModels.Token.getDescriptor().findFieldByNumber(YaasModels.Token.USER_ID_FIELD_NUMBER).name)
                                         .setType(YaormModel.ProtobufType.STRING))
@@ -52,7 +51,7 @@ class EntityTokenService(
 
             val newToken = YaasModels.Token.newBuilder()
                     .setId(UUID.randomUUID().toString())
-                    .setUserId(userModel.id)
+                    .setUserId(user.id)
                     .setIssued(Date().time)
                     .setExpiration(oneMonthFromNow)
                     .build()
@@ -60,19 +59,19 @@ class EntityTokenService(
             this.entityMessageService.merge(newToken)
             return YaasModels.UIAuthentication.newBuilder()
                     .setAuthenticated(true)
-                    .setDisplay(userModel.display)
+                    .setDisplay(user.display)
                     .setToken(newToken.id)
-                    .setIsAdmin(userModel.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) })
-                    .setUserName(userModel.userName)
+                    .setIsAdmin(user.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) })
+                    .setUserName(user.userName)
                     .build()
         }
 
         return YaasModels.UIAuthentication.newBuilder()
                 .setAuthenticated(true)
-                .setDisplay(userModel.display)
+                .setDisplay(user.display)
                 .setToken(records.first().id)
-                .setIsAdmin(userModel.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) })
-                .setUserName(userModel.userName)
+                .setIsAdmin(user.rolesList.any { it.number.equals(YaasModels.UserRole.ADMIN.number) })
+                .setUserName(user.userName)
                 .build()
     }
 

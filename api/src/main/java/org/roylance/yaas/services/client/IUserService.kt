@@ -1,6 +1,6 @@
 package org.roylance.yaas.services.client
 
-import org.roylance.yaas.models.YaasModels
+import org.roylance.yaas.YaasModels
 
 interface IUserService {
     fun getAuthenticationModel() : YaasModels.UIAuthentication?

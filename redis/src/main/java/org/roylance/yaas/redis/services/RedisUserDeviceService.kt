@@ -1,6 +1,6 @@
 package org.roylance.yaas.redis.services
 
-import org.roylance.yaas.YaasModels
+import org.roylance.yaas.YaasModel
 import org.roylance.yaas.redis.enums.CommonKeys
 import org.roylance.yaas.services.IUserDeviceService
 import java.util.*
@@ -10,11 +10,11 @@ class RedisUserDeviceService(
         port: Int,
         private val tokenService: IServerTokenService,
         password: String):RedisBase(host, port, password), IUserDeviceService {
-    override fun all(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun all(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
 
         if (!auth.authenticated) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -30,14 +30,14 @@ class RedisUserDeviceService(
             client.close()
         }
 
-        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun save(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun save(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
 
         if (!auth.authenticated) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -52,7 +52,7 @@ class RedisUserDeviceService(
         finally {
             client.close()
         }
-        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
     }
 
     private fun buildKey(userName: String): String {

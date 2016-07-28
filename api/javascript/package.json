@@ -1,6 +1,6 @@
 {
   "name": "yaasjs",
-  "version": "0.0.27",
+  "version": "0.0.33",
   "description": "models and services for yaas (yet another authentication system)",
   "main": "model_factories.js",
   "scripts": {

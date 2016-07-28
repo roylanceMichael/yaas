@@ -352,5 +352,4 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
         }
     ]
 }).build();
-exports.YaasModels = _root;
-//# sourceMappingURL=model_factories.js.map
+exports.YaasModel = _root;

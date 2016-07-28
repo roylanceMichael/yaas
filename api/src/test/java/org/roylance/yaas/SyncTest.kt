@@ -1,54 +1,43 @@
 package org.roylance.yaas
 
+import org.junit.Assert
 import org.junit.Test
-import org.roylance.yaclib.Models
+import org.roylance.yaclib.YaclibModel
 import org.roylance.yaclib.core.enums.CommonTokens
 import org.roylance.yaclib.core.services.FilePersistService
 import org.roylance.yaclib.core.services.ProcessFileDescriptorService
 import org.roylance.yaclib.core.services.java.client.JavaClientProcessLanguageService
 import org.roylance.yaclib.core.services.java.server.JavaServerProcessLanguageService
 import org.roylance.yaclib.core.services.typescript.TypeScriptProcessLanguageService
-import java.util.*
+import java.nio.file.Paths
 
 class SyncTest {
     @Test
-    fun executeSync() {
-        getInfo()
-        val dependency = Models.Dependency.newBuilder()
-            .setGroup("org.roylance.yaas")
+    fun executeSyncTest() {
+        val location = Paths.get(System.getenv("YACLIB_LOCATION")).toString()
+        val version = System.getenv("YACLIB_VERSION")
+
+        val dependency = YaclibModel.Dependency.newBuilder()
+            .setGroup(this.javaClass.`package`.name)
             .setName("api")
-            .setVersion(version!!)
+            .setVersion("0.$version-SNAPSHOT")
             .build()
 
         val filePersistService = FilePersistService()
         val processFileDescriptorService = ProcessFileDescriptorService()
 
-        val controllers = processFileDescriptorService.processFile(YaasControllers.getDescriptor())
+        val controllers = processFileDescriptorService.processFile(YaasController.getDescriptor())
 
         val serverFiles = JavaServerProcessLanguageService().buildInterface(controllers, dependency)
-        filePersistService.persistFiles(location + CommonTokens.ServerApi, serverFiles)
+        filePersistService.persistFiles(Paths.get(location, CommonTokens.ServerApi).toString(), serverFiles)
 
         val clientFiles = JavaClientProcessLanguageService().buildInterface(controllers, dependency)
-        filePersistService.persistFiles(location + CommonTokens.ClientApi, clientFiles)
+        filePersistService.persistFiles(Paths.get(location, CommonTokens.ClientApi).toString(), clientFiles)
 
         val typeScriptFiles = TypeScriptProcessLanguageService().buildInterface(controllers, dependency)
-        filePersistService.persistFiles(location + "api/javascript", typeScriptFiles)
-    }
+        filePersistService.persistFiles(Paths.get(location, "api", "javascript").toString(), typeScriptFiles)
 
-    companion object {
-        var version: String? = null
-        var location: String? = null
-        fun getInfo() {
-            val properties = Properties()
-            val stream = SyncTest::class.java.getResourceAsStream("/creds.properties")
-            try {
-                properties.load(stream)
-                version = properties.getProperty("version")
-                location = properties.getProperty("location")
-            }
-            finally {
-                stream.close()
-            }
-        }
+        // tests to make sure files exist
+        Assert.assertTrue(true)
     }
 }

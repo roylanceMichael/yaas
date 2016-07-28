@@ -3,7 +3,7 @@ package org.roylance.yaas.yaorm
 import org.junit.Assert
 import org.junit.Test
 import org.roylance.common.service.ILogger
-import org.roylance.yaas.YaasModels
+import org.roylance.yaas.YaasModel
 import org.roylance.yaorm.services.jdbc.JDBCGranularDatabaseProtoService
 import org.roylance.yaorm.services.postgres.PostgresConnectionSourceFactory
 import org.roylance.yaorm.services.postgres.PostgresGeneratorService
@@ -33,9 +33,9 @@ class EntityAuthenticationServiceTest {
         val protoService = YaasGeneratedMessageBuilder()
         val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-        entityMessageService.dropAndCreateEntireSchema(YaasModels.getDescriptor())
+        entityMessageService.dropAndCreateEntireSchema(YaasModel.getDescriptor())
 
-        val newUser = YaasModels.User.newBuilder()
+        val newUser = YaasModel.User.newBuilder()
                 .setId("roylance.michael@gmail.com")
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
@@ -50,7 +50,7 @@ class EntityAuthenticationServiceTest {
         entityMessageService.merge(newUser)
 
         // act
-        val tempRequest = YaasModels.UIRequest.newBuilder().setContent(newUser.userName).build()
+        val tempRequest = YaasModel.UIRequest.newBuilder().setContent(newUser.userName).build()
         val userNameExists = authenticationService.exists(tempRequest)
 
         // assert
@@ -71,9 +71,9 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+            entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModel.User.newBuilder()
                 .setId("roylance.michael@gmail.com")
                 .setUserName("roylance.michael@gmail.com")
                 .setPassword("blah")
@@ -88,7 +88,7 @@ class EntityAuthenticationServiceTest {
             entityMessageService.merge(newUser)
 
             // act
-            val tempRequest = YaasModels.UIRequest.newBuilder().setContent(newUser.userName).build()
+            val tempRequest = YaasModel.UIRequest.newBuilder().setContent(newUser.userName).build()
             val userNameExists = authenticationService.exists(tempRequest)
 
             // assert
@@ -114,14 +114,14 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+            entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModel.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
                     .setDisplay("mike roylance")
-                    .addRoles(YaasModels.UserRole.ADMIN)
+                    .addRoles(YaasModel.UserRole.ADMIN)
                     .build()
 
             val tokenService = EntityTokenService(entityMessageService, logger)
@@ -135,7 +135,7 @@ class EntityAuthenticationServiceTest {
             val authentication = tokenService.generateToken(newUser)
 
             // act
-            val foundUsers = authenticationService.get_all_users(YaasModels.UIRequest
+            val foundUsers = authenticationService.get_all_users(YaasModel.UIRequest
                     .newBuilder().setLimit(10).setOffset(0).setToken(authentication.token).build())
 
             // assert
@@ -164,14 +164,14 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+            entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModel.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
                     .setDisplay("mike roylance")
-                    .addRoles(YaasModels.UserRole.ADMIN)
+                    .addRoles(YaasModel.UserRole.ADMIN)
                     .build()
 
             val tokenService = EntityTokenService(entityMessageService, logger)
@@ -184,13 +184,13 @@ class EntityAuthenticationServiceTest {
             entityMessageService.merge(newUser)
 
             val authentication = tokenService.generateToken(newUser)
-            val request = YaasModels.UIRequest.newBuilder().setToken(authentication.token).setUser(newUser).build()
+            val request = YaasModel.UIRequest.newBuilder().setToken(authentication.token).setUser(newUser).build()
 
             // act
             adminService.set_user_as_admin(request)
 
             // assert
-            val foundUsers = adminService.get_all_users(YaasModels.UIRequest.newBuilder().setToken(authentication.token).setOffset(0).setLimit(10).build())
+            val foundUsers = adminService.get_all_users(YaasModel.UIRequest.newBuilder().setToken(authentication.token).setOffset(0).setLimit(10).build())
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
@@ -217,14 +217,14 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+            entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModel.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
                     .setDisplay("mike roylance")
-                    .addRoles(YaasModels.UserRole.ADMIN)
+                    .addRoles(YaasModel.UserRole.ADMIN)
                     .build()
 
             val tokenService = EntityTokenService(entityMessageService, logger)
@@ -239,11 +239,11 @@ class EntityAuthenticationServiceTest {
                     logger)
 
             // act
-            val request = YaasModels.UIRequest.newBuilder().setUser(newUser).build()
+            val request = YaasModel.UIRequest.newBuilder().setUser(newUser).build()
             val authentication = authenticationService.register(request)
 
             // assert
-            val foundUsers = adminService.get_all_users(YaasModels.UIRequest.newBuilder().setToken(authentication.user.token).setOffset(0).setLimit(10).build())
+            val foundUsers = adminService.get_all_users(YaasModel.UIRequest.newBuilder().setToken(authentication.user.token).setOffset(0).setLimit(10).build())
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
@@ -269,14 +269,14 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+            entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModel.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
                     .setDisplay("mike roylance")
-                    .addRoles(YaasModels.UserRole.ADMIN)
+                    .addRoles(YaasModel.UserRole.ADMIN)
                     .build()
 
             val tokenService = EntityTokenService(entityMessageService, logger)
@@ -290,17 +290,17 @@ class EntityAuthenticationServiceTest {
                     tokenService,
                     logger)
 
-            val request = YaasModels.UIRequest.newBuilder().setUser(newUser).build()
+            val request = YaasModel.UIRequest.newBuilder().setUser(newUser).build()
             val authentication = authenticationService.register(request)
 
             // act
-            val authenticationResult = authenticationService.authenticate(YaasModels.UIRequest.newBuilder().setToken(authentication.user.token).build())
+            val authenticationResult = authenticationService.authenticate(YaasModel.UIRequest.newBuilder().setToken(authentication.user.token).build())
 
             // assert
             System.out.println(authenticationResult)
             Assert.assertTrue(authenticationResult.authenticated)
 
-            val foundUsers = adminService.get_all_users(YaasModels.UIRequest.newBuilder().setToken(authenticationResult.user.token).setOffset(0).setLimit(10).build())
+            val foundUsers = adminService.get_all_users(YaasModel.UIRequest.newBuilder().setToken(authenticationResult.user.token).setOffset(0).setLimit(10).build())
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
@@ -326,9 +326,9 @@ class EntityAuthenticationServiceTest {
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
-            entityMessageService.createEntireSchema(YaasModels.getDescriptor())
+            entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
-            val newUser = YaasModels.User.newBuilder()
+            val newUser = YaasModel.User.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setUserName("roylance.michael@gmail.com")
                     .setPassword("blah")
@@ -341,7 +341,7 @@ class EntityAuthenticationServiceTest {
                     entityMessageService,
                     tokenService,
                     logger)
-            val request = YaasModels.UIRequest.newBuilder().setUser(newUser).build()
+            val request = YaasModel.UIRequest.newBuilder().setUser(newUser).build()
             authenticationService.register(request)
 
             // act

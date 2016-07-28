@@ -1,7 +1,7 @@
 package org.roylance.yaas.redis.services
 
 import org.roylance.common.service.ILogger
-import org.roylance.yaas.YaasModels
+import org.roylance.yaas.YaasModel
 import org.roylance.yaas.redis.enums.CommonKeys
 import org.roylance.yaas.services.IAdminService
 
@@ -10,11 +10,11 @@ class RedisAdminService(host: String,
                         password: String,
                         private val tokenService: IServerTokenService,
                         private val logger: ILogger):RedisBase(host, port, password), IAdminService {
-    override fun change_password_for_user(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun change_password_for_user(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
 
         if (!auth.isAdmin) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -25,12 +25,12 @@ class RedisAdminService(host: String,
             client.close()
         }
 
-        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()    }
+        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()    }
 
-    override fun delete_user(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun delete_user(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
         if (!auth.isAdmin) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -47,17 +47,17 @@ class RedisAdminService(host: String,
             client.del("${CommonKeys.TokenUserTemplate}${request.user.userName}")
             client.srem(CommonKeys.AllUsersKey, request.user.userName)
 
-            return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
+            return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
         }
         finally {
             client.close()
         }
     }
 
-    override fun get_all_users(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun get_all_users(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
         if (!auth.isAdmin) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -67,40 +67,40 @@ class RedisAdminService(host: String,
 
             val users = allUsers
                     .map {
-                        YaasModels.UIAuthentication.newBuilder()
+                        YaasModel.UIAuthentication.newBuilder()
                                 .setUserName(it)
                                 .setIsAdmin(admins.contains(it))
                                 .build()
                     }
 
-            val addedUsers = YaasModels.UIAuthentications.newBuilder().addAllUsers(users)
+            val addedUsers = YaasModel.UIAuthentications.newBuilder().addAllUsers(users)
 
-            return YaasModels.UIResponse.newBuilder().setUsers(addedUsers).build()
+            return YaasModel.UIResponse.newBuilder().setUsers(addedUsers).build()
         }
         finally {
             client.close()
         }
     }
 
-    override fun is_user_admin(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun is_user_admin(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
         if (!auth.isAdmin) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
         try {
-            return YaasModels.UIResponse.newBuilder().setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, request.user.userName)).build()
+            return YaasModel.UIResponse.newBuilder().setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, request.user.userName)).build()
         }
         finally {
             client.close()
         }
     }
 
-    override fun remove_user_as_admin(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun remove_user_as_admin(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
         if (!auth.isAdmin) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -110,13 +110,13 @@ class RedisAdminService(host: String,
         finally {
             client.close()
         }
-        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun set_user_as_admin(request: YaasModels.UIRequest): YaasModels.UIResponse {
+    override fun set_user_as_admin(request: YaasModel.UIRequest): YaasModel.UIResponse {
         val auth = this.tokenService.validateUser(request.token)
         if (!auth.isAdmin) {
-            return YaasModels.UIResponse.getDefaultInstance()
+            return YaasModel.UIResponse.getDefaultInstance()
         }
 
         val client = this.buildJedisClient()
@@ -126,6 +126,6 @@ class RedisAdminService(host: String,
         finally {
             client.close()
         }
-        return YaasModels.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
     }
 }

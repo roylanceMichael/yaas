@@ -19,4 +19,3 @@ var UserDeviceService = (function () {
     return UserDeviceService;
 }());
 exports.UserDeviceService = UserDeviceService;
-//# sourceMappingURL=UserDeviceService.js.map

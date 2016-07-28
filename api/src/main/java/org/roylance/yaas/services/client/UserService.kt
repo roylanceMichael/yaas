@@ -1,22 +1,22 @@
 package org.roylance.yaas.services.client
 
-import org.roylance.yaas.YaasModels
+import org.roylance.yaas.YaasModel
 import org.roylance.yaas.enums.UserInfoEnums
 import java.io.IOException
 import java.net.Socket
 
 class UserService(private val secureCachingService: ISecureCachingService): IUserService {
-    private var inMemoryAuthentication: YaasModels.UIAuthentication? = null
+    private var inMemoryAuthentication: YaasModel.UIAuthentication? = null
     private var inMemoryUserDeviceToken: String? = null
 
-    override fun getAuthenticationModel(): YaasModels.UIAuthentication? {
+    override fun getAuthenticationModel(): YaasModel.UIAuthentication? {
         return this.inMemoryAuthentication
     }
 
-    override fun getCachedUserModel(includePassword: Boolean): YaasModels.User? {
+    override fun getCachedUserModel(includePassword: Boolean): YaasModel.User? {
         val userName = this.secureCachingService.getValue(UserInfoEnums.UserNameKey)
         if (userName != null && userName.length > 0) {
-            val user = YaasModels.User.newBuilder()
+            val user = YaasModel.User.newBuilder()
                     .setUserName(userName)
             if (includePassword) {
                 val password = this.secureCachingService.getValue(UserInfoEnums.PasswordKey)
@@ -42,18 +42,18 @@ class UserService(private val secureCachingService: ISecureCachingService): IUse
         this.inMemoryUserDeviceToken = token
     }
 
-    override fun setAuthenticationModel(authenticationModel: YaasModels.UIAuthentication) {
+    override fun setAuthenticationModel(authenticationModel: YaasModel.UIAuthentication) {
         this.inMemoryAuthentication = authenticationModel
         this.secureCachingService.setValue(UserInfoEnums.DisplayKey, authenticationModel.display)
     }
 
-    override fun setCachedUserModel(user: YaasModels.User) {
+    override fun setCachedUserModel(user: YaasModel.User) {
         this.secureCachingService.setValue(UserInfoEnums.UserNameKey, user.userName)
         this.secureCachingService.setValue(UserInfoEnums.PasswordKey, user.password)
     }
 
     override fun isConnectedToInternet(website:String, port:Int): Boolean {
-        var socket: Socket? = null;
+        var socket: Socket? = null
         val reachable: Boolean
         try {
             socket = Socket(website, port)

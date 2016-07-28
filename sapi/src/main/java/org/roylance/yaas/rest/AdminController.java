@@ -36,10 +36,10 @@ public class AdminController {
     public void change_password_for_user(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModels.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModels.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModels.UIResponse response = this.adminService.change_password_for_user(requestActual);
+            final org.roylance.yaas.YaasModel.UIResponse response = this.adminService.change_password_for_user(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -51,10 +51,10 @@ public class AdminController {
     public void get_all_users(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModels.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModels.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModels.UIResponse response = this.adminService.get_all_users(requestActual);
+            final org.roylance.yaas.YaasModel.UIResponse response = this.adminService.get_all_users(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -66,10 +66,10 @@ public class AdminController {
     public void is_user_admin(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModels.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModels.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModels.UIResponse response = this.adminService.is_user_admin(requestActual);
+            final org.roylance.yaas.YaasModel.UIResponse response = this.adminService.is_user_admin(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -81,10 +81,10 @@ public class AdminController {
     public void set_user_as_admin(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModels.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModels.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModels.UIResponse response = this.adminService.set_user_as_admin(requestActual);
+            final org.roylance.yaas.YaasModel.UIResponse response = this.adminService.set_user_as_admin(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -96,10 +96,10 @@ public class AdminController {
     public void remove_user_as_admin(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModels.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModels.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModels.UIResponse response = this.adminService.remove_user_as_admin(requestActual);
+            final org.roylance.yaas.YaasModel.UIResponse response = this.adminService.remove_user_as_admin(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -111,10 +111,10 @@ public class AdminController {
     public void delete_user(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModels.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModels.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModels.UIResponse response = this.adminService.delete_user(requestActual);
+            final org.roylance.yaas.YaasModel.UIResponse response = this.adminService.delete_user(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 

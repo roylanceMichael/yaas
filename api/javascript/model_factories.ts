@@ -353,4 +353,4 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
         }
     ]
 }).build();
-export var YaasModels = _root;
+export var YaasModel = _root;

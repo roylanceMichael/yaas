@@ -1,7 +1,7 @@
 syntax = "proto2";
 package org.roylance.yaas;
 
-import "yaas_models.proto";
+import "yaas_model.proto";
 
 message RequestAction {
     optional org.roylance.yaas.UIRequest request = 1;

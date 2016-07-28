@@ -43,4 +43,3 @@ var AuthenticationService = (function () {
     return AuthenticationService;
 }());
 exports.AuthenticationService = AuthenticationService;
-//# sourceMappingURL=AuthenticationService.js.map

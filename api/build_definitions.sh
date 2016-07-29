@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export TYPESCRIPT_MODEL_FILE_NAME=YaasModel
-export YACLIB_VERSION=40
+export YACLIB_VERSION=41
 
 # autogenerate location
 pushd ..

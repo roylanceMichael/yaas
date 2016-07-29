@@ -47,7 +47,7 @@ gulp.task('scripts:vendor', function() {
 });
 
 gulp.task('scripts:typescript', function() {
-    return gulp.src(['app/**/*.ts'])
+    return gulp.src(['app/**/*.ts', './node_modules/org.roylance.yaas.api/*.ts'])
         .pipe(ts())
         .pipe(gulp.dest("dest"));
 });

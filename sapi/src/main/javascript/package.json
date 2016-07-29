@@ -1,6 +1,6 @@
 {
   "name": "webapp",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "org.roylance.yaas.api",
   "main": "index.js",
   "scripts": {
@@ -21,16 +21,17 @@
     "gulp-uglify": "^1.5.3"
   },
   "dependencies": {
-    "org.roylance.yaas.api": "0.0.40",
-    "angular": "^1.5.7",
-    "angular-route": "^1.5.7",
-    "bootstrap": "^3.3.6",
-    "d3": "^3.5.17",
-    "dagre-d3": "^0.4.17",
-    "font-awesome": "^4.6.3",
-    "jquery": "^3.0.0",
-    "protobufjs": "^5.0.1",
-    "webpack-stream": "^3.2.0"
+    "angular": "^1.5.7"
+, "angular-route": "^1.5.7"
+, "bootstrap": "^3.3.6"
+, "d3": "^3.5.17"
+, "dagre-d3": "^0.4.17"
+, "font-awesome": "^4.6.3"
+, "jquery": "^2.2.4"
+, "protobufjs": "^5.0.1"
+, "webpack-stream": "^3.2.0"
+,"org.roylance.yaas.api": "0.0.41"
+
   }
 }
 

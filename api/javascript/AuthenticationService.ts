@@ -1,19 +1,19 @@
 import {IAuthenticationService} from "./IAuthenticationService";
-import {IHttpExecuteService} from "./IHttpExecute";
+import {IHttpExecute} from "./IHttpExecute";
 import ProtoBufBuilder = org.roylance.yaas.ProtoBufBuilder;
 
 export class AuthenticationService implements IAuthenticationService {
-    httpExecuteService:IHttpExecuteService;
+    httpExecute:IHttpExecute;
     modelFactory:ProtoBufBuilder;
 
-    constructor(httpExecuteService:IHttpExecuteService,
+    constructor(httpExecute:IHttpExecute,
                 modelFactory:ProtoBufBuilder) {
-        this.httpExecuteService = httpExecuteService;
+        this.httpExecute = httpExecute;
         this.modelFactory = modelFactory;
     }
 	exists(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/authentication/exists",
+            this.httpExecute.performPost("/rest/authentication/exists",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));
@@ -22,7 +22,7 @@ export class AuthenticationService implements IAuthenticationService {
         }
 	login(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/authentication/login",
+            this.httpExecute.performPost("/rest/authentication/login",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));
@@ -31,7 +31,7 @@ export class AuthenticationService implements IAuthenticationService {
         }
 	authenticate(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/authentication/authenticate",
+            this.httpExecute.performPost("/rest/authentication/authenticate",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));
@@ -40,7 +40,7 @@ export class AuthenticationService implements IAuthenticationService {
         }
 	register(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/authentication/register",
+            this.httpExecute.performPost("/rest/authentication/register",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));
@@ -49,7 +49,7 @@ export class AuthenticationService implements IAuthenticationService {
         }
 	change_password(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/authentication/change-password",
+            this.httpExecute.performPost("/rest/authentication/change-password",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));
@@ -58,7 +58,7 @@ export class AuthenticationService implements IAuthenticationService {
         }
 	save(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/authentication/save",
+            this.httpExecute.performPost("/rest/authentication/save",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));

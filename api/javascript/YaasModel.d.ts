@@ -19,6 +19,10 @@ declare module org.roylance.yaas {
 		UIRequest: UIRequestBuilder;
 		UIResponse: UIResponseBuilder;
 		UIAuthentications: UIAuthenticationsBuilder;
+		RequestAction: RequestActionBuilder;
+		AdminController: AdminControllerBuilder;
+		AuthenticationController: AuthenticationControllerBuilder;
+		UserDeviceController: UserDeviceControllerBuilder;
 		UserDeviceType: UserDeviceType;
 		UserRole: UserRole;
 		
@@ -300,6 +304,118 @@ declare module org.roylance.yaas {
 		//decode(buffer: NodeBuffer) : UIAuthentications;
 		//decode(buffer: ByteArrayBuffer) : UIAuthentications;
 		decode64(buffer: string) : UIAuthentications;
+		
+	}	
+}
+
+declare module org.roylance.yaas {
+
+	export interface RequestAction extends ProtoBufModel {
+		request?: UIRequest;
+		getRequest() : UIRequest;
+		setRequest(request : UIRequest): void;
+		response?: UIResponse;
+		getResponse() : UIResponse;
+		setResponse(response : UIResponse): void;
+		
+	}
+	
+	export interface RequestActionBuilder {
+		new(): RequestAction;
+		decode(buffer: ArrayBuffer) : RequestAction;
+		//decode(buffer: NodeBuffer) : RequestAction;
+		//decode(buffer: ByteArrayBuffer) : RequestAction;
+		decode64(buffer: string) : RequestAction;
+		
+	}	
+}
+
+declare module org.roylance.yaas {
+
+	export interface AdminController extends ProtoBufModel {
+		change_password_for_user?: RequestAction;
+		getChangePasswordForUser() : RequestAction;
+		setChangePasswordForUser(changePasswordForUser : RequestAction): void;
+		get_all_users?: RequestAction;
+		getGetAllUsers() : RequestAction;
+		setGetAllUsers(getAllUsers : RequestAction): void;
+		is_user_admin?: RequestAction;
+		getIsUserAdmin() : RequestAction;
+		setIsUserAdmin(isUserAdmin : RequestAction): void;
+		set_user_as_admin?: RequestAction;
+		getSetUserAsAdmin() : RequestAction;
+		setSetUserAsAdmin(setUserAsAdmin : RequestAction): void;
+		remove_user_as_admin?: RequestAction;
+		getRemoveUserAsAdmin() : RequestAction;
+		setRemoveUserAsAdmin(removeUserAsAdmin : RequestAction): void;
+		delete_user?: RequestAction;
+		getDeleteUser() : RequestAction;
+		setDeleteUser(deleteUser : RequestAction): void;
+		
+	}
+	
+	export interface AdminControllerBuilder {
+		new(): AdminController;
+		decode(buffer: ArrayBuffer) : AdminController;
+		//decode(buffer: NodeBuffer) : AdminController;
+		//decode(buffer: ByteArrayBuffer) : AdminController;
+		decode64(buffer: string) : AdminController;
+		
+	}	
+}
+
+declare module org.roylance.yaas {
+
+	export interface AuthenticationController extends ProtoBufModel {
+		exists?: RequestAction;
+		getExists() : RequestAction;
+		setExists(exists : RequestAction): void;
+		login?: RequestAction;
+		getLogin() : RequestAction;
+		setLogin(login : RequestAction): void;
+		authenticate?: RequestAction;
+		getAuthenticate() : RequestAction;
+		setAuthenticate(authenticate : RequestAction): void;
+		register?: RequestAction;
+		getRegister() : RequestAction;
+		setRegister(register : RequestAction): void;
+		change_password?: RequestAction;
+		getChangePassword() : RequestAction;
+		setChangePassword(changePassword : RequestAction): void;
+		save?: RequestAction;
+		getSave() : RequestAction;
+		setSave(save : RequestAction): void;
+		
+	}
+	
+	export interface AuthenticationControllerBuilder {
+		new(): AuthenticationController;
+		decode(buffer: ArrayBuffer) : AuthenticationController;
+		//decode(buffer: NodeBuffer) : AuthenticationController;
+		//decode(buffer: ByteArrayBuffer) : AuthenticationController;
+		decode64(buffer: string) : AuthenticationController;
+		
+	}	
+}
+
+declare module org.roylance.yaas {
+
+	export interface UserDeviceController extends ProtoBufModel {
+		save?: RequestAction;
+		getSave() : RequestAction;
+		setSave(save : RequestAction): void;
+		all?: RequestAction;
+		getAll() : RequestAction;
+		setAll(all : RequestAction): void;
+		
+	}
+	
+	export interface UserDeviceControllerBuilder {
+		new(): UserDeviceController;
+		decode(buffer: ArrayBuffer) : UserDeviceController;
+		//decode(buffer: NodeBuffer) : UserDeviceController;
+		//decode(buffer: ByteArrayBuffer) : UserDeviceController;
+		decode64(buffer: string) : UserDeviceController;
 		
 	}	
 }

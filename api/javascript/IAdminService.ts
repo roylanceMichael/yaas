@@ -1,4 +1,4 @@
-/// <reference path="./model" />
+/// <reference path="./YaasModel" />
 export interface IAdminService {
 	change_password_for_user(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void)
 	get_all_users(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void)

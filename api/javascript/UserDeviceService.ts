@@ -1,19 +1,19 @@
 import {IUserDeviceService} from "./IUserDeviceService";
-import {IHttpExecuteService} from "./IHttpExecute";
+import {IHttpExecute} from "./IHttpExecute";
 import ProtoBufBuilder = org.roylance.yaas.ProtoBufBuilder;
 
 export class UserDeviceService implements IUserDeviceService {
-    httpExecuteService:IHttpExecuteService;
+    httpExecute:IHttpExecute;
     modelFactory:ProtoBufBuilder;
 
-    constructor(httpExecuteService:IHttpExecuteService,
+    constructor(httpExecute:IHttpExecute,
                 modelFactory:ProtoBufBuilder) {
-        this.httpExecuteService = httpExecuteService;
+        this.httpExecute = httpExecute;
         this.modelFactory = modelFactory;
     }
 	save(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/userdevice/save",
+            this.httpExecute.performPost("/rest/userdevice/save",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));
@@ -22,7 +22,7 @@ export class UserDeviceService implements IUserDeviceService {
         }
 	all(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
             const self = this;
-            this.httpExecuteService.performPost("/rest/userdevice/all",
+            this.httpExecute.performPost("/rest/userdevice/all",
                     request.toBase64(),
                     function(result:string) {
                         onSuccess(self.modelFactory.UIResponse.decode64(result));

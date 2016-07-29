@@ -1,5 +1,6 @@
-"use strict";
-/// <reference path="./model.d.ts" />
+
+/// <reference path="./YaasModel.d.ts" />
+declare var dcodeIO:any;
 var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
     "package": "org.roylance.yaas",
     "messages": [
@@ -317,6 +318,122 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
                     "id": 1
                 }
             ]
+        },
+        {
+            "name": "RequestAction",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "type": "UIRequest",
+                    "name": "request",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "type": "UIResponse",
+                    "name": "response",
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "name": "AdminController",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "change_password_for_user",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "get_all_users",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "is_user_admin",
+                    "id": 3
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "set_user_as_admin",
+                    "id": 4
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "remove_user_as_admin",
+                    "id": 5
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "delete_user",
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "name": "AuthenticationController",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "exists",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "login",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "authenticate",
+                    "id": 3
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "register",
+                    "id": 4
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "change_password",
+                    "id": 5
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "save",
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "name": "UserDeviceController",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "save",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "type": "RequestAction",
+                    "name": "all",
+                    "id": 2
+                }
+            ]
         }
     ],
     "enums": [
@@ -352,4 +469,4 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
         }
     ]
 }).build();
-exports.YaasModel = _root;
+export var YaasModel = _root;

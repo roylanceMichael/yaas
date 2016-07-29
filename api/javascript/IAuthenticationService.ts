@@ -1,4 +1,4 @@
-/// <reference path="./model" />
+/// <reference path="./YaasModel" />
 export interface IAuthenticationService {
 	exists(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void)
 	login(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void)

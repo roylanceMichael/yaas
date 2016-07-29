@@ -2,7 +2,7 @@ package org.roylance.yaas.utilities
 
 object ServiceLocator: IServiceLocator {
     override val protobufSerializerService: org.roylance.common.service.IProtoSerializerService
-        get() = throw UnsupportedOperationException()
+        get() = org.roylance.common.service.ProtoSerializerService(org.roylance.yaas.services.Base64Service())
     override val adminService: org.roylance.yaas.services.IAdminService
         get() = throw UnsupportedOperationException()
 

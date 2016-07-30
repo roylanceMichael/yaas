@@ -1,5 +1,9 @@
 import {YaasModel} from "../node_modules/org.roylance.yaas.api/YaasModelFactory";
-import {AdminService} from "../node_modules/org.roylance.yaas.api/AdminService";import {AuthenticationService} from "../node_modules/org.roylance.yaas.api/AuthenticationService";import {UserDeviceService} from "../node_modules/org.roylance.yaas.api/UserDeviceService";
+
+import {AdminService} from "../node_modules/org.roylance.yaas.api/AdminService";
+import {AuthenticationService} from "../node_modules/org.roylance.yaas.api/AuthenticationService";
+import {UserDeviceService} from "../node_modules/org.roylance.yaas.api/UserDeviceService";
+
 import {HttpExecute} from "./HttpExecute"
 import {furtherAngularSetup} from "./FurtherAngularSetup"
 

@@ -16,8 +16,8 @@ declare module org.roylance.yaas {
 		Token: TokenBuilder;
 		UIAuthentication: UIAuthenticationBuilder;
 		UIChangePassword: UIChangePasswordBuilder;
-		UIRequest: UIRequestBuilder;
-		UIResponse: UIResponseBuilder;
+		UIYaasRequest: UIYaasRequestBuilder;
+		UIYaasResponse: UIYaasResponseBuilder;
 		UIAuthentications: UIAuthenticationsBuilder;
 		RequestAction: RequestActionBuilder;
 		AdminController: AdminControllerBuilder;
@@ -211,7 +211,7 @@ declare module org.roylance.yaas {
 
 declare module org.roylance.yaas {
 
-	export interface UIRequest extends ProtoBufModel {
+	export interface UIYaasRequest extends ProtoBufModel {
 		token?: string;
 		getToken() : string;
 		setToken(token : string): void;
@@ -239,19 +239,19 @@ declare module org.roylance.yaas {
 		
 	}
 	
-	export interface UIRequestBuilder {
-		new(): UIRequest;
-		decode(buffer: ArrayBuffer) : UIRequest;
-		//decode(buffer: NodeBuffer) : UIRequest;
-		//decode(buffer: ByteArrayBuffer) : UIRequest;
-		decode64(buffer: string) : UIRequest;
+	export interface UIYaasRequestBuilder {
+		new(): UIYaasRequest;
+		decode(buffer: ArrayBuffer) : UIYaasRequest;
+		//decode(buffer: NodeBuffer) : UIYaasRequest;
+		//decode(buffer: ByteArrayBuffer) : UIYaasRequest;
+		decode64(buffer: string) : UIYaasRequest;
 		
 	}	
 }
 
 declare module org.roylance.yaas {
 
-	export interface UIResponse extends ProtoBufModel {
+	export interface UIYaasResponse extends ProtoBufModel {
 		authenticated?: boolean;
 		getAuthenticated() : boolean;
 		setAuthenticated(authenticated : boolean): void;
@@ -279,12 +279,12 @@ declare module org.roylance.yaas {
 		
 	}
 	
-	export interface UIResponseBuilder {
-		new(): UIResponse;
-		decode(buffer: ArrayBuffer) : UIResponse;
-		//decode(buffer: NodeBuffer) : UIResponse;
-		//decode(buffer: ByteArrayBuffer) : UIResponse;
-		decode64(buffer: string) : UIResponse;
+	export interface UIYaasResponseBuilder {
+		new(): UIYaasResponse;
+		decode(buffer: ArrayBuffer) : UIYaasResponse;
+		//decode(buffer: NodeBuffer) : UIYaasResponse;
+		//decode(buffer: ByteArrayBuffer) : UIYaasResponse;
+		decode64(buffer: string) : UIYaasResponse;
 		
 	}	
 }
@@ -311,12 +311,12 @@ declare module org.roylance.yaas {
 declare module org.roylance.yaas {
 
 	export interface RequestAction extends ProtoBufModel {
-		request?: UIRequest;
-		getRequest() : UIRequest;
-		setRequest(request : UIRequest): void;
-		response?: UIResponse;
-		getResponse() : UIResponse;
-		setResponse(response : UIResponse): void;
+		request?: UIYaasRequest;
+		getRequest() : UIYaasRequest;
+		setRequest(request : UIYaasRequest): void;
+		response?: UIYaasResponse;
+		getResponse() : UIYaasResponse;
+		setResponse(response : UIYaasResponse): void;
 		
 	}
 	

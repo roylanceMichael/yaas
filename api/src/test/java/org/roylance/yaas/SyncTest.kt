@@ -14,9 +14,10 @@ import java.nio.file.Paths
 class SyncTest {
     @Test
     fun executeSyncTest() {
+        val typescriptLocation = System.getenv("TYPESCRIPT_MODEL_FILE_NAME") ?: return
+
         val location = Paths.get(System.getenv("YACLIB_LOCATION")).toString()
         val version = System.getenv("YACLIB_VERSION").toInt()
-        val typescriptLocation = System.getenv("TYPESCRIPT_MODEL_FILE_NAME")
 
         val dependency = YaclibModel.Dependency.newBuilder()
             .setGroup(this.javaClass.`package`.name)
@@ -42,7 +43,7 @@ class SyncTest {
         filePersistService.persistFiles(Paths.get(location, CommonTokens.ClientApi).toString(), clientFiles)
 
         val typeScriptFiles = TypeScriptProcessLanguageService().buildInterface(allControllerDependencies, dependency)
-        filePersistService.persistFiles(Paths.get(location, "api", "javascript").toString(), typeScriptFiles)
+        filePersistService.persistFiles(Paths.get(location, CommonTokens.JavaScriptName).toString(), typeScriptFiles)
 
         // tests to make sure files exist
         Assert.assertTrue(true)

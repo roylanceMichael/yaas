@@ -58,7 +58,7 @@ message UIChangePassword {
     optional string new_password = 3;
 }
 
-message UIRequest {
+message UIYaasRequest {
     optional string token = 1;
     optional string content = 2;
     optional User user = 3;
@@ -69,7 +69,7 @@ message UIRequest {
     optional UIChangePassword change_password = 8;
 }
 
-message UIResponse {
+message UIYaasResponse {
     optional bool authenticated = 1;
     optional string error_message = 2;
     optional bool successful = 3;

@@ -36,10 +36,10 @@ public class UserDeviceController {
     public void save(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.userDeviceService.save(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.userDeviceService.save(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -51,10 +51,10 @@ public class UserDeviceController {
     public void all(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.userDeviceService.all(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.userDeviceService.all(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 

@@ -1,5 +1,6 @@
-"use strict";
+
 /// <reference path="./YaasModel.d.ts" />
+declare var dcodeIO:any;
 var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
     "package": "org.roylance.yaas",
     "messages": [
@@ -202,7 +203,7 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
             ]
         },
         {
-            "name": "UIRequest",
+            "name": "UIYaasRequest",
             "fields": [
                 {
                     "rule": "optional",
@@ -255,7 +256,7 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
             ]
         },
         {
-            "name": "UIResponse",
+            "name": "UIYaasResponse",
             "fields": [
                 {
                     "rule": "optional",
@@ -323,13 +324,13 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
             "fields": [
                 {
                     "rule": "optional",
-                    "type": "UIRequest",
+                    "type": "UIYaasRequest",
                     "name": "request",
                     "id": 1
                 },
                 {
                     "rule": "optional",
-                    "type": "UIResponse",
+                    "type": "UIYaasResponse",
                     "name": "response",
                     "id": 2
                 }
@@ -468,4 +469,4 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
         }
     ]
 }).build();
-exports.YaasModel = _root;
+export var YaasModel = _root;

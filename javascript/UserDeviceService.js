@@ -7,13 +7,13 @@ var UserDeviceService = (function () {
     UserDeviceService.prototype.save = function (request, onSuccess, onError) {
         var self = this;
         this.httpExecute.performPost("/rest/userdevice/save", request.toBase64(), function (result) {
-            onSuccess(self.modelFactory.UIResponse.decode64(result));
+            onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
         }, onError);
     };
     UserDeviceService.prototype.all = function (request, onSuccess, onError) {
         var self = this;
         this.httpExecute.performPost("/rest/userdevice/all", request.toBase64(), function (result) {
-            onSuccess(self.modelFactory.UIResponse.decode64(result));
+            onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
         }, onError);
     };
     return UserDeviceService;

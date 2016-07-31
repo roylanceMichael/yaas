@@ -11,57 +11,57 @@ export class AdminService implements IAdminService {
         this.httpExecute = httpExecute;
         this.modelFactory = modelFactory;
     }
-	change_password_for_user(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
+	change_password_for_user(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/admin/change-password-for-user",
                     request.toBase64(),
                     function(result:string) {
-                        onSuccess(self.modelFactory.UIResponse.decode64(result));
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
                     },
                     onError);
         }
-	get_all_users(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
+	get_all_users(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/admin/get-all-users",
                     request.toBase64(),
                     function(result:string) {
-                        onSuccess(self.modelFactory.UIResponse.decode64(result));
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
                     },
                     onError);
         }
-	is_user_admin(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
+	is_user_admin(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/admin/is-user-admin",
                     request.toBase64(),
                     function(result:string) {
-                        onSuccess(self.modelFactory.UIResponse.decode64(result));
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
                     },
                     onError);
         }
-	set_user_as_admin(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
+	set_user_as_admin(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/admin/set-user-as-admin",
                     request.toBase64(),
                     function(result:string) {
-                        onSuccess(self.modelFactory.UIResponse.decode64(result));
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
                     },
                     onError);
         }
-	remove_user_as_admin(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
+	remove_user_as_admin(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/admin/remove-user-as-admin",
                     request.toBase64(),
                     function(result:string) {
-                        onSuccess(self.modelFactory.UIResponse.decode64(result));
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
                     },
                     onError);
         }
-	delete_user(request: org.roylance.yaas.UIRequest, onSuccess:(response: org.roylance.yaas.UIResponse)=>void, onError:(response:any)=>void) {
+	delete_user(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/admin/delete-user",
                     request.toBase64(),
                     function(result:string) {
-                        onSuccess(self.modelFactory.UIResponse.decode64(result));
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
                     },
                     onError);
         }

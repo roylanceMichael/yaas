@@ -1,38 +1,17 @@
 {
-  "name": "yaasjs",
-  "version": "0.0.8",
-  "description": "models and services for yaas (yet another authentication system)",
-  "main": "model_factories.js",
+  "name": "org.roylance.yaas.api",
+  "version": "0.0.46",
+  "description": "models to interface with the org.roylance.yaas.api system",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/roylanceMichael/yaas.git"
-  },
-  "keywords": [
-    "authentication"
-  ],
   "author": "roylance.michael@gmail.com",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/roylanceMichael/yaas/issues"
-  },
-  "homepage": "https://github.com/artemishealth/yaas#readme",
-  "devDependencies": {
-    "del": "^2.2.0",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-jshint": "^2.0.0",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.2.0",
-    "gulp-sync": "^0.1.4",
-    "gulp-tsc": "^1.1.5",
-    "gulp-uglify": "^1.5.3"
-  },
   "dependencies": {
-    "protobufjs": "^5.0.1",
-    "proto2typescript": "^2.2.0"
+    "@mroylance/protobuftshelper": "0.0.8"
+, "protobufjs": "^5.0.1"
+, "proto2typescript": "^2.2.0"
+
   }
 }

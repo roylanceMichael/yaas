@@ -36,10 +36,10 @@ public class AuthenticationController {
     public void exists(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.authenticationService.exists(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.authenticationService.exists(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -51,10 +51,10 @@ public class AuthenticationController {
     public void login(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.authenticationService.login(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.authenticationService.login(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -66,10 +66,10 @@ public class AuthenticationController {
     public void authenticate(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.authenticationService.authenticate(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.authenticationService.authenticate(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -81,10 +81,10 @@ public class AuthenticationController {
     public void register(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.authenticationService.register(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.authenticationService.register(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -96,10 +96,10 @@ public class AuthenticationController {
     public void change_password(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.authenticationService.change_password(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.authenticationService.change_password(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 
@@ -111,10 +111,10 @@ public class AuthenticationController {
     public void save(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance());
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-            final org.roylance.yaas.YaasModel.UIResponse response = this.authenticationService.save(requestActual);
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.authenticationService.save(requestActual);
             final String deserializeResponse = this.serializerService.serializeToBase64(response);
             asyncResponse.resume(deserializeResponse);
 

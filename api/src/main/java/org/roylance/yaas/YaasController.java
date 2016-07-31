@@ -13,30 +13,30 @@ public final class YaasController {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+     * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
      */
     boolean hasRequest();
     /**
-     * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+     * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
      */
-    org.roylance.yaas.YaasModel.UIRequest getRequest();
+    org.roylance.yaas.YaasModel.UIYaasRequest getRequest();
     /**
-     * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+     * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
      */
-    org.roylance.yaas.YaasModel.UIRequestOrBuilder getRequestOrBuilder();
+    org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder getRequestOrBuilder();
 
     /**
-     * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+     * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
      */
     boolean hasResponse();
     /**
-     * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+     * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
      */
-    org.roylance.yaas.YaasModel.UIResponse getResponse();
+    org.roylance.yaas.YaasModel.UIYaasResponse getResponse();
     /**
-     * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+     * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
      */
-    org.roylance.yaas.YaasModel.UIResponseOrBuilder getResponseOrBuilder();
+    org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder getResponseOrBuilder();
   }
   /**
    * Protobuf type {@code org.roylance.yaas.RequestAction}
@@ -91,11 +91,11 @@ public final class YaasController {
               break;
             }
             case 10: {
-              org.roylance.yaas.YaasModel.UIRequest.Builder subBuilder = null;
+              org.roylance.yaas.YaasModel.UIYaasRequest.Builder subBuilder = null;
               if (((bitField0_ & 0x00000001) == 0x00000001)) {
                 subBuilder = request_.toBuilder();
               }
-              request_ = input.readMessage(org.roylance.yaas.YaasModel.UIRequest.PARSER, extensionRegistry);
+              request_ = input.readMessage(org.roylance.yaas.YaasModel.UIYaasRequest.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(request_);
                 request_ = subBuilder.buildPartial();
@@ -104,11 +104,11 @@ public final class YaasController {
               break;
             }
             case 18: {
-              org.roylance.yaas.YaasModel.UIResponse.Builder subBuilder = null;
+              org.roylance.yaas.YaasModel.UIYaasResponse.Builder subBuilder = null;
               if (((bitField0_ & 0x00000002) == 0x00000002)) {
                 subBuilder = response_.toBuilder();
               }
-              response_ = input.readMessage(org.roylance.yaas.YaasModel.UIResponse.PARSER, extensionRegistry);
+              response_ = input.readMessage(org.roylance.yaas.YaasModel.UIYaasResponse.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(response_);
                 response_ = subBuilder.buildPartial();
@@ -157,50 +157,50 @@ public final class YaasController {
 
     private int bitField0_;
     public static final int REQUEST_FIELD_NUMBER = 1;
-    private org.roylance.yaas.YaasModel.UIRequest request_;
+    private org.roylance.yaas.YaasModel.UIYaasRequest request_;
     /**
-     * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+     * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
      */
     public boolean hasRequest() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+     * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
      */
-    public org.roylance.yaas.YaasModel.UIRequest getRequest() {
+    public org.roylance.yaas.YaasModel.UIYaasRequest getRequest() {
       return request_;
     }
     /**
-     * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+     * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
      */
-    public org.roylance.yaas.YaasModel.UIRequestOrBuilder getRequestOrBuilder() {
+    public org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder getRequestOrBuilder() {
       return request_;
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 2;
-    private org.roylance.yaas.YaasModel.UIResponse response_;
+    private org.roylance.yaas.YaasModel.UIYaasResponse response_;
     /**
-     * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+     * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
      */
     public boolean hasResponse() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+     * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
      */
-    public org.roylance.yaas.YaasModel.UIResponse getResponse() {
+    public org.roylance.yaas.YaasModel.UIYaasResponse getResponse() {
       return response_;
     }
     /**
-     * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+     * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
      */
-    public org.roylance.yaas.YaasModel.UIResponseOrBuilder getResponseOrBuilder() {
+    public org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder getResponseOrBuilder() {
       return response_;
     }
 
     private void initFields() {
-      request_ = org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance();
-      response_ = org.roylance.yaas.YaasModel.UIResponse.getDefaultInstance();
+      request_ = org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance();
+      response_ = org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -358,13 +358,13 @@ public final class YaasController {
       public Builder clear() {
         super.clear();
         if (requestBuilder_ == null) {
-          request_ = org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance();
+          request_ = org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance();
         } else {
           requestBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (responseBuilder_ == null) {
-          response_ = org.roylance.yaas.YaasModel.UIResponse.getDefaultInstance();
+          response_ = org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance();
         } else {
           responseBuilder_.clear();
         }
@@ -462,19 +462,19 @@ public final class YaasController {
       }
       private int bitField0_;
 
-      private org.roylance.yaas.YaasModel.UIRequest request_ = org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.UIYaasRequest request_ = org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          org.roylance.yaas.YaasModel.UIRequest, org.roylance.yaas.YaasModel.UIRequest.Builder, org.roylance.yaas.YaasModel.UIRequestOrBuilder> requestBuilder_;
+          org.roylance.yaas.YaasModel.UIYaasRequest, org.roylance.yaas.YaasModel.UIYaasRequest.Builder, org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder> requestBuilder_;
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
       public boolean hasRequest() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
-      public org.roylance.yaas.YaasModel.UIRequest getRequest() {
+      public org.roylance.yaas.YaasModel.UIYaasRequest getRequest() {
         if (requestBuilder_ == null) {
           return request_;
         } else {
@@ -482,9 +482,9 @@ public final class YaasController {
         }
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
-      public Builder setRequest(org.roylance.yaas.YaasModel.UIRequest value) {
+      public Builder setRequest(org.roylance.yaas.YaasModel.UIYaasRequest value) {
         if (requestBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -498,10 +498,10 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
       public Builder setRequest(
-          org.roylance.yaas.YaasModel.UIRequest.Builder builderForValue) {
+          org.roylance.yaas.YaasModel.UIYaasRequest.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
           onChanged();
@@ -512,14 +512,14 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
-      public Builder mergeRequest(org.roylance.yaas.YaasModel.UIRequest value) {
+      public Builder mergeRequest(org.roylance.yaas.YaasModel.UIYaasRequest value) {
         if (requestBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              request_ != org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance()) {
+              request_ != org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance()) {
             request_ =
-              org.roylance.yaas.YaasModel.UIRequest.newBuilder(request_).mergeFrom(value).buildPartial();
+              org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder(request_).mergeFrom(value).buildPartial();
           } else {
             request_ = value;
           }
@@ -531,11 +531,11 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
       public Builder clearRequest() {
         if (requestBuilder_ == null) {
-          request_ = org.roylance.yaas.YaasModel.UIRequest.getDefaultInstance();
+          request_ = org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance();
           onChanged();
         } else {
           requestBuilder_.clear();
@@ -544,17 +544,17 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
-      public org.roylance.yaas.YaasModel.UIRequest.Builder getRequestBuilder() {
+      public org.roylance.yaas.YaasModel.UIYaasRequest.Builder getRequestBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
-      public org.roylance.yaas.YaasModel.UIRequestOrBuilder getRequestOrBuilder() {
+      public org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder getRequestOrBuilder() {
         if (requestBuilder_ != null) {
           return requestBuilder_.getMessageOrBuilder();
         } else {
@@ -562,14 +562,14 @@ public final class YaasController {
         }
       }
       /**
-       * <code>optional .org.roylance.yaas.UIRequest request = 1;</code>
+       * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.roylance.yaas.YaasModel.UIRequest, org.roylance.yaas.YaasModel.UIRequest.Builder, org.roylance.yaas.YaasModel.UIRequestOrBuilder> 
+          org.roylance.yaas.YaasModel.UIYaasRequest, org.roylance.yaas.YaasModel.UIYaasRequest.Builder, org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder> 
           getRequestFieldBuilder() {
         if (requestBuilder_ == null) {
           requestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.roylance.yaas.YaasModel.UIRequest, org.roylance.yaas.YaasModel.UIRequest.Builder, org.roylance.yaas.YaasModel.UIRequestOrBuilder>(
+              org.roylance.yaas.YaasModel.UIYaasRequest, org.roylance.yaas.YaasModel.UIYaasRequest.Builder, org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder>(
                   getRequest(),
                   getParentForChildren(),
                   isClean());
@@ -578,19 +578,19 @@ public final class YaasController {
         return requestBuilder_;
       }
 
-      private org.roylance.yaas.YaasModel.UIResponse response_ = org.roylance.yaas.YaasModel.UIResponse.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.UIYaasResponse response_ = org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          org.roylance.yaas.YaasModel.UIResponse, org.roylance.yaas.YaasModel.UIResponse.Builder, org.roylance.yaas.YaasModel.UIResponseOrBuilder> responseBuilder_;
+          org.roylance.yaas.YaasModel.UIYaasResponse, org.roylance.yaas.YaasModel.UIYaasResponse.Builder, org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder> responseBuilder_;
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
       public boolean hasResponse() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
-      public org.roylance.yaas.YaasModel.UIResponse getResponse() {
+      public org.roylance.yaas.YaasModel.UIYaasResponse getResponse() {
         if (responseBuilder_ == null) {
           return response_;
         } else {
@@ -598,9 +598,9 @@ public final class YaasController {
         }
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
-      public Builder setResponse(org.roylance.yaas.YaasModel.UIResponse value) {
+      public Builder setResponse(org.roylance.yaas.YaasModel.UIYaasResponse value) {
         if (responseBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -614,10 +614,10 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
       public Builder setResponse(
-          org.roylance.yaas.YaasModel.UIResponse.Builder builderForValue) {
+          org.roylance.yaas.YaasModel.UIYaasResponse.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
           onChanged();
@@ -628,14 +628,14 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
-      public Builder mergeResponse(org.roylance.yaas.YaasModel.UIResponse value) {
+      public Builder mergeResponse(org.roylance.yaas.YaasModel.UIYaasResponse value) {
         if (responseBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              response_ != org.roylance.yaas.YaasModel.UIResponse.getDefaultInstance()) {
+              response_ != org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance()) {
             response_ =
-              org.roylance.yaas.YaasModel.UIResponse.newBuilder(response_).mergeFrom(value).buildPartial();
+              org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder(response_).mergeFrom(value).buildPartial();
           } else {
             response_ = value;
           }
@@ -647,11 +647,11 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
       public Builder clearResponse() {
         if (responseBuilder_ == null) {
-          response_ = org.roylance.yaas.YaasModel.UIResponse.getDefaultInstance();
+          response_ = org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance();
           onChanged();
         } else {
           responseBuilder_.clear();
@@ -660,17 +660,17 @@ public final class YaasController {
         return this;
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
-      public org.roylance.yaas.YaasModel.UIResponse.Builder getResponseBuilder() {
+      public org.roylance.yaas.YaasModel.UIYaasResponse.Builder getResponseBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
-      public org.roylance.yaas.YaasModel.UIResponseOrBuilder getResponseOrBuilder() {
+      public org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder getResponseOrBuilder() {
         if (responseBuilder_ != null) {
           return responseBuilder_.getMessageOrBuilder();
         } else {
@@ -678,14 +678,14 @@ public final class YaasController {
         }
       }
       /**
-       * <code>optional .org.roylance.yaas.UIResponse response = 2;</code>
+       * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.roylance.yaas.YaasModel.UIResponse, org.roylance.yaas.YaasModel.UIResponse.Builder, org.roylance.yaas.YaasModel.UIResponseOrBuilder> 
+          org.roylance.yaas.YaasModel.UIYaasResponse, org.roylance.yaas.YaasModel.UIYaasResponse.Builder, org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder> 
           getResponseFieldBuilder() {
         if (responseBuilder_ == null) {
           responseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.roylance.yaas.YaasModel.UIResponse, org.roylance.yaas.YaasModel.UIResponse.Builder, org.roylance.yaas.YaasModel.UIResponseOrBuilder>(
+              org.roylance.yaas.YaasModel.UIYaasResponse, org.roylance.yaas.YaasModel.UIYaasResponse.Builder, org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder>(
                   getResponse(),
                   getParentForChildren(),
                   isClean());
@@ -4338,31 +4338,31 @@ public final class YaasController {
   static {
     java.lang.String[] descriptorData = {
       "\n\025yaas_controller.proto\022\021org.roylance.ya" +
-      "as\032\020yaas_model.proto\"o\n\rRequestAction\022-\n" +
-      "\007request\030\001 \001(\0132\034.org.roylance.yaas.UIReq" +
-      "uest\022/\n\010response\030\002 \001(\0132\035.org.roylance.ya" +
-      "as.UIResponse\"\373\002\n\017AdminController\022B\n\030cha" +
-      "nge_password_for_user\030\001 \001(\0132 .org.roylan" +
-      "ce.yaas.RequestAction\0227\n\rget_all_users\030\002" +
-      " \001(\0132 .org.roylance.yaas.RequestAction\0227" +
-      "\n\ris_user_admin\030\003 \001(\0132 .org.roylance.yaa" +
-      "s.RequestAction\022;\n\021set_user_as_admin\030\004 \001",
-      "(\0132 .org.roylance.yaas.RequestAction\022>\n\024" +
-      "remove_user_as_admin\030\005 \001(\0132 .org.roylanc" +
-      "e.yaas.RequestAction\0225\n\013delete_user\030\006 \001(" +
-      "\0132 .org.roylance.yaas.RequestAction\"\324\002\n\030" +
-      "AuthenticationController\0220\n\006exists\030\001 \001(\013" +
-      "2 .org.roylance.yaas.RequestAction\022/\n\005lo" +
-      "gin\030\002 \001(\0132 .org.roylance.yaas.RequestAct" +
-      "ion\0226\n\014authenticate\030\003 \001(\0132 .org.roylance" +
-      ".yaas.RequestAction\0222\n\010register\030\004 \001(\0132 ." +
-      "org.roylance.yaas.RequestAction\0229\n\017chang",
-      "e_password\030\005 \001(\0132 .org.roylance.yaas.Req" +
-      "uestAction\022.\n\004save\030\006 \001(\0132 .org.roylance." +
-      "yaas.RequestAction\"u\n\024UserDeviceControll" +
-      "er\022.\n\004save\030\001 \001(\0132 .org.roylance.yaas.Req" +
-      "uestAction\022-\n\003all\030\002 \001(\0132 .org.roylance.y" +
-      "aas.RequestAction"
+      "as\032\020yaas_model.proto\"w\n\rRequestAction\0221\n" +
+      "\007request\030\001 \001(\0132 .org.roylance.yaas.UIYaa" +
+      "sRequest\0223\n\010response\030\002 \001(\0132!.org.roylanc" +
+      "e.yaas.UIYaasResponse\"\373\002\n\017AdminControlle" +
+      "r\022B\n\030change_password_for_user\030\001 \001(\0132 .or" +
+      "g.roylance.yaas.RequestAction\0227\n\rget_all" +
+      "_users\030\002 \001(\0132 .org.roylance.yaas.Request" +
+      "Action\0227\n\ris_user_admin\030\003 \001(\0132 .org.royl" +
+      "ance.yaas.RequestAction\022;\n\021set_user_as_a",
+      "dmin\030\004 \001(\0132 .org.roylance.yaas.RequestAc" +
+      "tion\022>\n\024remove_user_as_admin\030\005 \001(\0132 .org" +
+      ".roylance.yaas.RequestAction\0225\n\013delete_u" +
+      "ser\030\006 \001(\0132 .org.roylance.yaas.RequestAct" +
+      "ion\"\324\002\n\030AuthenticationController\0220\n\006exis" +
+      "ts\030\001 \001(\0132 .org.roylance.yaas.RequestActi" +
+      "on\022/\n\005login\030\002 \001(\0132 .org.roylance.yaas.Re" +
+      "questAction\0226\n\014authenticate\030\003 \001(\0132 .org." +
+      "roylance.yaas.RequestAction\0222\n\010register\030" +
+      "\004 \001(\0132 .org.roylance.yaas.RequestAction\022",
+      "9\n\017change_password\030\005 \001(\0132 .org.roylance." +
+      "yaas.RequestAction\022.\n\004save\030\006 \001(\0132 .org.r" +
+      "oylance.yaas.RequestAction\"u\n\024UserDevice" +
+      "Controller\022.\n\004save\030\001 \001(\0132 .org.roylance." +
+      "yaas.RequestAction\022-\n\003all\030\002 \001(\0132 .org.ro" +
+      "ylance.yaas.RequestAction"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

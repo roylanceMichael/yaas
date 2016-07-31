@@ -9,10 +9,10 @@ import org.roylance.yaorm.services.proto.IEntityMessageService
 class EntityUserDeviceService(private val entityMessageService: IEntityMessageService,
                               private val tokenService: IServerTokenService,
                               private val logger: ILogger) : IUserDeviceService {
-    override fun all(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun all(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
         if (!authenticatedUser.authenticated) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
         val whereClause = YaormModel.WhereClause.newBuilder()
@@ -25,13 +25,13 @@ class EntityUserDeviceService(private val entityMessageService: IEntityMessageSe
                 ).build()
 
         val items = this.entityMessageService.where(YaasModel.UserDevice.getDefaultInstance(), whereClause)
-        return YaasModel.UIResponse.newBuilder().addAllUserDevices(items).build()
+        return YaasModel.UIYaasResponse.newBuilder().addAllUserDevices(items).build()
     }
 
-    override fun save(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun save(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
         if (!authenticatedUser.authenticated) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
         val foundUser = this.entityMessageService.get(YaasModel.User.getDefaultInstance(), authenticatedUser.userName)
@@ -40,6 +40,6 @@ class EntityUserDeviceService(private val entityMessageService: IEntityMessageSe
 
         this.entityMessageService.merge(builder.build())
 
-        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setSuccessful(true).build()
     }
 }

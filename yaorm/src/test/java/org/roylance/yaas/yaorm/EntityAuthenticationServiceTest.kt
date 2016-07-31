@@ -50,7 +50,7 @@ class EntityAuthenticationServiceTest {
         entityMessageService.merge(newUser)
 
         // act
-        val tempRequest = YaasModel.UIRequest.newBuilder().setContent(newUser.userName).build()
+        val tempRequest = YaasModel.UIYaasRequest.newBuilder().setContent(newUser.userName).build()
         val userNameExists = authenticationService.exists(tempRequest)
 
         // assert
@@ -88,7 +88,7 @@ class EntityAuthenticationServiceTest {
             entityMessageService.merge(newUser)
 
             // act
-            val tempRequest = YaasModel.UIRequest.newBuilder().setContent(newUser.userName).build()
+            val tempRequest = YaasModel.UIYaasRequest.newBuilder().setContent(newUser.userName).build()
             val userNameExists = authenticationService.exists(tempRequest)
 
             // assert
@@ -135,7 +135,7 @@ class EntityAuthenticationServiceTest {
             val authentication = tokenService.generateToken(newUser)
 
             // act
-            val foundUsers = authenticationService.get_all_users(YaasModel.UIRequest
+            val foundUsers = authenticationService.get_all_users(YaasModel.UIYaasRequest
                     .newBuilder().setLimit(10).setOffset(0).setToken(authentication.token).build())
 
             // assert
@@ -184,13 +184,13 @@ class EntityAuthenticationServiceTest {
             entityMessageService.merge(newUser)
 
             val authentication = tokenService.generateToken(newUser)
-            val request = YaasModel.UIRequest.newBuilder().setToken(authentication.token).setUser(newUser).build()
+            val request = YaasModel.UIYaasRequest.newBuilder().setToken(authentication.token).setUser(newUser).build()
 
             // act
             adminService.set_user_as_admin(request)
 
             // assert
-            val foundUsers = adminService.get_all_users(YaasModel.UIRequest.newBuilder().setToken(authentication.token).setOffset(0).setLimit(10).build())
+            val foundUsers = adminService.get_all_users(YaasModel.UIYaasRequest.newBuilder().setToken(authentication.token).setOffset(0).setLimit(10).build())
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
@@ -239,11 +239,11 @@ class EntityAuthenticationServiceTest {
                     logger)
 
             // act
-            val request = YaasModel.UIRequest.newBuilder().setUser(newUser).build()
+            val request = YaasModel.UIYaasRequest.newBuilder().setUser(newUser).build()
             val authentication = authenticationService.register(request)
 
             // assert
-            val foundUsers = adminService.get_all_users(YaasModel.UIRequest.newBuilder().setToken(authentication.user.token).setOffset(0).setLimit(10).build())
+            val foundUsers = adminService.get_all_users(YaasModel.UIYaasRequest.newBuilder().setToken(authentication.user.token).setOffset(0).setLimit(10).build())
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
@@ -290,17 +290,17 @@ class EntityAuthenticationServiceTest {
                     tokenService,
                     logger)
 
-            val request = YaasModel.UIRequest.newBuilder().setUser(newUser).build()
+            val request = YaasModel.UIYaasRequest.newBuilder().setUser(newUser).build()
             val authentication = authenticationService.register(request)
 
             // act
-            val authenticationResult = authenticationService.authenticate(YaasModel.UIRequest.newBuilder().setToken(authentication.user.token).build())
+            val authenticationResult = authenticationService.authenticate(YaasModel.UIYaasRequest.newBuilder().setToken(authentication.user.token).build())
 
             // assert
             System.out.println(authenticationResult)
             Assert.assertTrue(authenticationResult.authenticated)
 
-            val foundUsers = adminService.get_all_users(YaasModel.UIRequest.newBuilder().setToken(authenticationResult.user.token).setOffset(0).setLimit(10).build())
+            val foundUsers = adminService.get_all_users(YaasModel.UIYaasRequest.newBuilder().setToken(authenticationResult.user.token).setOffset(0).setLimit(10).build())
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
@@ -341,7 +341,7 @@ class EntityAuthenticationServiceTest {
                     entityMessageService,
                     tokenService,
                     logger)
-            val request = YaasModel.UIRequest.newBuilder().setUser(newUser).build()
+            val request = YaasModel.UIYaasRequest.newBuilder().setUser(newUser).build()
             authenticationService.register(request)
 
             // act

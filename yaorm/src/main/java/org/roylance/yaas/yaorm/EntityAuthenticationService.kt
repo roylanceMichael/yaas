@@ -11,12 +11,12 @@ class EntityAuthenticationService(
         private val entityMessageService:IEntityMessageService,
         private val tokenService: IServerTokenService,
         private val logger: ILogger): IAuthenticationService {
-    override fun authenticate(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun authenticate(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val auth = this.tokenService.validateUser(request.token)
-        return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+        return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
     }
 
-    override fun change_password(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun change_password(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val tempUser = YaasModel.User.newBuilder()
                 .setUserName(request.changePassword.userName)
                 .setPassword(request.changePassword.oldPassword)
@@ -33,10 +33,10 @@ class EntityAuthenticationService(
 
         val foundRecord = this.entityMessageService.where(tempUser.build(), whereClause)
         if (foundRecord.size > 0) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
-        val tempRequest = YaasModel.UIRequest.newBuilder().setUser(tempUser).build()
+        val tempRequest = YaasModel.UIYaasRequest.newBuilder().setUser(tempUser).build()
         val authModel = this.login(tempRequest)
 
         if (!authModel.authenticated) {
@@ -52,15 +52,15 @@ class EntityAuthenticationService(
         this.entityMessageService.merge(existingUser.build())
 
         val auth = this.tokenService.generateToken(tempUser.build())
-        return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+        return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
     }
 
-    override fun exists(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun exists(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val exists = this.entityMessageService.get(YaasModel.User.getDefaultInstance(), request.content) != null
-        return YaasModel.UIResponse.newBuilder().setContent(exists.toString()).build()
+        return YaasModel.UIYaasResponse.newBuilder().setContent(exists.toString()).build()
     }
 
-    override fun register(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun register(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val hashedPassword = DigestUtils.md5Hex(request.user.password)
 
         val existingUser = this.entityMessageService.get(request.user, request.user.id)
@@ -71,14 +71,14 @@ class EntityAuthenticationService(
             this.entityMessageService.merge(builder)
 
             val auth = this.tokenService.generateToken(builder)
-            return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+            return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
         }
 
         if (existingUser.password.equals(hashedPassword)) {
             // ok
             this.logger.info("user exists already, password correct")
             val auth = this.tokenService.generateToken(request.user)
-            return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+            return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
         }
 
         this.logger.info("user exists already, password incorrect")
@@ -89,23 +89,23 @@ class EntityAuthenticationService(
                 .setIsAdmin(false)
                 .build()
 
-        return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+        return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
     }
 
-    override fun login(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun login(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val hashedPassword = DigestUtils.md5Hex(request.user.password)
 
         val existingUser = this.entityMessageService.get(request.user, request.user.id)
         if (existingUser == null || !hashedPassword.equals(existingUser.password)) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
         val auth = this.tokenService.generateToken(existingUser)
-        return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+        return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
     }
 
-    override fun save(request: YaasModel.UIRequest): YaasModel.UIResponse {
-        val returnResponse = YaasModel.UIResponse.newBuilder().setSuccessful(false)
+    override fun save(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
+        val returnResponse = YaasModel.UIYaasResponse.newBuilder().setSuccessful(false)
 
         val validatedUser = this.tokenService.validateUser(request.token)
 

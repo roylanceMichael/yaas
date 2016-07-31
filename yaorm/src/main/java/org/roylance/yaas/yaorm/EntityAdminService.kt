@@ -12,25 +12,25 @@ class EntityAdminService(
         private val tokenService: IServerTokenService,
         private val logger: ILogger
 ): IAdminService {
-    override fun change_password_for_user(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun change_password_for_user(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
         if (!authenticatedUser.isAdmin) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
-        val foundUser = this.entityMessageService.get(YaasModel.User.getDefaultInstance(), request.user.id) ?: return YaasModel.UIResponse.getDefaultInstance()
+        val foundUser = this.entityMessageService.get(YaasModel.User.getDefaultInstance(), request.user.id) ?: return YaasModel.UIYaasResponse.getDefaultInstance()
 
         val builder = foundUser.toBuilder()
         builder.password = DigestUtils.md2Hex(request.user.password)
 
         this.entityMessageService.merge(builder.build())
-        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun delete_user(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun delete_user(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
         if (!authenticatedUser.isAdmin) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
         this.entityMessageService.delete(request.user)
@@ -49,13 +49,13 @@ class EntityAdminService(
             this.entityMessageService.delete(it)
         }
 
-        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun get_all_users(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun get_all_users(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
         if (!authenticatedUser.isAdmin) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
         val users = this.entityMessageService
@@ -71,20 +71,20 @@ class EntityAdminService(
                     .build()
         }
 
-        return YaasModel.UIResponse.newBuilder()
+        return YaasModel.UIYaasResponse.newBuilder()
                 .setUsers(YaasModel.UIAuthentications.newBuilder()
                 .addAllUsers(mappedUsers).build()).build()
     }
 
-    override fun is_user_admin(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun is_user_admin(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
-        return YaasModel.UIResponse.newBuilder().setIsAdmin(authenticatedUser.isAdmin).setAuthenticated(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setIsAdmin(authenticatedUser.isAdmin).setAuthenticated(true).build()
     }
 
-    override fun remove_user_as_admin(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun remove_user_as_admin(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
         if (!authenticatedUser.isAdmin) {
-            return YaasModel.UIResponse.getDefaultInstance()
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
 
         val foundUser = this.entityMessageService.get(YaasModel.User.getDefaultInstance(), request.user.id)
@@ -95,10 +95,10 @@ class EntityAdminService(
             this.entityMessageService.merge(builder.build())
         }
 
-        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setSuccessful(true).build()
     }
 
-    override fun set_user_as_admin(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun set_user_as_admin(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val authenticatedUser = this.tokenService.validateUser(request.token)
 
         if (authenticatedUser.isAdmin) {
@@ -107,6 +107,6 @@ class EntityAdminService(
             this.entityMessageService.merge(builder.build())
         }
 
-        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setSuccessful(true).build()
     }
 }

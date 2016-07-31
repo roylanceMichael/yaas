@@ -21,11 +21,11 @@ class YaasGeneratedMessageBuilder: BaseProtoGeneratedMessageBuilder() {
         if (YaasModel.UIChangePassword.getDescriptor().name.equals(name)) {
             return YaasModel.UIChangePassword.getDefaultInstance()
         }
-        if (YaasModel.UIRequest.getDescriptor().name.equals(name)) {
-            return YaasModel.UIRequest.getDefaultInstance()
+        if (YaasModel.UIYaasResponse.getDescriptor().name.equals(name)) {
+            return YaasModel.UIYaasResponse.getDefaultInstance()
         }
-        if (YaasModel.UIResponse.getDescriptor().name.equals(name)) {
-            return YaasModel.UIResponse.getDefaultInstance()
+        if (YaasModel.UIYaasRequest.getDescriptor().name.equals(name)) {
+            return YaasModel.UIYaasRequest.getDefaultInstance()
         }
         if (YaasModel.UserDevice.getDescriptor().name.equals(name)) {
             return YaasModel.UserDevice.getDefaultInstance()

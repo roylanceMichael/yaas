@@ -4,13 +4,16 @@ import org.junit.Assert
 import org.junit.Test
 import org.roylance.common.service.ILogger
 import org.roylance.yaas.YaasModel
+import org.roylance.yaorm.YaormModel
 import org.roylance.yaorm.services.jdbc.JDBCGranularDatabaseProtoService
 import org.roylance.yaorm.services.postgres.PostgresConnectionSourceFactory
 import org.roylance.yaorm.services.postgres.PostgresGeneratorService
+import org.roylance.yaorm.services.postgres.PostgresProtoBuilder
 import org.roylance.yaorm.services.proto.EntityMessageService
 import org.roylance.yaorm.services.proto.EntityProtoService
 import org.roylance.yaorm.services.sqlite.SQLiteConnectionSourceFactory
 import org.roylance.yaorm.services.sqlite.SQLiteGeneratorService
+import org.roylance.yaorm.services.sqlite.SQLiteProtoBuilder
 import java.io.File
 import java.util.*
 
@@ -43,8 +46,8 @@ class EntityAuthenticationServiceTest {
                 .build()
 
         val authenticationService = EntityAuthenticationService(
-                entityMessageService,
-                EntityTokenService(entityMessageService, logger),
+                PostgresProtoBuilder(),
+                YaormModel.ConnectionInfo.newBuilder().setHost("localhost").setPort(5432).setUser("postgres").setPassword("postgres").setSchema("postgres").build(),
                 logger)
 
         entityMessageService.merge(newUser)
@@ -81,8 +84,8 @@ class EntityAuthenticationServiceTest {
                 .build()
 
             val authenticationService = EntityAuthenticationService(
-                    entityMessageService,
-                    EntityTokenService(entityMessageService, logger),
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             entityMessageService.merge(newUser)
@@ -126,16 +129,16 @@ class EntityAuthenticationServiceTest {
 
             val tokenService = EntityTokenService(entityMessageService, logger)
 
-            val authenticationService = EntityAdminService(
-                    entityMessageService,
-                    tokenService,
+            val adminService = EntityAdminService(
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             entityMessageService.merge(newUser)
             val authentication = tokenService.generateToken(newUser)
 
             // act
-            val foundUsers = authenticationService.get_all_users(YaasModel.UIYaasRequest
+            val foundUsers = adminService.get_all_users(YaasModel.UIYaasRequest
                     .newBuilder().setLimit(10).setOffset(0).setToken(authentication.token).build())
 
             // assert
@@ -177,8 +180,8 @@ class EntityAuthenticationServiceTest {
             val tokenService = EntityTokenService(entityMessageService, logger)
 
             val adminService = EntityAdminService(
-                    entityMessageService,
-                    tokenService,
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             entityMessageService.merge(newUser)
@@ -227,15 +230,14 @@ class EntityAuthenticationServiceTest {
                     .addRoles(YaasModel.UserRole.ADMIN)
                     .build()
 
-            val tokenService = EntityTokenService(entityMessageService, logger)
             val authenticationService = EntityAuthenticationService(
-                    entityMessageService,
-                    tokenService,
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             val adminService = EntityAdminService(
-                    entityMessageService,
-                    tokenService,
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             // act
@@ -279,15 +281,14 @@ class EntityAuthenticationServiceTest {
                     .addRoles(YaasModel.UserRole.ADMIN)
                     .build()
 
-            val tokenService = EntityTokenService(entityMessageService, logger)
-
             val authenticationService = EntityAuthenticationService(
-                    entityMessageService,
-                    tokenService,
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
+
             val adminService = EntityAdminService(
-                    entityMessageService,
-                    tokenService,
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             val request = YaasModel.UIYaasRequest.newBuilder().setUser(newUser).build()
@@ -335,12 +336,11 @@ class EntityAuthenticationServiceTest {
                     .setDisplay("mike roylance")
                     .build()
 
-            val tokenService = EntityTokenService(entityMessageService, logger)
-
             val authenticationService = EntityAuthenticationService(
-                    entityMessageService,
-                    tokenService,
+                    SQLiteProtoBuilder(),
+                    YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
+
             val request = YaasModel.UIYaasRequest.newBuilder().setUser(newUser).build()
             authenticationService.register(request)
 

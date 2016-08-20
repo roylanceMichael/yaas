@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "files": [
+    "node_modules/org.roylance.yaas.api/AdminService.ts",
+    "node_modules/org.roylance.yaas.api/AuthenticationService.ts",
+    "node_modules/org.roylance.yaas.api/IAdminService.ts",
+    "node_modules/org.roylance.yaas.api/IAuthenticationService.ts",
+    "node_modules/org.roylance.yaas.api/IHttpExecute.ts",
+    "node_modules/org.roylance.yaas.api/IUserDeviceService.ts",
+    "node_modules/org.roylance.yaas.api/YaasModel.d.ts",
+    "node_modules/org.roylance.yaas.api/YaasModelFactory.ts",
+    "All.ts",
+    "CommonUIPatternsService.ts",
+    "GuidService.ts",
+    "UserService.ts"
+  ]
+}

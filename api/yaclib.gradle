@@ -1,0 +1,35 @@
+import org.roylance.yaclib.YaclibPlugin
+import org.roylance.yaclib.core.models.DependencyDescriptor
+
+group 'org.roylance.yaas'
+version = "0.$actualVersion-SNAPSHOT"
+
+apply plugin: 'java'
+
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url 'http://chaperapp.dyndns-server.com:8081/artifactory/libs-snapshot-local' }
+    }
+    dependencies {
+        classpath "org.roylance.yaclib:core:0.53-SNAPSHOT"
+        classpath "org.roylance.yaas:api:0.$actualVersion-SNAPSHOT"
+    }
+}
+
+task execute(type: YaclibPlugin) {
+    def parentDir = new File(System.getProperty("user.dir")).parentFile.toString()
+
+    typeScriptModelFile = "YaasModel"
+    version = actualVersion.toInteger()
+    location = parentDir
+    mainModel = "org.roylance.yaas.YaasModel"
+    mainController = "org.roylance.yaas.YaasController"
+
+    dependencyDescriptors = new ArrayList<>()
+    thirdPartyServerDependencies = new ArrayList<>()
+
+    println(parentDir)
+}

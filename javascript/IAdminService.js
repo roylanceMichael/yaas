@@ -1,2 +1,2 @@
 "use strict";
-/// <reference path="./YaasModel" />
+//# sourceMappingURL=IAdminService.js.map

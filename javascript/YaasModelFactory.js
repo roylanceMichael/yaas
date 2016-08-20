@@ -1,5 +1,4 @@
 "use strict";
-/// <reference path="./YaasModel.d.ts" />
 var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
     "package": "org.roylance.yaas",
     "messages": [
@@ -469,3 +468,4 @@ var _root = dcodeIO.ProtoBuf.newBuilder({})['import']({
     ]
 }).build();
 exports.YaasModel = _root;
+//# sourceMappingURL=YaasModelFactory.js.map

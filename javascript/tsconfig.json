@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+    "files": [
+	"IAdminService.ts",
+	"AdminService.ts",
+	"IAuthenticationService.ts",
+	"AuthenticationService.ts",
+	"IUserDeviceService.ts",
+	"UserDeviceService.ts",
+	"IHttpExecute.ts",
+	"YaasModel.d.ts",
+	"YaasModelFactory.ts"
+
+    ]
+}

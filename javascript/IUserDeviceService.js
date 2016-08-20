@@ -1,2 +1,2 @@
 "use strict";
-/// <reference path="./YaasModel" />
+//# sourceMappingURL=IUserDeviceService.js.map

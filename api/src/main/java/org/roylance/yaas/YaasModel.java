@@ -16,15 +16,16 @@ public final class YaasModel {
     /**
      * <code>ANDROID = 0;</code>
      */
-    ANDROID(0, 0),
+    ANDROID(0),
     /**
      * <code>IOS = 1;</code>
      */
-    IOS(1, 1),
+    IOS(1),
     /**
      * <code>JAVASCRIPT = 2;</code>
      */
-    JAVASCRIPT(2, 2),
+    JAVASCRIPT(2),
+    UNRECOGNIZED(-1),
     ;
 
     /**
@@ -41,9 +42,23 @@ public final class YaasModel {
     public static final int JAVASCRIPT_VALUE = 2;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static UserDeviceType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static UserDeviceType forNumber(int value) {
       switch (value) {
         case 0: return ANDROID;
         case 1: return IOS;
@@ -56,17 +71,17 @@ public final class YaasModel {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<UserDeviceType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        UserDeviceType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<UserDeviceType>() {
             public UserDeviceType findValueByNumber(int number) {
-              return UserDeviceType.valueOf(number);
+              return UserDeviceType.forNumber(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(index);
+      return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -85,14 +100,15 @@ public final class YaasModel {
         throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
       return VALUES[desc.getIndex()];
     }
 
-    private final int index;
     private final int value;
 
-    private UserDeviceType(int index, int value) {
-      this.index = index;
+    private UserDeviceType(int value) {
       this.value = value;
     }
 
@@ -107,11 +123,12 @@ public final class YaasModel {
     /**
      * <code>NORMAL = 0;</code>
      */
-    NORMAL(0, 0),
+    NORMAL(0),
     /**
      * <code>ADMIN = 1;</code>
      */
-    ADMIN(1, 1),
+    ADMIN(1),
+    UNRECOGNIZED(-1),
     ;
 
     /**
@@ -124,9 +141,23 @@ public final class YaasModel {
     public static final int ADMIN_VALUE = 1;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static UserRole valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static UserRole forNumber(int value) {
       switch (value) {
         case 0: return NORMAL;
         case 1: return ADMIN;
@@ -138,17 +169,17 @@ public final class YaasModel {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<UserRole>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        UserRole> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<UserRole>() {
             public UserRole findValueByNumber(int number) {
-              return UserRole.valueOf(number);
+              return UserRole.forNumber(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(index);
+      return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -167,14 +198,15 @@ public final class YaasModel {
         throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
       return VALUES[desc.getIndex()];
     }
 
-    private final int index;
     private final int value;
 
-    private UserRole(int index, int value) {
-      this.index = index;
+    private UserRole(int value) {
       this.value = value;
     }
 
@@ -188,10 +220,6 @@ public final class YaasModel {
     /**
      * <code>optional string id = 1;</code>
      */
-    boolean hasId();
-    /**
-     * <code>optional string id = 1;</code>
-     */
     java.lang.String getId();
     /**
      * <code>optional string id = 1;</code>
@@ -202,16 +230,12 @@ public final class YaasModel {
     /**
      * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
      */
-    boolean hasUserDeviceType();
+    int getUserDeviceTypeValue();
     /**
      * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
      */
     org.roylance.yaas.YaasModel.UserDeviceType getUserDeviceType();
 
-    /**
-     * <code>optional string user_device_token = 3;</code>
-     */
-    boolean hasUserDeviceToken();
     /**
      * <code>optional string user_device_token = 3;</code>
      */
@@ -222,10 +246,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getUserDeviceTokenBytes();
 
-    /**
-     * <code>optional int64 last_updated = 4;</code>
-     */
-    boolean hasLastUpdated();
     /**
      * <code>optional int64 last_updated = 4;</code>
      */
@@ -247,40 +267,32 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.UserDevice}
    */
-  public static final class UserDevice extends
+  public  static final class UserDevice extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UserDevice)
       UserDeviceOrBuilder {
     // Use UserDevice.newBuilder() to construct.
     private UserDevice(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UserDevice(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final UserDevice defaultInstance;
-    public static UserDevice getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UserDevice getDefaultInstanceForType() {
-      return defaultInstance;
+    private UserDevice() {
+      id_ = "";
+      userDeviceType_ = 0;
+      userDeviceToken_ = "";
+      lastUpdated_ = 0L;
     }
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private UserDevice(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -290,51 +302,45 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              id_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
               break;
             }
             case 16: {
               int rawValue = input.readEnum();
-              org.roylance.yaas.YaasModel.UserDeviceType value = org.roylance.yaas.YaasModel.UserDeviceType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(2, rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                userDeviceType_ = value;
-              }
+
+              userDeviceType_ = rawValue;
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              userDeviceToken_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userDeviceToken_ = s;
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
+
               lastUpdated_ = input.readInt64();
               break;
             }
             case 42: {
               org.roylance.yaas.YaasModel.User.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (user_ != null) {
                 subBuilder = user_.toBuilder();
               }
-              user_ = input.readMessage(org.roylance.yaas.YaasModel.User.PARSER, extensionRegistry);
+              user_ = input.readMessage(org.roylance.yaas.YaasModel.User.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(user_);
                 user_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+
               break;
             }
           }
@@ -343,9 +349,8 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -361,30 +366,8 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.UserDevice.class, org.roylance.yaas.YaasModel.UserDevice.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<UserDevice> PARSER =
-        new com.google.protobuf.AbstractParser<UserDevice>() {
-      public UserDevice parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserDevice(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UserDevice> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
+    private volatile java.lang.Object id_;
     /**
      * <code>optional string id = 1;</code>
      */
@@ -396,9 +379,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          id_ = s;
-        }
+        id_ = s;
         return s;
       }
     }
@@ -420,28 +401,23 @@ public final class YaasModel {
     }
 
     public static final int USER_DEVICE_TYPE_FIELD_NUMBER = 2;
-    private org.roylance.yaas.YaasModel.UserDeviceType userDeviceType_;
+    private int userDeviceType_;
     /**
      * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
      */
-    public boolean hasUserDeviceType() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+    public int getUserDeviceTypeValue() {
+      return userDeviceType_;
     }
     /**
      * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
      */
     public org.roylance.yaas.YaasModel.UserDeviceType getUserDeviceType() {
-      return userDeviceType_;
+      org.roylance.yaas.YaasModel.UserDeviceType result = org.roylance.yaas.YaasModel.UserDeviceType.forNumber(userDeviceType_);
+      return result == null ? org.roylance.yaas.YaasModel.UserDeviceType.UNRECOGNIZED : result;
     }
 
     public static final int USER_DEVICE_TOKEN_FIELD_NUMBER = 3;
-    private java.lang.Object userDeviceToken_;
-    /**
-     * <code>optional string user_device_token = 3;</code>
-     */
-    public boolean hasUserDeviceToken() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
+    private volatile java.lang.Object userDeviceToken_;
     /**
      * <code>optional string user_device_token = 3;</code>
      */
@@ -453,9 +429,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userDeviceToken_ = s;
-        }
+        userDeviceToken_ = s;
         return s;
       }
     }
@@ -481,12 +455,6 @@ public final class YaasModel {
     /**
      * <code>optional int64 last_updated = 4;</code>
      */
-    public boolean hasLastUpdated() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional int64 last_updated = 4;</code>
-     */
     public long getLastUpdated() {
       return lastUpdated_;
     }
@@ -497,28 +465,21 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.User user = 5;</code>
      */
     public boolean hasUser() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return user_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.User user = 5;</code>
      */
     public org.roylance.yaas.YaasModel.User getUser() {
-      return user_;
+      return user_ == null ? org.roylance.yaas.YaasModel.User.getDefaultInstance() : user_;
     }
     /**
      * <code>optional .org.roylance.yaas.User user = 5;</code>
      */
     public org.roylance.yaas.YaasModel.UserOrBuilder getUserOrBuilder() {
-      return user_;
+      return getUser();
     }
 
-    private void initFields() {
-      id_ = "";
-      userDeviceType_ = org.roylance.yaas.YaasModel.UserDeviceType.ANDROID;
-      userDeviceToken_ = "";
-      lastUpdated_ = 0L;
-      user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -531,63 +492,51 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, userDeviceType_.getNumber());
+      if (userDeviceType_ != org.roylance.yaas.YaasModel.UserDeviceType.ANDROID.getNumber()) {
+        output.writeEnum(2, userDeviceType_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getUserDeviceTokenBytes());
+      if (!getUserDeviceTokenBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, userDeviceToken_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (lastUpdated_ != 0L) {
         output.writeInt64(4, lastUpdated_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, user_);
+      if (user_ != null) {
+        output.writeMessage(5, getUser());
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (userDeviceType_ != org.roylance.yaas.YaasModel.UserDeviceType.ANDROID.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, userDeviceType_.getNumber());
+          .computeEnumSize(2, userDeviceType_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getUserDeviceTokenBytes());
+      if (!getUserDeviceTokenBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, userDeviceToken_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (lastUpdated_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, lastUpdated_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, user_);
+          .computeMessageSize(5, getUser());
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.UserDevice parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -611,42 +560,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.UserDevice parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UserDevice parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UserDevice parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UserDevice parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UserDevice parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UserDevice parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.UserDevice prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.UserDevice prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -685,34 +645,25 @@ public final class YaasModel {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getUserFieldBuilder();
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         id_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userDeviceType_ = org.roylance.yaas.YaasModel.UserDeviceType.ANDROID;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userDeviceToken_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        lastUpdated_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (userBuilder_ == null) {
-          user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
-        } else {
-          userBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        return this;
-      }
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        userDeviceType_ = 0;
+
+        userDeviceToken_ = "";
+
+        lastUpdated_ = 0L;
+
+        if (userBuilder_ == null) {
+          user_ = null;
+        } else {
+          user_ = null;
+          userBuilder_ = null;
+        }
+        return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -734,33 +685,15 @@ public final class YaasModel {
 
       public org.roylance.yaas.YaasModel.UserDevice buildPartial() {
         org.roylance.yaas.YaasModel.UserDevice result = new org.roylance.yaas.YaasModel.UserDevice(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.id_ = id_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.userDeviceType_ = userDeviceType_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.userDeviceToken_ = userDeviceToken_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
         result.lastUpdated_ = lastUpdated_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         if (userBuilder_ == null) {
           result.user_ = user_;
         } else {
           result.user_ = userBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -776,26 +709,24 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.UserDevice other) {
         if (other == org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          bitField0_ |= 0x00000001;
+        if (!other.getId().isEmpty()) {
           id_ = other.id_;
           onChanged();
         }
-        if (other.hasUserDeviceType()) {
-          setUserDeviceType(other.getUserDeviceType());
+        if (other.userDeviceType_ != 0) {
+          setUserDeviceTypeValue(other.getUserDeviceTypeValue());
         }
-        if (other.hasUserDeviceToken()) {
-          bitField0_ |= 0x00000004;
+        if (!other.getUserDeviceToken().isEmpty()) {
           userDeviceToken_ = other.userDeviceToken_;
           onChanged();
         }
-        if (other.hasLastUpdated()) {
+        if (other.getLastUpdated() != 0L) {
           setLastUpdated(other.getLastUpdated());
         }
         if (other.hasUser()) {
           mergeUser(other.getUser());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -812,7 +743,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.UserDevice) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -820,15 +751,8 @@ public final class YaasModel {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object id_ = "";
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public boolean hasId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
       /**
        * <code>optional string id = 1;</code>
        */
@@ -838,9 +762,7 @@ public final class YaasModel {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            id_ = s;
-          }
+          id_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -870,7 +792,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
         id_ = value;
         onChanged();
         return this;
@@ -879,7 +801,7 @@ public final class YaasModel {
        * <code>optional string id = 1;</code>
        */
       public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         id_ = getDefaultInstance().getId();
         onChanged();
         return this;
@@ -892,24 +814,34 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+        
         id_ = value;
         onChanged();
         return this;
       }
 
-      private org.roylance.yaas.YaasModel.UserDeviceType userDeviceType_ = org.roylance.yaas.YaasModel.UserDeviceType.ANDROID;
+      private int userDeviceType_ = 0;
       /**
        * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
        */
-      public boolean hasUserDeviceType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+      public int getUserDeviceTypeValue() {
+        return userDeviceType_;
+      }
+      /**
+       * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
+       */
+      public Builder setUserDeviceTypeValue(int value) {
+        userDeviceType_ = value;
+        onChanged();
+        return this;
       }
       /**
        * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
        */
       public org.roylance.yaas.YaasModel.UserDeviceType getUserDeviceType() {
-        return userDeviceType_;
+        org.roylance.yaas.YaasModel.UserDeviceType result = org.roylance.yaas.YaasModel.UserDeviceType.forNumber(userDeviceType_);
+        return result == null ? org.roylance.yaas.YaasModel.UserDeviceType.UNRECOGNIZED : result;
       }
       /**
        * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
@@ -918,8 +850,8 @@ public final class YaasModel {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000002;
-        userDeviceType_ = value;
+        
+        userDeviceType_ = value.getNumber();
         onChanged();
         return this;
       }
@@ -927,19 +859,13 @@ public final class YaasModel {
        * <code>optional .org.roylance.yaas.UserDeviceType user_device_type = 2;</code>
        */
       public Builder clearUserDeviceType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userDeviceType_ = org.roylance.yaas.YaasModel.UserDeviceType.ANDROID;
+        
+        userDeviceType_ = 0;
         onChanged();
         return this;
       }
 
       private java.lang.Object userDeviceToken_ = "";
-      /**
-       * <code>optional string user_device_token = 3;</code>
-       */
-      public boolean hasUserDeviceToken() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
       /**
        * <code>optional string user_device_token = 3;</code>
        */
@@ -949,9 +875,7 @@ public final class YaasModel {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userDeviceToken_ = s;
-          }
+          userDeviceToken_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -981,7 +905,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  
         userDeviceToken_ = value;
         onChanged();
         return this;
@@ -990,7 +914,7 @@ public final class YaasModel {
        * <code>optional string user_device_token = 3;</code>
        */
       public Builder clearUserDeviceToken() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         userDeviceToken_ = getDefaultInstance().getUserDeviceToken();
         onChanged();
         return this;
@@ -1003,19 +927,14 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  checkByteStringIsUtf8(value);
+        
         userDeviceToken_ = value;
         onChanged();
         return this;
       }
 
       private long lastUpdated_ ;
-      /**
-       * <code>optional int64 last_updated = 4;</code>
-       */
-      public boolean hasLastUpdated() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
       /**
        * <code>optional int64 last_updated = 4;</code>
        */
@@ -1026,7 +945,7 @@ public final class YaasModel {
        * <code>optional int64 last_updated = 4;</code>
        */
       public Builder setLastUpdated(long value) {
-        bitField0_ |= 0x00000008;
+        
         lastUpdated_ = value;
         onChanged();
         return this;
@@ -1035,27 +954,27 @@ public final class YaasModel {
        * <code>optional int64 last_updated = 4;</code>
        */
       public Builder clearLastUpdated() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        
         lastUpdated_ = 0L;
         onChanged();
         return this;
       }
 
-      private org.roylance.yaas.YaasModel.User user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.User user_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.User, org.roylance.yaas.YaasModel.User.Builder, org.roylance.yaas.YaasModel.UserOrBuilder> userBuilder_;
       /**
        * <code>optional .org.roylance.yaas.User user = 5;</code>
        */
       public boolean hasUser() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return userBuilder_ != null || user_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.User user = 5;</code>
        */
       public org.roylance.yaas.YaasModel.User getUser() {
         if (userBuilder_ == null) {
-          return user_;
+          return user_ == null ? org.roylance.yaas.YaasModel.User.getDefaultInstance() : user_;
         } else {
           return userBuilder_.getMessage();
         }
@@ -1073,7 +992,7 @@ public final class YaasModel {
         } else {
           userBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
@@ -1087,7 +1006,7 @@ public final class YaasModel {
         } else {
           userBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
@@ -1095,8 +1014,7 @@ public final class YaasModel {
        */
       public Builder mergeUser(org.roylance.yaas.YaasModel.User value) {
         if (userBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              user_ != org.roylance.yaas.YaasModel.User.getDefaultInstance()) {
+          if (user_ != null) {
             user_ =
               org.roylance.yaas.YaasModel.User.newBuilder(user_).mergeFrom(value).buildPartial();
           } else {
@@ -1106,7 +1024,7 @@ public final class YaasModel {
         } else {
           userBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
@@ -1114,19 +1032,20 @@ public final class YaasModel {
        */
       public Builder clearUser() {
         if (userBuilder_ == null) {
-          user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
+          user_ = null;
           onChanged();
         } else {
-          userBuilder_.clear();
+          user_ = null;
+          userBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.User user = 5;</code>
        */
       public org.roylance.yaas.YaasModel.User.Builder getUserBuilder() {
-        bitField0_ |= 0x00000010;
+        
         onChanged();
         return getUserFieldBuilder().getBuilder();
       }
@@ -1137,7 +1056,8 @@ public final class YaasModel {
         if (userBuilder_ != null) {
           return userBuilder_.getMessageOrBuilder();
         } else {
-          return user_;
+          return user_ == null ?
+              org.roylance.yaas.YaasModel.User.getDefaultInstance() : user_;
         }
       }
       /**
@@ -1156,26 +1076,59 @@ public final class YaasModel {
         }
         return userBuilder_;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.UserDevice)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UserDevice)
+    private static final org.roylance.yaas.YaasModel.UserDevice DEFAULT_INSTANCE;
     static {
-      defaultInstance = new UserDevice(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.UserDevice();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UserDevice)
+    public static org.roylance.yaas.YaasModel.UserDevice getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UserDevice>
+        PARSER = new com.google.protobuf.AbstractParser<UserDevice>() {
+      public UserDevice parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UserDevice(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UserDevice> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UserDevice> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.UserDevice getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface ImageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.roylance.yaas.Image)
       com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    boolean hasId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -1189,10 +1142,6 @@ public final class YaasModel {
     /**
      * <code>optional string name = 2;</code>
      */
-    boolean hasName();
-    /**
-     * <code>optional string name = 2;</code>
-     */
     java.lang.String getName();
     /**
      * <code>optional string name = 2;</code>
@@ -1200,10 +1149,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getNameBytes();
 
-    /**
-     * <code>optional string actual_image = 3;</code>
-     */
-    boolean hasActualImage();
     /**
      * <code>optional string actual_image = 3;</code>
      */
@@ -1217,40 +1162,31 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.Image}
    */
-  public static final class Image extends
+  public  static final class Image extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.Image)
       ImageOrBuilder {
     // Use Image.newBuilder() to construct.
     private Image(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private Image(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final Image defaultInstance;
-    public static Image getDefaultInstance() {
-      return defaultInstance;
+    private Image() {
+      id_ = "";
+      name_ = "";
+      actualImage_ = "";
     }
 
-    public Image getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Image(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1260,28 +1196,27 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              id_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              name_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              actualImage_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              actualImage_ = s;
               break;
             }
           }
@@ -1290,9 +1225,8 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1308,30 +1242,8 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.Image.class, org.roylance.yaas.YaasModel.Image.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<Image> PARSER =
-        new com.google.protobuf.AbstractParser<Image>() {
-      public Image parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Image(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Image> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
+    private volatile java.lang.Object id_;
     /**
      * <code>optional string id = 1;</code>
      */
@@ -1343,9 +1255,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          id_ = s;
-        }
+        id_ = s;
         return s;
       }
     }
@@ -1367,13 +1277,7 @@ public final class YaasModel {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private java.lang.Object name_;
-    /**
-     * <code>optional string name = 2;</code>
-     */
-    public boolean hasName() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object name_;
     /**
      * <code>optional string name = 2;</code>
      */
@@ -1385,9 +1289,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          name_ = s;
-        }
+        name_ = s;
         return s;
       }
     }
@@ -1409,13 +1311,7 @@ public final class YaasModel {
     }
 
     public static final int ACTUAL_IMAGE_FIELD_NUMBER = 3;
-    private java.lang.Object actualImage_;
-    /**
-     * <code>optional string actual_image = 3;</code>
-     */
-    public boolean hasActualImage() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
+    private volatile java.lang.Object actualImage_;
     /**
      * <code>optional string actual_image = 3;</code>
      */
@@ -1427,9 +1323,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          actualImage_ = s;
-        }
+        actualImage_ = s;
         return s;
       }
     }
@@ -1450,11 +1344,6 @@ public final class YaasModel {
       }
     }
 
-    private void initFields() {
-      id_ = "";
-      name_ = "";
-      actualImage_ = "";
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1467,49 +1356,36 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getNameBytes());
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, name_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getActualImageBytes());
+      if (!getActualImageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, actualImage_);
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getNameBytes());
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, name_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getActualImageBytes());
+      if (!getActualImageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, actualImage_);
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.Image parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1533,42 +1409,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.Image parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.Image parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.Image parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.Image parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.Image parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.Image parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.Image prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.Image prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -1609,23 +1496,15 @@ public final class YaasModel {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         id_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        actualImage_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        name_ = "";
+
+        actualImage_ = "";
+
+        return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -1647,21 +1526,9 @@ public final class YaasModel {
 
       public org.roylance.yaas.YaasModel.Image buildPartial() {
         org.roylance.yaas.YaasModel.Image result = new org.roylance.yaas.YaasModel.Image(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.id_ = id_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.name_ = name_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.actualImage_ = actualImage_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -1677,22 +1544,19 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.Image other) {
         if (other == org.roylance.yaas.YaasModel.Image.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          bitField0_ |= 0x00000001;
+        if (!other.getId().isEmpty()) {
           id_ = other.id_;
           onChanged();
         }
-        if (other.hasName()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
         }
-        if (other.hasActualImage()) {
-          bitField0_ |= 0x00000004;
+        if (!other.getActualImage().isEmpty()) {
           actualImage_ = other.actualImage_;
           onChanged();
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -1709,7 +1573,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.Image) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1717,15 +1581,8 @@ public final class YaasModel {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object id_ = "";
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public boolean hasId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
       /**
        * <code>optional string id = 1;</code>
        */
@@ -1735,9 +1592,7 @@ public final class YaasModel {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            id_ = s;
-          }
+          id_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -1767,7 +1622,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
         id_ = value;
         onChanged();
         return this;
@@ -1776,7 +1631,7 @@ public final class YaasModel {
        * <code>optional string id = 1;</code>
        */
       public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         id_ = getDefaultInstance().getId();
         onChanged();
         return this;
@@ -1789,7 +1644,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+        
         id_ = value;
         onChanged();
         return this;
@@ -1799,21 +1655,13 @@ public final class YaasModel {
       /**
        * <code>optional string name = 2;</code>
        */
-      public boolean hasName() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string name = 2;</code>
-       */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            name_ = s;
-          }
+          name_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -1843,7 +1691,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         name_ = value;
         onChanged();
         return this;
@@ -1852,7 +1700,7 @@ public final class YaasModel {
        * <code>optional string name = 2;</code>
        */
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
@@ -1865,7 +1713,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         name_ = value;
         onChanged();
         return this;
@@ -1875,21 +1724,13 @@ public final class YaasModel {
       /**
        * <code>optional string actual_image = 3;</code>
        */
-      public boolean hasActualImage() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string actual_image = 3;</code>
-       */
       public java.lang.String getActualImage() {
         java.lang.Object ref = actualImage_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            actualImage_ = s;
-          }
+          actualImage_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -1919,7 +1760,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  
         actualImage_ = value;
         onChanged();
         return this;
@@ -1928,7 +1769,7 @@ public final class YaasModel {
        * <code>optional string actual_image = 3;</code>
        */
       public Builder clearActualImage() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         actualImage_ = getDefaultInstance().getActualImage();
         onChanged();
         return this;
@@ -1941,31 +1782,65 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  checkByteStringIsUtf8(value);
+        
         actualImage_ = value;
         onChanged();
         return this;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.Image)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.Image)
+    private static final org.roylance.yaas.YaasModel.Image DEFAULT_INSTANCE;
     static {
-      defaultInstance = new Image(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.Image();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.Image)
+    public static org.roylance.yaas.YaasModel.Image getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Image>
+        PARSER = new com.google.protobuf.AbstractParser<Image>() {
+      public Image parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Image(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Image> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Image> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.Image getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface UserOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.roylance.yaas.User)
       com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    boolean hasId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -1979,10 +1854,6 @@ public final class YaasModel {
     /**
      * <code>optional string user_name = 2;</code>
      */
-    boolean hasUserName();
-    /**
-     * <code>optional string user_name = 2;</code>
-     */
     java.lang.String getUserName();
     /**
      * <code>optional string user_name = 2;</code>
@@ -1990,10 +1861,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getUserNameBytes();
 
-    /**
-     * <code>optional string password = 3;</code>
-     */
-    boolean hasPassword();
     /**
      * <code>optional string password = 3;</code>
      */
@@ -2007,10 +1874,6 @@ public final class YaasModel {
     /**
      * <code>optional string display = 4;</code>
      */
-    boolean hasDisplay();
-    /**
-     * <code>optional string display = 4;</code>
-     */
     java.lang.String getDisplay();
     /**
      * <code>optional string display = 4;</code>
@@ -2021,10 +1884,6 @@ public final class YaasModel {
     /**
      * <code>optional string first_name = 5;</code>
      */
-    boolean hasFirstName();
-    /**
-     * <code>optional string first_name = 5;</code>
-     */
     java.lang.String getFirstName();
     /**
      * <code>optional string first_name = 5;</code>
@@ -2032,10 +1891,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getFirstNameBytes();
 
-    /**
-     * <code>optional string last_name = 6;</code>
-     */
-    boolean hasLastName();
     /**
      * <code>optional string last_name = 6;</code>
      */
@@ -2071,44 +1926,48 @@ public final class YaasModel {
      * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
      */
     org.roylance.yaas.YaasModel.UserRole getRoles(int index);
+    /**
+     * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+     */
+    java.util.List<java.lang.Integer>
+    getRolesValueList();
+    /**
+     * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+     */
+    int getRolesValue(int index);
   }
   /**
    * Protobuf type {@code org.roylance.yaas.User}
    */
-  public static final class User extends
+  public  static final class User extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.User)
       UserOrBuilder {
     // Use User.newBuilder() to construct.
     private User(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private User(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final User defaultInstance;
-    public static User getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public User getDefaultInstanceForType() {
-      return defaultInstance;
+    private User() {
+      id_ = "";
+      userName_ = "";
+      password_ = "";
+      display_ = "";
+      firstName_ = "";
+      lastName_ = "";
+      roles_ = java.util.Collections.emptyList();
     }
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private User(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -2118,73 +1977,67 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              id_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              userName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userName_ = s;
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              password_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              password_ = s;
               break;
             }
             case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              display_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              display_ = s;
               break;
             }
             case 42: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000010;
-              firstName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              firstName_ = s;
               break;
             }
             case 50: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000020;
-              lastName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              lastName_ = s;
               break;
             }
             case 58: {
               org.roylance.yaas.YaasModel.Image.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+              if (image_ != null) {
                 subBuilder = image_.toBuilder();
               }
-              image_ = input.readMessage(org.roylance.yaas.YaasModel.Image.PARSER, extensionRegistry);
+              image_ = input.readMessage(org.roylance.yaas.YaasModel.Image.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(image_);
                 image_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000040;
+
               break;
             }
             case 64: {
               int rawValue = input.readEnum();
-              org.roylance.yaas.YaasModel.UserRole value = org.roylance.yaas.YaasModel.UserRole.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(8, rawValue);
-                } else {
-                if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
-                  roles_ = new java.util.ArrayList<org.roylance.yaas.YaasModel.UserRole>();
-                  mutable_bitField0_ |= 0x00000080;
-                }
-                roles_.add(value);
+              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+                roles_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000080;
               }
+              roles_.add(rawValue);
               break;
             }
             case 66: {
@@ -2192,16 +2045,11 @@ public final class YaasModel {
               int oldLimit = input.pushLimit(length);
               while(input.getBytesUntilLimit() > 0) {
                 int rawValue = input.readEnum();
-                org.roylance.yaas.YaasModel.UserRole value = org.roylance.yaas.YaasModel.UserRole.valueOf(rawValue);
-                if (value == null) {
-                  unknownFields.mergeVarintField(8, rawValue);
-                  } else {
-                  if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
-                    roles_ = new java.util.ArrayList<org.roylance.yaas.YaasModel.UserRole>();
-                    mutable_bitField0_ |= 0x00000080;
-                  }
-                  roles_.add(value);
+                if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+                  roles_ = new java.util.ArrayList<java.lang.Integer>();
+                  mutable_bitField0_ |= 0x00000080;
                 }
+                roles_.add(rawValue);
               }
               input.popLimit(oldLimit);
               break;
@@ -2212,12 +2060,11 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
           roles_ = java.util.Collections.unmodifiableList(roles_);
         }
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2233,30 +2080,9 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.User.class, org.roylance.yaas.YaasModel.User.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<User> PARSER =
-        new com.google.protobuf.AbstractParser<User>() {
-      public User parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new User(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<User> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
+    private volatile java.lang.Object id_;
     /**
      * <code>optional string id = 1;</code>
      */
@@ -2268,9 +2094,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          id_ = s;
-        }
+        id_ = s;
         return s;
       }
     }
@@ -2292,13 +2116,7 @@ public final class YaasModel {
     }
 
     public static final int USER_NAME_FIELD_NUMBER = 2;
-    private java.lang.Object userName_;
-    /**
-     * <code>optional string user_name = 2;</code>
-     */
-    public boolean hasUserName() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object userName_;
     /**
      * <code>optional string user_name = 2;</code>
      */
@@ -2310,9 +2128,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userName_ = s;
-        }
+        userName_ = s;
         return s;
       }
     }
@@ -2334,13 +2150,7 @@ public final class YaasModel {
     }
 
     public static final int PASSWORD_FIELD_NUMBER = 3;
-    private java.lang.Object password_;
-    /**
-     * <code>optional string password = 3;</code>
-     */
-    public boolean hasPassword() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
+    private volatile java.lang.Object password_;
     /**
      * <code>optional string password = 3;</code>
      */
@@ -2352,9 +2162,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          password_ = s;
-        }
+        password_ = s;
         return s;
       }
     }
@@ -2376,13 +2184,7 @@ public final class YaasModel {
     }
 
     public static final int DISPLAY_FIELD_NUMBER = 4;
-    private java.lang.Object display_;
-    /**
-     * <code>optional string display = 4;</code>
-     */
-    public boolean hasDisplay() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
+    private volatile java.lang.Object display_;
     /**
      * <code>optional string display = 4;</code>
      */
@@ -2394,9 +2196,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          display_ = s;
-        }
+        display_ = s;
         return s;
       }
     }
@@ -2418,13 +2218,7 @@ public final class YaasModel {
     }
 
     public static final int FIRST_NAME_FIELD_NUMBER = 5;
-    private java.lang.Object firstName_;
-    /**
-     * <code>optional string first_name = 5;</code>
-     */
-    public boolean hasFirstName() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
+    private volatile java.lang.Object firstName_;
     /**
      * <code>optional string first_name = 5;</code>
      */
@@ -2436,9 +2230,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          firstName_ = s;
-        }
+        firstName_ = s;
         return s;
       }
     }
@@ -2460,13 +2252,7 @@ public final class YaasModel {
     }
 
     public static final int LAST_NAME_FIELD_NUMBER = 6;
-    private java.lang.Object lastName_;
-    /**
-     * <code>optional string last_name = 6;</code>
-     */
-    public boolean hasLastName() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
+    private volatile java.lang.Object lastName_;
     /**
      * <code>optional string last_name = 6;</code>
      */
@@ -2478,9 +2264,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          lastName_ = s;
-        }
+        lastName_ = s;
         return s;
       }
     }
@@ -2507,28 +2291,38 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.Image image = 7;</code>
      */
     public boolean hasImage() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return image_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.Image image = 7;</code>
      */
     public org.roylance.yaas.YaasModel.Image getImage() {
-      return image_;
+      return image_ == null ? org.roylance.yaas.YaasModel.Image.getDefaultInstance() : image_;
     }
     /**
      * <code>optional .org.roylance.yaas.Image image = 7;</code>
      */
     public org.roylance.yaas.YaasModel.ImageOrBuilder getImageOrBuilder() {
-      return image_;
+      return getImage();
     }
 
     public static final int ROLES_FIELD_NUMBER = 8;
-    private java.util.List<org.roylance.yaas.YaasModel.UserRole> roles_;
+    private java.util.List<java.lang.Integer> roles_;
+    private static final com.google.protobuf.Internal.ListAdapter.Converter<
+        java.lang.Integer, org.roylance.yaas.YaasModel.UserRole> roles_converter_ =
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                java.lang.Integer, org.roylance.yaas.YaasModel.UserRole>() {
+              public org.roylance.yaas.YaasModel.UserRole convert(java.lang.Integer from) {
+                org.roylance.yaas.YaasModel.UserRole result = org.roylance.yaas.YaasModel.UserRole.forNumber(from);
+                return result == null ? org.roylance.yaas.YaasModel.UserRole.UNRECOGNIZED : result;
+              }
+            };
     /**
      * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
      */
     public java.util.List<org.roylance.yaas.YaasModel.UserRole> getRolesList() {
-      return roles_;
+      return new com.google.protobuf.Internal.ListAdapter<
+          java.lang.Integer, org.roylance.yaas.YaasModel.UserRole>(roles_, roles_converter_);
     }
     /**
      * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
@@ -2540,19 +2334,23 @@ public final class YaasModel {
      * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
      */
     public org.roylance.yaas.YaasModel.UserRole getRoles(int index) {
+      return roles_converter_.convert(roles_.get(index));
+    }
+    /**
+     * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+     */
+    public java.util.List<java.lang.Integer>
+    getRolesValueList() {
+      return roles_;
+    }
+    /**
+     * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+     */
+    public int getRolesValue(int index) {
       return roles_.get(index);
     }
+    private int rolesMemoizedSerializedSize;
 
-    private void initFields() {
-      id_ = "";
-      userName_ = "";
-      password_ = "";
-      display_ = "";
-      firstName_ = "";
-      lastName_ = "";
-      image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
-      roles_ = java.util.Collections.emptyList();
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2566,88 +2364,80 @@ public final class YaasModel {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getUserNameBytes());
+      if (!getUserNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, userName_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getPasswordBytes());
+      if (!getPasswordBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, password_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getDisplayBytes());
+      if (!getDisplayBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, display_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getFirstNameBytes());
+      if (!getFirstNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, firstName_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getLastNameBytes());
+      if (!getLastNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, lastName_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeMessage(7, image_);
+      if (image_ != null) {
+        output.writeMessage(7, getImage());
+      }
+      if (getRolesList().size() > 0) {
+        output.writeRawVarint32(66);
+        output.writeRawVarint32(rolesMemoizedSerializedSize);
       }
       for (int i = 0; i < roles_.size(); i++) {
-        output.writeEnum(8, roles_.get(i).getNumber());
+        output.writeEnumNoTag(roles_.get(i));
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getUserNameBytes());
+      if (!getUserNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, userName_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getPasswordBytes());
+      if (!getPasswordBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, password_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getDisplayBytes());
+      if (!getDisplayBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, display_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getFirstNameBytes());
+      if (!getFirstNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, firstName_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getLastNameBytes());
+      if (!getLastNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(6, lastName_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (image_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, image_);
+          .computeMessageSize(7, getImage());
       }
       {
         int dataSize = 0;
         for (int i = 0; i < roles_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeEnumSizeNoTag(roles_.get(i).getNumber());
+            .computeEnumSizeNoTag(roles_.get(i));
         }
         size += dataSize;
-        size += 1 * roles_.size();
+        if (!getRolesList().isEmpty()) {  size += 1;
+          size += com.google.protobuf.CodedOutputStream
+            .computeRawVarint32Size(dataSize);
+        }rolesMemoizedSerializedSize = dataSize;
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.User parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2671,42 +2461,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.User parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.User parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.User parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.User parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.User parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.User parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.User prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.User prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -2745,40 +2546,31 @@ public final class YaasModel {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getImageFieldBuilder();
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         id_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         userName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         password_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         display_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
+
         firstName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
+
         lastName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
+
         if (imageBuilder_ == null) {
-          image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
+          image_ = null;
         } else {
-          imageBuilder_.clear();
+          image_ = null;
+          imageBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
         roles_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000080);
         return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -2802,33 +2594,12 @@ public final class YaasModel {
         org.roylance.yaas.YaasModel.User result = new org.roylance.yaas.YaasModel.User(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.id_ = id_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.userName_ = userName_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.password_ = password_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
         result.display_ = display_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         result.firstName_ = firstName_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
         result.lastName_ = lastName_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
         if (imageBuilder_ == null) {
           result.image_ = image_;
         } else {
@@ -2855,33 +2626,27 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.User other) {
         if (other == org.roylance.yaas.YaasModel.User.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          bitField0_ |= 0x00000001;
+        if (!other.getId().isEmpty()) {
           id_ = other.id_;
           onChanged();
         }
-        if (other.hasUserName()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getUserName().isEmpty()) {
           userName_ = other.userName_;
           onChanged();
         }
-        if (other.hasPassword()) {
-          bitField0_ |= 0x00000004;
+        if (!other.getPassword().isEmpty()) {
           password_ = other.password_;
           onChanged();
         }
-        if (other.hasDisplay()) {
-          bitField0_ |= 0x00000008;
+        if (!other.getDisplay().isEmpty()) {
           display_ = other.display_;
           onChanged();
         }
-        if (other.hasFirstName()) {
-          bitField0_ |= 0x00000010;
+        if (!other.getFirstName().isEmpty()) {
           firstName_ = other.firstName_;
           onChanged();
         }
-        if (other.hasLastName()) {
-          bitField0_ |= 0x00000020;
+        if (!other.getLastName().isEmpty()) {
           lastName_ = other.lastName_;
           onChanged();
         }
@@ -2898,7 +2663,7 @@ public final class YaasModel {
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -2915,7 +2680,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.User) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -2929,21 +2694,13 @@ public final class YaasModel {
       /**
        * <code>optional string id = 1;</code>
        */
-      public boolean hasId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            id_ = s;
-          }
+          id_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -2973,7 +2730,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
         id_ = value;
         onChanged();
         return this;
@@ -2982,7 +2739,7 @@ public final class YaasModel {
        * <code>optional string id = 1;</code>
        */
       public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         id_ = getDefaultInstance().getId();
         onChanged();
         return this;
@@ -2995,7 +2752,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+        
         id_ = value;
         onChanged();
         return this;
@@ -3005,21 +2763,13 @@ public final class YaasModel {
       /**
        * <code>optional string user_name = 2;</code>
        */
-      public boolean hasUserName() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string user_name = 2;</code>
-       */
       public java.lang.String getUserName() {
         java.lang.Object ref = userName_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userName_ = s;
-          }
+          userName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3049,7 +2799,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         userName_ = value;
         onChanged();
         return this;
@@ -3058,7 +2808,7 @@ public final class YaasModel {
        * <code>optional string user_name = 2;</code>
        */
       public Builder clearUserName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         userName_ = getDefaultInstance().getUserName();
         onChanged();
         return this;
@@ -3071,7 +2821,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         userName_ = value;
         onChanged();
         return this;
@@ -3081,21 +2832,13 @@ public final class YaasModel {
       /**
        * <code>optional string password = 3;</code>
        */
-      public boolean hasPassword() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string password = 3;</code>
-       */
       public java.lang.String getPassword() {
         java.lang.Object ref = password_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            password_ = s;
-          }
+          password_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3125,7 +2868,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  
         password_ = value;
         onChanged();
         return this;
@@ -3134,7 +2877,7 @@ public final class YaasModel {
        * <code>optional string password = 3;</code>
        */
       public Builder clearPassword() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         password_ = getDefaultInstance().getPassword();
         onChanged();
         return this;
@@ -3147,7 +2890,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  checkByteStringIsUtf8(value);
+        
         password_ = value;
         onChanged();
         return this;
@@ -3157,21 +2901,13 @@ public final class YaasModel {
       /**
        * <code>optional string display = 4;</code>
        */
-      public boolean hasDisplay() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional string display = 4;</code>
-       */
       public java.lang.String getDisplay() {
         java.lang.Object ref = display_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            display_ = s;
-          }
+          display_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3201,7 +2937,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  
         display_ = value;
         onChanged();
         return this;
@@ -3210,7 +2946,7 @@ public final class YaasModel {
        * <code>optional string display = 4;</code>
        */
       public Builder clearDisplay() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        
         display_ = getDefaultInstance().getDisplay();
         onChanged();
         return this;
@@ -3223,7 +2959,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  checkByteStringIsUtf8(value);
+        
         display_ = value;
         onChanged();
         return this;
@@ -3233,21 +2970,13 @@ public final class YaasModel {
       /**
        * <code>optional string first_name = 5;</code>
        */
-      public boolean hasFirstName() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>optional string first_name = 5;</code>
-       */
       public java.lang.String getFirstName() {
         java.lang.Object ref = firstName_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            firstName_ = s;
-          }
+          firstName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3277,7 +3006,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  
         firstName_ = value;
         onChanged();
         return this;
@@ -3286,7 +3015,7 @@ public final class YaasModel {
        * <code>optional string first_name = 5;</code>
        */
       public Builder clearFirstName() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        
         firstName_ = getDefaultInstance().getFirstName();
         onChanged();
         return this;
@@ -3299,7 +3028,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  checkByteStringIsUtf8(value);
+        
         firstName_ = value;
         onChanged();
         return this;
@@ -3309,21 +3039,13 @@ public final class YaasModel {
       /**
        * <code>optional string last_name = 6;</code>
        */
-      public boolean hasLastName() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional string last_name = 6;</code>
-       */
       public java.lang.String getLastName() {
         java.lang.Object ref = lastName_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            lastName_ = s;
-          }
+          lastName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3353,7 +3075,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  
         lastName_ = value;
         onChanged();
         return this;
@@ -3362,7 +3084,7 @@ public final class YaasModel {
        * <code>optional string last_name = 6;</code>
        */
       public Builder clearLastName() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        
         lastName_ = getDefaultInstance().getLastName();
         onChanged();
         return this;
@@ -3375,27 +3097,28 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  checkByteStringIsUtf8(value);
+        
         lastName_ = value;
         onChanged();
         return this;
       }
 
-      private org.roylance.yaas.YaasModel.Image image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.Image image_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.Image, org.roylance.yaas.YaasModel.Image.Builder, org.roylance.yaas.YaasModel.ImageOrBuilder> imageBuilder_;
       /**
        * <code>optional .org.roylance.yaas.Image image = 7;</code>
        */
       public boolean hasImage() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return imageBuilder_ != null || image_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.Image image = 7;</code>
        */
       public org.roylance.yaas.YaasModel.Image getImage() {
         if (imageBuilder_ == null) {
-          return image_;
+          return image_ == null ? org.roylance.yaas.YaasModel.Image.getDefaultInstance() : image_;
         } else {
           return imageBuilder_.getMessage();
         }
@@ -3413,7 +3136,7 @@ public final class YaasModel {
         } else {
           imageBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
@@ -3427,7 +3150,7 @@ public final class YaasModel {
         } else {
           imageBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
@@ -3435,8 +3158,7 @@ public final class YaasModel {
        */
       public Builder mergeImage(org.roylance.yaas.YaasModel.Image value) {
         if (imageBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040) &&
-              image_ != org.roylance.yaas.YaasModel.Image.getDefaultInstance()) {
+          if (image_ != null) {
             image_ =
               org.roylance.yaas.YaasModel.Image.newBuilder(image_).mergeFrom(value).buildPartial();
           } else {
@@ -3446,7 +3168,7 @@ public final class YaasModel {
         } else {
           imageBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
@@ -3454,19 +3176,20 @@ public final class YaasModel {
        */
       public Builder clearImage() {
         if (imageBuilder_ == null) {
-          image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
+          image_ = null;
           onChanged();
         } else {
-          imageBuilder_.clear();
+          image_ = null;
+          imageBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.Image image = 7;</code>
        */
       public org.roylance.yaas.YaasModel.Image.Builder getImageBuilder() {
-        bitField0_ |= 0x00000040;
+        
         onChanged();
         return getImageFieldBuilder().getBuilder();
       }
@@ -3477,7 +3200,8 @@ public final class YaasModel {
         if (imageBuilder_ != null) {
           return imageBuilder_.getMessageOrBuilder();
         } else {
-          return image_;
+          return image_ == null ?
+              org.roylance.yaas.YaasModel.Image.getDefaultInstance() : image_;
         }
       }
       /**
@@ -3497,11 +3221,11 @@ public final class YaasModel {
         return imageBuilder_;
       }
 
-      private java.util.List<org.roylance.yaas.YaasModel.UserRole> roles_ =
+      private java.util.List<java.lang.Integer> roles_ =
         java.util.Collections.emptyList();
       private void ensureRolesIsMutable() {
         if (!((bitField0_ & 0x00000080) == 0x00000080)) {
-          roles_ = new java.util.ArrayList<org.roylance.yaas.YaasModel.UserRole>(roles_);
+          roles_ = new java.util.ArrayList<java.lang.Integer>(roles_);
           bitField0_ |= 0x00000080;
         }
       }
@@ -3509,7 +3233,8 @@ public final class YaasModel {
        * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
        */
       public java.util.List<org.roylance.yaas.YaasModel.UserRole> getRolesList() {
-        return java.util.Collections.unmodifiableList(roles_);
+        return new com.google.protobuf.Internal.ListAdapter<
+            java.lang.Integer, org.roylance.yaas.YaasModel.UserRole>(roles_, roles_converter_);
       }
       /**
        * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
@@ -3521,7 +3246,7 @@ public final class YaasModel {
        * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
        */
       public org.roylance.yaas.YaasModel.UserRole getRoles(int index) {
-        return roles_.get(index);
+        return roles_converter_.convert(roles_.get(index));
       }
       /**
        * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
@@ -3532,7 +3257,7 @@ public final class YaasModel {
           throw new NullPointerException();
         }
         ensureRolesIsMutable();
-        roles_.set(index, value);
+        roles_.set(index, value.getNumber());
         onChanged();
         return this;
       }
@@ -3544,7 +3269,7 @@ public final class YaasModel {
           throw new NullPointerException();
         }
         ensureRolesIsMutable();
-        roles_.add(value);
+        roles_.add(value.getNumber());
         onChanged();
         return this;
       }
@@ -3554,8 +3279,9 @@ public final class YaasModel {
       public Builder addAllRoles(
           java.lang.Iterable<? extends org.roylance.yaas.YaasModel.UserRole> values) {
         ensureRolesIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, roles_);
+        for (org.roylance.yaas.YaasModel.UserRole value : values) {
+          roles_.add(value.getNumber());
+        }
         onChanged();
         return this;
       }
@@ -3568,26 +3294,103 @@ public final class YaasModel {
         onChanged();
         return this;
       }
+      /**
+       * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+       */
+      public java.util.List<java.lang.Integer>
+      getRolesValueList() {
+        return java.util.Collections.unmodifiableList(roles_);
+      }
+      /**
+       * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+       */
+      public int getRolesValue(int index) {
+        return roles_.get(index);
+      }
+      /**
+       * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+       */
+      public Builder setRolesValue(
+          int index, int value) {
+        ensureRolesIsMutable();
+        roles_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+       */
+      public Builder addRolesValue(int value) {
+        ensureRolesIsMutable();
+        roles_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .org.roylance.yaas.UserRole roles = 8;</code>
+       */
+      public Builder addAllRolesValue(
+          java.lang.Iterable<java.lang.Integer> values) {
+        ensureRolesIsMutable();
+        for (int value : values) {
+          roles_.add(value);
+        }
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.User)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.User)
+    private static final org.roylance.yaas.YaasModel.User DEFAULT_INSTANCE;
     static {
-      defaultInstance = new User(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.User();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.User)
+    public static org.roylance.yaas.YaasModel.User getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<User>
+        PARSER = new com.google.protobuf.AbstractParser<User>() {
+      public User parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new User(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<User> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<User> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.User getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TokenOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.roylance.yaas.Token)
       com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    boolean hasId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -3601,10 +3404,6 @@ public final class YaasModel {
     /**
      * <code>optional string user_id = 2;</code>
      */
-    boolean hasUserId();
-    /**
-     * <code>optional string user_id = 2;</code>
-     */
     java.lang.String getUserId();
     /**
      * <code>optional string user_id = 2;</code>
@@ -3615,16 +3414,8 @@ public final class YaasModel {
     /**
      * <code>optional int64 issued = 3;</code>
      */
-    boolean hasIssued();
-    /**
-     * <code>optional int64 issued = 3;</code>
-     */
     long getIssued();
 
-    /**
-     * <code>optional int64 expiration = 4;</code>
-     */
-    boolean hasExpiration();
     /**
      * <code>optional int64 expiration = 4;</code>
      */
@@ -3633,40 +3424,32 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.Token}
    */
-  public static final class Token extends
+  public  static final class Token extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.Token)
       TokenOrBuilder {
     // Use Token.newBuilder() to construct.
     private Token(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private Token(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final Token defaultInstance;
-    public static Token getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public Token getDefaultInstanceForType() {
-      return defaultInstance;
+    private Token() {
+      id_ = "";
+      userId_ = "";
+      issued_ = 0L;
+      expiration_ = 0L;
     }
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Token(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -3676,31 +3459,30 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              id_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              userId_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userId_ = s;
               break;
             }
             case 24: {
-              bitField0_ |= 0x00000004;
+
               issued_ = input.readInt64();
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
+
               expiration_ = input.readInt64();
               break;
             }
@@ -3710,9 +3492,8 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -3728,30 +3509,8 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.Token.class, org.roylance.yaas.YaasModel.Token.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<Token> PARSER =
-        new com.google.protobuf.AbstractParser<Token>() {
-      public Token parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Token(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Token> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
+    private volatile java.lang.Object id_;
     /**
      * <code>optional string id = 1;</code>
      */
@@ -3763,9 +3522,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          id_ = s;
-        }
+        id_ = s;
         return s;
       }
     }
@@ -3787,13 +3544,7 @@ public final class YaasModel {
     }
 
     public static final int USER_ID_FIELD_NUMBER = 2;
-    private java.lang.Object userId_;
-    /**
-     * <code>optional string user_id = 2;</code>
-     */
-    public boolean hasUserId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object userId_;
     /**
      * <code>optional string user_id = 2;</code>
      */
@@ -3805,9 +3556,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userId_ = s;
-        }
+        userId_ = s;
         return s;
       }
     }
@@ -3833,12 +3582,6 @@ public final class YaasModel {
     /**
      * <code>optional int64 issued = 3;</code>
      */
-    public boolean hasIssued() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional int64 issued = 3;</code>
-     */
     public long getIssued() {
       return issued_;
     }
@@ -3848,22 +3591,10 @@ public final class YaasModel {
     /**
      * <code>optional int64 expiration = 4;</code>
      */
-    public boolean hasExpiration() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional int64 expiration = 4;</code>
-     */
     public long getExpiration() {
       return expiration_;
     }
 
-    private void initFields() {
-      id_ = "";
-      userId_ = "";
-      issued_ = 0L;
-      expiration_ = 0L;
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -3876,56 +3607,44 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getUserIdBytes());
+      if (!getUserIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, userId_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (issued_ != 0L) {
         output.writeInt64(3, issued_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (expiration_ != 0L) {
         output.writeInt64(4, expiration_);
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, id_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getUserIdBytes());
+      if (!getUserIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, userId_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (issued_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, issued_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (expiration_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, expiration_);
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.Token parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3949,42 +3668,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.Token parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.Token parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.Token parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.Token parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.Token parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.Token parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.Token prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.Token prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -4025,25 +3755,17 @@ public final class YaasModel {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         id_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        issued_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        expiration_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        userId_ = "";
+
+        issued_ = 0L;
+
+        expiration_ = 0L;
+
+        return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -4065,25 +3787,10 @@ public final class YaasModel {
 
       public org.roylance.yaas.YaasModel.Token buildPartial() {
         org.roylance.yaas.YaasModel.Token result = new org.roylance.yaas.YaasModel.Token(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.id_ = id_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.issued_ = issued_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
         result.expiration_ = expiration_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -4099,23 +3806,21 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.Token other) {
         if (other == org.roylance.yaas.YaasModel.Token.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          bitField0_ |= 0x00000001;
+        if (!other.getId().isEmpty()) {
           id_ = other.id_;
           onChanged();
         }
-        if (other.hasUserId()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getUserId().isEmpty()) {
           userId_ = other.userId_;
           onChanged();
         }
-        if (other.hasIssued()) {
+        if (other.getIssued() != 0L) {
           setIssued(other.getIssued());
         }
-        if (other.hasExpiration()) {
+        if (other.getExpiration() != 0L) {
           setExpiration(other.getExpiration());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -4132,7 +3837,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.Token) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -4140,15 +3845,8 @@ public final class YaasModel {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object id_ = "";
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public boolean hasId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
       /**
        * <code>optional string id = 1;</code>
        */
@@ -4158,9 +3856,7 @@ public final class YaasModel {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            id_ = s;
-          }
+          id_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -4190,7 +3886,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
         id_ = value;
         onChanged();
         return this;
@@ -4199,7 +3895,7 @@ public final class YaasModel {
        * <code>optional string id = 1;</code>
        */
       public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         id_ = getDefaultInstance().getId();
         onChanged();
         return this;
@@ -4212,7 +3908,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+        
         id_ = value;
         onChanged();
         return this;
@@ -4222,21 +3919,13 @@ public final class YaasModel {
       /**
        * <code>optional string user_id = 2;</code>
        */
-      public boolean hasUserId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string user_id = 2;</code>
-       */
       public java.lang.String getUserId() {
         java.lang.Object ref = userId_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userId_ = s;
-          }
+          userId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -4266,7 +3955,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         userId_ = value;
         onChanged();
         return this;
@@ -4275,7 +3964,7 @@ public final class YaasModel {
        * <code>optional string user_id = 2;</code>
        */
       public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         userId_ = getDefaultInstance().getUserId();
         onChanged();
         return this;
@@ -4288,19 +3977,14 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         userId_ = value;
         onChanged();
         return this;
       }
 
       private long issued_ ;
-      /**
-       * <code>optional int64 issued = 3;</code>
-       */
-      public boolean hasIssued() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
       /**
        * <code>optional int64 issued = 3;</code>
        */
@@ -4311,7 +3995,7 @@ public final class YaasModel {
        * <code>optional int64 issued = 3;</code>
        */
       public Builder setIssued(long value) {
-        bitField0_ |= 0x00000004;
+        
         issued_ = value;
         onChanged();
         return this;
@@ -4320,19 +4004,13 @@ public final class YaasModel {
        * <code>optional int64 issued = 3;</code>
        */
       public Builder clearIssued() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         issued_ = 0L;
         onChanged();
         return this;
       }
 
       private long expiration_ ;
-      /**
-       * <code>optional int64 expiration = 4;</code>
-       */
-      public boolean hasExpiration() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
       /**
        * <code>optional int64 expiration = 4;</code>
        */
@@ -4343,7 +4021,7 @@ public final class YaasModel {
        * <code>optional int64 expiration = 4;</code>
        */
       public Builder setExpiration(long value) {
-        bitField0_ |= 0x00000008;
+        
         expiration_ = value;
         onChanged();
         return this;
@@ -4352,21 +4030,58 @@ public final class YaasModel {
        * <code>optional int64 expiration = 4;</code>
        */
       public Builder clearExpiration() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        
         expiration_ = 0L;
         onChanged();
         return this;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.Token)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.Token)
+    private static final org.roylance.yaas.YaasModel.Token DEFAULT_INSTANCE;
     static {
-      defaultInstance = new Token(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.Token();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.Token)
+    public static org.roylance.yaas.YaasModel.Token getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Token>
+        PARSER = new com.google.protobuf.AbstractParser<Token>() {
+      public Token parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Token(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Token> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Token> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.Token getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface UIAuthenticationOrBuilder extends
@@ -4376,16 +4091,8 @@ public final class YaasModel {
     /**
      * <code>optional bool authenticated = 1;</code>
      */
-    boolean hasAuthenticated();
-    /**
-     * <code>optional bool authenticated = 1;</code>
-     */
     boolean getAuthenticated();
 
-    /**
-     * <code>optional string token = 2;</code>
-     */
-    boolean hasToken();
     /**
      * <code>optional string token = 2;</code>
      */
@@ -4399,10 +4106,6 @@ public final class YaasModel {
     /**
      * <code>optional string user_name = 3;</code>
      */
-    boolean hasUserName();
-    /**
-     * <code>optional string user_name = 3;</code>
-     */
     java.lang.String getUserName();
     /**
      * <code>optional string user_name = 3;</code>
@@ -4410,10 +4113,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getUserNameBytes();
 
-    /**
-     * <code>optional string display = 4;</code>
-     */
-    boolean hasDisplay();
     /**
      * <code>optional string display = 4;</code>
      */
@@ -4427,49 +4126,38 @@ public final class YaasModel {
     /**
      * <code>optional bool is_admin = 5;</code>
      */
-    boolean hasIsAdmin();
-    /**
-     * <code>optional bool is_admin = 5;</code>
-     */
     boolean getIsAdmin();
   }
   /**
    * Protobuf type {@code org.roylance.yaas.UIAuthentication}
    */
-  public static final class UIAuthentication extends
+  public  static final class UIAuthentication extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UIAuthentication)
       UIAuthenticationOrBuilder {
     // Use UIAuthentication.newBuilder() to construct.
     private UIAuthentication(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UIAuthentication(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final UIAuthentication defaultInstance;
-    public static UIAuthentication getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UIAuthentication getDefaultInstanceForType() {
-      return defaultInstance;
+    private UIAuthentication() {
+      authenticated_ = false;
+      token_ = "";
+      userName_ = "";
+      display_ = "";
+      isAdmin_ = false;
     }
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private UIAuthentication(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -4479,37 +4167,36 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
+
               authenticated_ = input.readBool();
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              token_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              token_ = s;
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              userName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userName_ = s;
               break;
             }
             case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              display_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              display_ = s;
               break;
             }
             case 40: {
-              bitField0_ |= 0x00000010;
+
               isAdmin_ = input.readBool();
               break;
             }
@@ -4519,9 +4206,8 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -4537,30 +4223,8 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.UIAuthentication.class, org.roylance.yaas.YaasModel.UIAuthentication.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<UIAuthentication> PARSER =
-        new com.google.protobuf.AbstractParser<UIAuthentication>() {
-      public UIAuthentication parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UIAuthentication(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UIAuthentication> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
     public static final int AUTHENTICATED_FIELD_NUMBER = 1;
     private boolean authenticated_;
-    /**
-     * <code>optional bool authenticated = 1;</code>
-     */
-    public boolean hasAuthenticated() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
     /**
      * <code>optional bool authenticated = 1;</code>
      */
@@ -4569,13 +4233,7 @@ public final class YaasModel {
     }
 
     public static final int TOKEN_FIELD_NUMBER = 2;
-    private java.lang.Object token_;
-    /**
-     * <code>optional string token = 2;</code>
-     */
-    public boolean hasToken() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object token_;
     /**
      * <code>optional string token = 2;</code>
      */
@@ -4587,9 +4245,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          token_ = s;
-        }
+        token_ = s;
         return s;
       }
     }
@@ -4611,13 +4267,7 @@ public final class YaasModel {
     }
 
     public static final int USER_NAME_FIELD_NUMBER = 3;
-    private java.lang.Object userName_;
-    /**
-     * <code>optional string user_name = 3;</code>
-     */
-    public boolean hasUserName() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
+    private volatile java.lang.Object userName_;
     /**
      * <code>optional string user_name = 3;</code>
      */
@@ -4629,9 +4279,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userName_ = s;
-        }
+        userName_ = s;
         return s;
       }
     }
@@ -4653,13 +4301,7 @@ public final class YaasModel {
     }
 
     public static final int DISPLAY_FIELD_NUMBER = 4;
-    private java.lang.Object display_;
-    /**
-     * <code>optional string display = 4;</code>
-     */
-    public boolean hasDisplay() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
+    private volatile java.lang.Object display_;
     /**
      * <code>optional string display = 4;</code>
      */
@@ -4671,9 +4313,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          display_ = s;
-        }
+        display_ = s;
         return s;
       }
     }
@@ -4699,23 +4339,10 @@ public final class YaasModel {
     /**
      * <code>optional bool is_admin = 5;</code>
      */
-    public boolean hasIsAdmin() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional bool is_admin = 5;</code>
-     */
     public boolean getIsAdmin() {
       return isAdmin_;
     }
 
-    private void initFields() {
-      authenticated_ = false;
-      token_ = "";
-      userName_ = "";
-      display_ = "";
-      isAdmin_ = false;
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4728,63 +4355,50 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (authenticated_ != false) {
         output.writeBool(1, authenticated_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getTokenBytes());
+      if (!getTokenBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, token_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getUserNameBytes());
+      if (!getUserNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, userName_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getDisplayBytes());
+      if (!getDisplayBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, display_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (isAdmin_ != false) {
         output.writeBool(5, isAdmin_);
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (authenticated_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, authenticated_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getTokenBytes());
+      if (!getTokenBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, token_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getUserNameBytes());
+      if (!getUserNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, userName_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getDisplayBytes());
+      if (!getDisplayBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, display_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (isAdmin_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(5, isAdmin_);
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.UIAuthentication parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4808,42 +4422,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.UIAuthentication parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentication parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentication parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentication parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentication parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentication parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIAuthentication prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIAuthentication prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -4884,27 +4509,19 @@ public final class YaasModel {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         authenticated_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        token_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        display_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
-        isAdmin_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        return this;
-      }
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        token_ = "";
+
+        userName_ = "";
+
+        display_ = "";
+
+        isAdmin_ = false;
+
+        return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -4926,29 +4543,11 @@ public final class YaasModel {
 
       public org.roylance.yaas.YaasModel.UIAuthentication buildPartial() {
         org.roylance.yaas.YaasModel.UIAuthentication result = new org.roylance.yaas.YaasModel.UIAuthentication(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.authenticated_ = authenticated_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.token_ = token_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.userName_ = userName_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
         result.display_ = display_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         result.isAdmin_ = isAdmin_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -4964,28 +4563,25 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.UIAuthentication other) {
         if (other == org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance()) return this;
-        if (other.hasAuthenticated()) {
+        if (other.getAuthenticated() != false) {
           setAuthenticated(other.getAuthenticated());
         }
-        if (other.hasToken()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getToken().isEmpty()) {
           token_ = other.token_;
           onChanged();
         }
-        if (other.hasUserName()) {
-          bitField0_ |= 0x00000004;
+        if (!other.getUserName().isEmpty()) {
           userName_ = other.userName_;
           onChanged();
         }
-        if (other.hasDisplay()) {
-          bitField0_ |= 0x00000008;
+        if (!other.getDisplay().isEmpty()) {
           display_ = other.display_;
           onChanged();
         }
-        if (other.hasIsAdmin()) {
+        if (other.getIsAdmin() != false) {
           setIsAdmin(other.getIsAdmin());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -5002,7 +4598,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.UIAuthentication) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -5010,15 +4606,8 @@ public final class YaasModel {
         }
         return this;
       }
-      private int bitField0_;
 
       private boolean authenticated_ ;
-      /**
-       * <code>optional bool authenticated = 1;</code>
-       */
-      public boolean hasAuthenticated() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
       /**
        * <code>optional bool authenticated = 1;</code>
        */
@@ -5029,7 +4618,7 @@ public final class YaasModel {
        * <code>optional bool authenticated = 1;</code>
        */
       public Builder setAuthenticated(boolean value) {
-        bitField0_ |= 0x00000001;
+        
         authenticated_ = value;
         onChanged();
         return this;
@@ -5038,7 +4627,7 @@ public final class YaasModel {
        * <code>optional bool authenticated = 1;</code>
        */
       public Builder clearAuthenticated() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         authenticated_ = false;
         onChanged();
         return this;
@@ -5048,21 +4637,13 @@ public final class YaasModel {
       /**
        * <code>optional string token = 2;</code>
        */
-      public boolean hasToken() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string token = 2;</code>
-       */
       public java.lang.String getToken() {
         java.lang.Object ref = token_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            token_ = s;
-          }
+          token_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5092,7 +4673,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         token_ = value;
         onChanged();
         return this;
@@ -5101,7 +4682,7 @@ public final class YaasModel {
        * <code>optional string token = 2;</code>
        */
       public Builder clearToken() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         token_ = getDefaultInstance().getToken();
         onChanged();
         return this;
@@ -5114,7 +4695,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         token_ = value;
         onChanged();
         return this;
@@ -5124,21 +4706,13 @@ public final class YaasModel {
       /**
        * <code>optional string user_name = 3;</code>
        */
-      public boolean hasUserName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string user_name = 3;</code>
-       */
       public java.lang.String getUserName() {
         java.lang.Object ref = userName_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userName_ = s;
-          }
+          userName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5168,7 +4742,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  
         userName_ = value;
         onChanged();
         return this;
@@ -5177,7 +4751,7 @@ public final class YaasModel {
        * <code>optional string user_name = 3;</code>
        */
       public Builder clearUserName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         userName_ = getDefaultInstance().getUserName();
         onChanged();
         return this;
@@ -5190,7 +4764,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  checkByteStringIsUtf8(value);
+        
         userName_ = value;
         onChanged();
         return this;
@@ -5200,21 +4775,13 @@ public final class YaasModel {
       /**
        * <code>optional string display = 4;</code>
        */
-      public boolean hasDisplay() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional string display = 4;</code>
-       */
       public java.lang.String getDisplay() {
         java.lang.Object ref = display_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            display_ = s;
-          }
+          display_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5244,7 +4811,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  
         display_ = value;
         onChanged();
         return this;
@@ -5253,7 +4820,7 @@ public final class YaasModel {
        * <code>optional string display = 4;</code>
        */
       public Builder clearDisplay() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        
         display_ = getDefaultInstance().getDisplay();
         onChanged();
         return this;
@@ -5266,19 +4833,14 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  checkByteStringIsUtf8(value);
+        
         display_ = value;
         onChanged();
         return this;
       }
 
       private boolean isAdmin_ ;
-      /**
-       * <code>optional bool is_admin = 5;</code>
-       */
-      public boolean hasIsAdmin() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
       /**
        * <code>optional bool is_admin = 5;</code>
        */
@@ -5289,7 +4851,7 @@ public final class YaasModel {
        * <code>optional bool is_admin = 5;</code>
        */
       public Builder setIsAdmin(boolean value) {
-        bitField0_ |= 0x00000010;
+        
         isAdmin_ = value;
         onChanged();
         return this;
@@ -5298,31 +4860,64 @@ public final class YaasModel {
        * <code>optional bool is_admin = 5;</code>
        */
       public Builder clearIsAdmin() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        
         isAdmin_ = false;
         onChanged();
         return this;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.UIAuthentication)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIAuthentication)
+    private static final org.roylance.yaas.YaasModel.UIAuthentication DEFAULT_INSTANCE;
     static {
-      defaultInstance = new UIAuthentication(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.UIAuthentication();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIAuthentication)
+    public static org.roylance.yaas.YaasModel.UIAuthentication getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UIAuthentication>
+        PARSER = new com.google.protobuf.AbstractParser<UIAuthentication>() {
+      public UIAuthentication parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UIAuthentication(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UIAuthentication> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UIAuthentication> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.UIAuthentication getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface UIChangePasswordOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.roylance.yaas.UIChangePassword)
       com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>optional string user_name = 1;</code>
-     */
-    boolean hasUserName();
     /**
      * <code>optional string user_name = 1;</code>
      */
@@ -5336,10 +4931,6 @@ public final class YaasModel {
     /**
      * <code>optional string old_password = 2;</code>
      */
-    boolean hasOldPassword();
-    /**
-     * <code>optional string old_password = 2;</code>
-     */
     java.lang.String getOldPassword();
     /**
      * <code>optional string old_password = 2;</code>
@@ -5347,10 +4938,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getOldPasswordBytes();
 
-    /**
-     * <code>optional string new_password = 3;</code>
-     */
-    boolean hasNewPassword();
     /**
      * <code>optional string new_password = 3;</code>
      */
@@ -5364,40 +4951,31 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.UIChangePassword}
    */
-  public static final class UIChangePassword extends
+  public  static final class UIChangePassword extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UIChangePassword)
       UIChangePasswordOrBuilder {
     // Use UIChangePassword.newBuilder() to construct.
     private UIChangePassword(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UIChangePassword(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final UIChangePassword defaultInstance;
-    public static UIChangePassword getDefaultInstance() {
-      return defaultInstance;
+    private UIChangePassword() {
+      userName_ = "";
+      oldPassword_ = "";
+      newPassword_ = "";
     }
 
-    public UIChangePassword getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private UIChangePassword(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -5407,28 +4985,27 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              userName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userName_ = s;
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              oldPassword_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              oldPassword_ = s;
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              newPassword_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              newPassword_ = s;
               break;
             }
           }
@@ -5437,9 +5014,8 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -5455,30 +5031,8 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.UIChangePassword.class, org.roylance.yaas.YaasModel.UIChangePassword.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<UIChangePassword> PARSER =
-        new com.google.protobuf.AbstractParser<UIChangePassword>() {
-      public UIChangePassword parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UIChangePassword(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UIChangePassword> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
     public static final int USER_NAME_FIELD_NUMBER = 1;
-    private java.lang.Object userName_;
-    /**
-     * <code>optional string user_name = 1;</code>
-     */
-    public boolean hasUserName() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
+    private volatile java.lang.Object userName_;
     /**
      * <code>optional string user_name = 1;</code>
      */
@@ -5490,9 +5044,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userName_ = s;
-        }
+        userName_ = s;
         return s;
       }
     }
@@ -5514,13 +5066,7 @@ public final class YaasModel {
     }
 
     public static final int OLD_PASSWORD_FIELD_NUMBER = 2;
-    private java.lang.Object oldPassword_;
-    /**
-     * <code>optional string old_password = 2;</code>
-     */
-    public boolean hasOldPassword() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object oldPassword_;
     /**
      * <code>optional string old_password = 2;</code>
      */
@@ -5532,9 +5078,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          oldPassword_ = s;
-        }
+        oldPassword_ = s;
         return s;
       }
     }
@@ -5556,13 +5100,7 @@ public final class YaasModel {
     }
 
     public static final int NEW_PASSWORD_FIELD_NUMBER = 3;
-    private java.lang.Object newPassword_;
-    /**
-     * <code>optional string new_password = 3;</code>
-     */
-    public boolean hasNewPassword() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
+    private volatile java.lang.Object newPassword_;
     /**
      * <code>optional string new_password = 3;</code>
      */
@@ -5574,9 +5112,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          newPassword_ = s;
-        }
+        newPassword_ = s;
         return s;
       }
     }
@@ -5597,11 +5133,6 @@ public final class YaasModel {
       }
     }
 
-    private void initFields() {
-      userName_ = "";
-      oldPassword_ = "";
-      newPassword_ = "";
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -5614,49 +5145,36 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getUserNameBytes());
+      if (!getUserNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, userName_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getOldPasswordBytes());
+      if (!getOldPasswordBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, oldPassword_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getNewPasswordBytes());
+      if (!getNewPasswordBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, newPassword_);
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getUserNameBytes());
+      if (!getUserNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, userName_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getOldPasswordBytes());
+      if (!getOldPasswordBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, oldPassword_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getNewPasswordBytes());
+      if (!getNewPasswordBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, newPassword_);
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.UIChangePassword parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5680,42 +5198,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.UIChangePassword parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIChangePassword parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIChangePassword parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIChangePassword parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIChangePassword parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIChangePassword parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIChangePassword prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIChangePassword prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -5756,23 +5285,15 @@ public final class YaasModel {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         userName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        oldPassword_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        newPassword_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        oldPassword_ = "";
+
+        newPassword_ = "";
+
+        return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -5794,21 +5315,9 @@ public final class YaasModel {
 
       public org.roylance.yaas.YaasModel.UIChangePassword buildPartial() {
         org.roylance.yaas.YaasModel.UIChangePassword result = new org.roylance.yaas.YaasModel.UIChangePassword(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.userName_ = userName_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.oldPassword_ = oldPassword_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.newPassword_ = newPassword_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -5824,22 +5333,19 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.UIChangePassword other) {
         if (other == org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance()) return this;
-        if (other.hasUserName()) {
-          bitField0_ |= 0x00000001;
+        if (!other.getUserName().isEmpty()) {
           userName_ = other.userName_;
           onChanged();
         }
-        if (other.hasOldPassword()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getOldPassword().isEmpty()) {
           oldPassword_ = other.oldPassword_;
           onChanged();
         }
-        if (other.hasNewPassword()) {
-          bitField0_ |= 0x00000004;
+        if (!other.getNewPassword().isEmpty()) {
           newPassword_ = other.newPassword_;
           onChanged();
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -5856,7 +5362,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.UIChangePassword) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -5864,15 +5370,8 @@ public final class YaasModel {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object userName_ = "";
-      /**
-       * <code>optional string user_name = 1;</code>
-       */
-      public boolean hasUserName() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
       /**
        * <code>optional string user_name = 1;</code>
        */
@@ -5882,9 +5381,7 @@ public final class YaasModel {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userName_ = s;
-          }
+          userName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5914,7 +5411,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
         userName_ = value;
         onChanged();
         return this;
@@ -5923,7 +5420,7 @@ public final class YaasModel {
        * <code>optional string user_name = 1;</code>
        */
       public Builder clearUserName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         userName_ = getDefaultInstance().getUserName();
         onChanged();
         return this;
@@ -5936,7 +5433,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+        
         userName_ = value;
         onChanged();
         return this;
@@ -5946,21 +5444,13 @@ public final class YaasModel {
       /**
        * <code>optional string old_password = 2;</code>
        */
-      public boolean hasOldPassword() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string old_password = 2;</code>
-       */
       public java.lang.String getOldPassword() {
         java.lang.Object ref = oldPassword_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            oldPassword_ = s;
-          }
+          oldPassword_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5990,7 +5480,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         oldPassword_ = value;
         onChanged();
         return this;
@@ -5999,7 +5489,7 @@ public final class YaasModel {
        * <code>optional string old_password = 2;</code>
        */
       public Builder clearOldPassword() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         oldPassword_ = getDefaultInstance().getOldPassword();
         onChanged();
         return this;
@@ -6012,7 +5502,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         oldPassword_ = value;
         onChanged();
         return this;
@@ -6022,21 +5513,13 @@ public final class YaasModel {
       /**
        * <code>optional string new_password = 3;</code>
        */
-      public boolean hasNewPassword() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string new_password = 3;</code>
-       */
       public java.lang.String getNewPassword() {
         java.lang.Object ref = newPassword_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            newPassword_ = s;
-          }
+          newPassword_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -6066,7 +5549,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  
         newPassword_ = value;
         onChanged();
         return this;
@@ -6075,7 +5558,7 @@ public final class YaasModel {
        * <code>optional string new_password = 3;</code>
        */
       public Builder clearNewPassword() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         newPassword_ = getDefaultInstance().getNewPassword();
         onChanged();
         return this;
@@ -6088,31 +5571,65 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  checkByteStringIsUtf8(value);
+        
         newPassword_ = value;
         onChanged();
         return this;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.UIChangePassword)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIChangePassword)
+    private static final org.roylance.yaas.YaasModel.UIChangePassword DEFAULT_INSTANCE;
     static {
-      defaultInstance = new UIChangePassword(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.UIChangePassword();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIChangePassword)
+    public static org.roylance.yaas.YaasModel.UIChangePassword getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UIChangePassword>
+        PARSER = new com.google.protobuf.AbstractParser<UIChangePassword>() {
+      public UIChangePassword parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UIChangePassword(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UIChangePassword> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UIChangePassword> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.UIChangePassword getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface UIYaasRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.roylance.yaas.UIYaasRequest)
       com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>optional string token = 1;</code>
-     */
-    boolean hasToken();
     /**
      * <code>optional string token = 1;</code>
      */
@@ -6123,10 +5640,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getTokenBytes();
 
-    /**
-     * <code>optional string content = 2;</code>
-     */
-    boolean hasContent();
     /**
      * <code>optional string content = 2;</code>
      */
@@ -6179,16 +5692,8 @@ public final class YaasModel {
     /**
      * <code>optional int32 offset = 6;</code>
      */
-    boolean hasOffset();
-    /**
-     * <code>optional int32 offset = 6;</code>
-     */
     int getOffset();
 
-    /**
-     * <code>optional int32 limit = 7;</code>
-     */
-    boolean hasLimit();
     /**
      * <code>optional int32 limit = 7;</code>
      */
@@ -6210,40 +5715,32 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.UIYaasRequest}
    */
-  public static final class UIYaasRequest extends
+  public  static final class UIYaasRequest extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UIYaasRequest)
       UIYaasRequestOrBuilder {
     // Use UIYaasRequest.newBuilder() to construct.
     private UIYaasRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UIYaasRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final UIYaasRequest defaultInstance;
-    public static UIYaasRequest getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UIYaasRequest getDefaultInstanceForType() {
-      return defaultInstance;
+    private UIYaasRequest() {
+      token_ = "";
+      content_ = "";
+      offset_ = 0;
+      limit_ = 0;
     }
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private UIYaasRequest(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -6253,84 +5750,83 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              token_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              token_ = s;
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              content_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
               break;
             }
             case 26: {
               org.roylance.yaas.YaasModel.User.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              if (user_ != null) {
                 subBuilder = user_.toBuilder();
               }
-              user_ = input.readMessage(org.roylance.yaas.YaasModel.User.PARSER, extensionRegistry);
+              user_ = input.readMessage(org.roylance.yaas.YaasModel.User.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(user_);
                 user_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000004;
+
               break;
             }
             case 34: {
               org.roylance.yaas.YaasModel.UserDevice.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (userDevice_ != null) {
                 subBuilder = userDevice_.toBuilder();
               }
-              userDevice_ = input.readMessage(org.roylance.yaas.YaasModel.UserDevice.PARSER, extensionRegistry);
+              userDevice_ = input.readMessage(org.roylance.yaas.YaasModel.UserDevice.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(userDevice_);
                 userDevice_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000008;
+
               break;
             }
             case 42: {
               org.roylance.yaas.YaasModel.Image.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (image_ != null) {
                 subBuilder = image_.toBuilder();
               }
-              image_ = input.readMessage(org.roylance.yaas.YaasModel.Image.PARSER, extensionRegistry);
+              image_ = input.readMessage(org.roylance.yaas.YaasModel.Image.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(image_);
                 image_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+
               break;
             }
             case 48: {
-              bitField0_ |= 0x00000020;
+
               offset_ = input.readInt32();
               break;
             }
             case 56: {
-              bitField0_ |= 0x00000040;
+
               limit_ = input.readInt32();
               break;
             }
             case 66: {
               org.roylance.yaas.YaasModel.UIChangePassword.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+              if (changePassword_ != null) {
                 subBuilder = changePassword_.toBuilder();
               }
-              changePassword_ = input.readMessage(org.roylance.yaas.YaasModel.UIChangePassword.PARSER, extensionRegistry);
+              changePassword_ = input.readMessage(org.roylance.yaas.YaasModel.UIChangePassword.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(changePassword_);
                 changePassword_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000080;
+
               break;
             }
           }
@@ -6339,9 +5835,8 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -6357,30 +5852,8 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.UIYaasRequest.class, org.roylance.yaas.YaasModel.UIYaasRequest.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<UIYaasRequest> PARSER =
-        new com.google.protobuf.AbstractParser<UIYaasRequest>() {
-      public UIYaasRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UIYaasRequest(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UIYaasRequest> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
     public static final int TOKEN_FIELD_NUMBER = 1;
-    private java.lang.Object token_;
-    /**
-     * <code>optional string token = 1;</code>
-     */
-    public boolean hasToken() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
+    private volatile java.lang.Object token_;
     /**
      * <code>optional string token = 1;</code>
      */
@@ -6392,9 +5865,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          token_ = s;
-        }
+        token_ = s;
         return s;
       }
     }
@@ -6416,13 +5887,7 @@ public final class YaasModel {
     }
 
     public static final int CONTENT_FIELD_NUMBER = 2;
-    private java.lang.Object content_;
-    /**
-     * <code>optional string content = 2;</code>
-     */
-    public boolean hasContent() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object content_;
     /**
      * <code>optional string content = 2;</code>
      */
@@ -6434,9 +5899,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          content_ = s;
-        }
+        content_ = s;
         return s;
       }
     }
@@ -6463,19 +5926,19 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.User user = 3;</code>
      */
     public boolean hasUser() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return user_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.User user = 3;</code>
      */
     public org.roylance.yaas.YaasModel.User getUser() {
-      return user_;
+      return user_ == null ? org.roylance.yaas.YaasModel.User.getDefaultInstance() : user_;
     }
     /**
      * <code>optional .org.roylance.yaas.User user = 3;</code>
      */
     public org.roylance.yaas.YaasModel.UserOrBuilder getUserOrBuilder() {
-      return user_;
+      return getUser();
     }
 
     public static final int USER_DEVICE_FIELD_NUMBER = 4;
@@ -6484,19 +5947,19 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.UserDevice user_device = 4;</code>
      */
     public boolean hasUserDevice() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return userDevice_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.UserDevice user_device = 4;</code>
      */
     public org.roylance.yaas.YaasModel.UserDevice getUserDevice() {
-      return userDevice_;
+      return userDevice_ == null ? org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance() : userDevice_;
     }
     /**
      * <code>optional .org.roylance.yaas.UserDevice user_device = 4;</code>
      */
     public org.roylance.yaas.YaasModel.UserDeviceOrBuilder getUserDeviceOrBuilder() {
-      return userDevice_;
+      return getUserDevice();
     }
 
     public static final int IMAGE_FIELD_NUMBER = 5;
@@ -6505,29 +5968,23 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.Image image = 5;</code>
      */
     public boolean hasImage() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return image_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.Image image = 5;</code>
      */
     public org.roylance.yaas.YaasModel.Image getImage() {
-      return image_;
+      return image_ == null ? org.roylance.yaas.YaasModel.Image.getDefaultInstance() : image_;
     }
     /**
      * <code>optional .org.roylance.yaas.Image image = 5;</code>
      */
     public org.roylance.yaas.YaasModel.ImageOrBuilder getImageOrBuilder() {
-      return image_;
+      return getImage();
     }
 
     public static final int OFFSET_FIELD_NUMBER = 6;
     private int offset_;
-    /**
-     * <code>optional int32 offset = 6;</code>
-     */
-    public boolean hasOffset() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
     /**
      * <code>optional int32 offset = 6;</code>
      */
@@ -6537,12 +5994,6 @@ public final class YaasModel {
 
     public static final int LIMIT_FIELD_NUMBER = 7;
     private int limit_;
-    /**
-     * <code>optional int32 limit = 7;</code>
-     */
-    public boolean hasLimit() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
     /**
      * <code>optional int32 limit = 7;</code>
      */
@@ -6556,31 +6007,21 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.UIChangePassword change_password = 8;</code>
      */
     public boolean hasChangePassword() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return changePassword_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.UIChangePassword change_password = 8;</code>
      */
     public org.roylance.yaas.YaasModel.UIChangePassword getChangePassword() {
-      return changePassword_;
+      return changePassword_ == null ? org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance() : changePassword_;
     }
     /**
      * <code>optional .org.roylance.yaas.UIChangePassword change_password = 8;</code>
      */
     public org.roylance.yaas.YaasModel.UIChangePasswordOrBuilder getChangePasswordOrBuilder() {
-      return changePassword_;
+      return getChangePassword();
     }
 
-    private void initFields() {
-      token_ = "";
-      content_ = "";
-      user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
-      userDevice_ = org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance();
-      image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
-      offset_ = 0;
-      limit_ = 0;
-      changePassword_ = org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance();
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6593,84 +6034,72 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getTokenBytes());
+      if (!getTokenBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, token_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getContentBytes());
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, content_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, user_);
+      if (user_ != null) {
+        output.writeMessage(3, getUser());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, userDevice_);
+      if (userDevice_ != null) {
+        output.writeMessage(4, getUserDevice());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, image_);
+      if (image_ != null) {
+        output.writeMessage(5, getImage());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (offset_ != 0) {
         output.writeInt32(6, offset_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (limit_ != 0) {
         output.writeInt32(7, limit_);
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeMessage(8, changePassword_);
+      if (changePassword_ != null) {
+        output.writeMessage(8, getChangePassword());
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getTokenBytes());
+      if (!getTokenBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, token_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getContentBytes());
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, content_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, user_);
+          .computeMessageSize(3, getUser());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (userDevice_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, userDevice_);
+          .computeMessageSize(4, getUserDevice());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (image_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, image_);
+          .computeMessageSize(5, getImage());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (offset_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(6, offset_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (limit_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(7, limit_);
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (changePassword_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, changePassword_);
+          .computeMessageSize(8, getChangePassword());
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6694,42 +6123,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIYaasRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIYaasRequest prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIYaasRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -6768,55 +6208,43 @@ public final class YaasModel {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getUserFieldBuilder();
-          getUserDeviceFieldBuilder();
-          getImageFieldBuilder();
-          getChangePasswordFieldBuilder();
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         token_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        content_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (userBuilder_ == null) {
-          user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
-        } else {
-          userBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (userDeviceBuilder_ == null) {
-          userDevice_ = org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance();
-        } else {
-          userDeviceBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        if (imageBuilder_ == null) {
-          image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
-        } else {
-          imageBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        offset_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        limit_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        if (changePasswordBuilder_ == null) {
-          changePassword_ = org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance();
-        } else {
-          changePasswordBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000080);
-        return this;
-      }
 
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        content_ = "";
+
+        if (userBuilder_ == null) {
+          user_ = null;
+        } else {
+          user_ = null;
+          userBuilder_ = null;
+        }
+        if (userDeviceBuilder_ == null) {
+          userDevice_ = null;
+        } else {
+          userDevice_ = null;
+          userDeviceBuilder_ = null;
+        }
+        if (imageBuilder_ == null) {
+          image_ = null;
+        } else {
+          image_ = null;
+          imageBuilder_ = null;
+        }
+        offset_ = 0;
+
+        limit_ = 0;
+
+        if (changePasswordBuilder_ == null) {
+          changePassword_ = null;
+        } else {
+          changePassword_ = null;
+          changePasswordBuilder_ = null;
+        }
+        return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -6838,57 +6266,30 @@ public final class YaasModel {
 
       public org.roylance.yaas.YaasModel.UIYaasRequest buildPartial() {
         org.roylance.yaas.YaasModel.UIYaasRequest result = new org.roylance.yaas.YaasModel.UIYaasRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.token_ = token_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.content_ = content_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         if (userBuilder_ == null) {
           result.user_ = user_;
         } else {
           result.user_ = userBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
         }
         if (userDeviceBuilder_ == null) {
           result.userDevice_ = userDevice_;
         } else {
           result.userDevice_ = userDeviceBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         if (imageBuilder_ == null) {
           result.image_ = image_;
         } else {
           result.image_ = imageBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
         result.offset_ = offset_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
         result.limit_ = limit_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
         if (changePasswordBuilder_ == null) {
           result.changePassword_ = changePassword_;
         } else {
           result.changePassword_ = changePasswordBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -6904,13 +6305,11 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.UIYaasRequest other) {
         if (other == org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance()) return this;
-        if (other.hasToken()) {
-          bitField0_ |= 0x00000001;
+        if (!other.getToken().isEmpty()) {
           token_ = other.token_;
           onChanged();
         }
-        if (other.hasContent()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getContent().isEmpty()) {
           content_ = other.content_;
           onChanged();
         }
@@ -6923,16 +6322,16 @@ public final class YaasModel {
         if (other.hasImage()) {
           mergeImage(other.getImage());
         }
-        if (other.hasOffset()) {
+        if (other.getOffset() != 0) {
           setOffset(other.getOffset());
         }
-        if (other.hasLimit()) {
+        if (other.getLimit() != 0) {
           setLimit(other.getLimit());
         }
         if (other.hasChangePassword()) {
           mergeChangePassword(other.getChangePassword());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -6949,7 +6348,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.UIYaasRequest) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -6957,15 +6356,8 @@ public final class YaasModel {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object token_ = "";
-      /**
-       * <code>optional string token = 1;</code>
-       */
-      public boolean hasToken() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
       /**
        * <code>optional string token = 1;</code>
        */
@@ -6975,9 +6367,7 @@ public final class YaasModel {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            token_ = s;
-          }
+          token_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -7007,7 +6397,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
         token_ = value;
         onChanged();
         return this;
@@ -7016,7 +6406,7 @@ public final class YaasModel {
        * <code>optional string token = 1;</code>
        */
       public Builder clearToken() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         token_ = getDefaultInstance().getToken();
         onChanged();
         return this;
@@ -7029,7 +6419,8 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+        
         token_ = value;
         onChanged();
         return this;
@@ -7039,21 +6430,13 @@ public final class YaasModel {
       /**
        * <code>optional string content = 2;</code>
        */
-      public boolean hasContent() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string content = 2;</code>
-       */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            content_ = s;
-          }
+          content_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -7083,7 +6466,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         content_ = value;
         onChanged();
         return this;
@@ -7092,7 +6475,7 @@ public final class YaasModel {
        * <code>optional string content = 2;</code>
        */
       public Builder clearContent() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         content_ = getDefaultInstance().getContent();
         onChanged();
         return this;
@@ -7105,27 +6488,28 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         content_ = value;
         onChanged();
         return this;
       }
 
-      private org.roylance.yaas.YaasModel.User user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.User user_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.User, org.roylance.yaas.YaasModel.User.Builder, org.roylance.yaas.YaasModel.UserOrBuilder> userBuilder_;
       /**
        * <code>optional .org.roylance.yaas.User user = 3;</code>
        */
       public boolean hasUser() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return userBuilder_ != null || user_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.User user = 3;</code>
        */
       public org.roylance.yaas.YaasModel.User getUser() {
         if (userBuilder_ == null) {
-          return user_;
+          return user_ == null ? org.roylance.yaas.YaasModel.User.getDefaultInstance() : user_;
         } else {
           return userBuilder_.getMessage();
         }
@@ -7143,7 +6527,7 @@ public final class YaasModel {
         } else {
           userBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+
         return this;
       }
       /**
@@ -7157,7 +6541,7 @@ public final class YaasModel {
         } else {
           userBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+
         return this;
       }
       /**
@@ -7165,8 +6549,7 @@ public final class YaasModel {
        */
       public Builder mergeUser(org.roylance.yaas.YaasModel.User value) {
         if (userBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              user_ != org.roylance.yaas.YaasModel.User.getDefaultInstance()) {
+          if (user_ != null) {
             user_ =
               org.roylance.yaas.YaasModel.User.newBuilder(user_).mergeFrom(value).buildPartial();
           } else {
@@ -7176,7 +6559,7 @@ public final class YaasModel {
         } else {
           userBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+
         return this;
       }
       /**
@@ -7184,19 +6567,20 @@ public final class YaasModel {
        */
       public Builder clearUser() {
         if (userBuilder_ == null) {
-          user_ = org.roylance.yaas.YaasModel.User.getDefaultInstance();
+          user_ = null;
           onChanged();
         } else {
-          userBuilder_.clear();
+          user_ = null;
+          userBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.User user = 3;</code>
        */
       public org.roylance.yaas.YaasModel.User.Builder getUserBuilder() {
-        bitField0_ |= 0x00000004;
+        
         onChanged();
         return getUserFieldBuilder().getBuilder();
       }
@@ -7207,7 +6591,8 @@ public final class YaasModel {
         if (userBuilder_ != null) {
           return userBuilder_.getMessageOrBuilder();
         } else {
-          return user_;
+          return user_ == null ?
+              org.roylance.yaas.YaasModel.User.getDefaultInstance() : user_;
         }
       }
       /**
@@ -7227,21 +6612,21 @@ public final class YaasModel {
         return userBuilder_;
       }
 
-      private org.roylance.yaas.YaasModel.UserDevice userDevice_ = org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.UserDevice userDevice_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.UserDevice, org.roylance.yaas.YaasModel.UserDevice.Builder, org.roylance.yaas.YaasModel.UserDeviceOrBuilder> userDeviceBuilder_;
       /**
        * <code>optional .org.roylance.yaas.UserDevice user_device = 4;</code>
        */
       public boolean hasUserDevice() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return userDeviceBuilder_ != null || userDevice_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.UserDevice user_device = 4;</code>
        */
       public org.roylance.yaas.YaasModel.UserDevice getUserDevice() {
         if (userDeviceBuilder_ == null) {
-          return userDevice_;
+          return userDevice_ == null ? org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance() : userDevice_;
         } else {
           return userDeviceBuilder_.getMessage();
         }
@@ -7259,7 +6644,7 @@ public final class YaasModel {
         } else {
           userDeviceBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+
         return this;
       }
       /**
@@ -7273,7 +6658,7 @@ public final class YaasModel {
         } else {
           userDeviceBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+
         return this;
       }
       /**
@@ -7281,8 +6666,7 @@ public final class YaasModel {
        */
       public Builder mergeUserDevice(org.roylance.yaas.YaasModel.UserDevice value) {
         if (userDeviceBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              userDevice_ != org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance()) {
+          if (userDevice_ != null) {
             userDevice_ =
               org.roylance.yaas.YaasModel.UserDevice.newBuilder(userDevice_).mergeFrom(value).buildPartial();
           } else {
@@ -7292,7 +6676,7 @@ public final class YaasModel {
         } else {
           userDeviceBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+
         return this;
       }
       /**
@@ -7300,19 +6684,20 @@ public final class YaasModel {
        */
       public Builder clearUserDevice() {
         if (userDeviceBuilder_ == null) {
-          userDevice_ = org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance();
+          userDevice_ = null;
           onChanged();
         } else {
-          userDeviceBuilder_.clear();
+          userDevice_ = null;
+          userDeviceBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.UserDevice user_device = 4;</code>
        */
       public org.roylance.yaas.YaasModel.UserDevice.Builder getUserDeviceBuilder() {
-        bitField0_ |= 0x00000008;
+        
         onChanged();
         return getUserDeviceFieldBuilder().getBuilder();
       }
@@ -7323,7 +6708,8 @@ public final class YaasModel {
         if (userDeviceBuilder_ != null) {
           return userDeviceBuilder_.getMessageOrBuilder();
         } else {
-          return userDevice_;
+          return userDevice_ == null ?
+              org.roylance.yaas.YaasModel.UserDevice.getDefaultInstance() : userDevice_;
         }
       }
       /**
@@ -7343,21 +6729,21 @@ public final class YaasModel {
         return userDeviceBuilder_;
       }
 
-      private org.roylance.yaas.YaasModel.Image image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.Image image_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.Image, org.roylance.yaas.YaasModel.Image.Builder, org.roylance.yaas.YaasModel.ImageOrBuilder> imageBuilder_;
       /**
        * <code>optional .org.roylance.yaas.Image image = 5;</code>
        */
       public boolean hasImage() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return imageBuilder_ != null || image_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.Image image = 5;</code>
        */
       public org.roylance.yaas.YaasModel.Image getImage() {
         if (imageBuilder_ == null) {
-          return image_;
+          return image_ == null ? org.roylance.yaas.YaasModel.Image.getDefaultInstance() : image_;
         } else {
           return imageBuilder_.getMessage();
         }
@@ -7375,7 +6761,7 @@ public final class YaasModel {
         } else {
           imageBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
@@ -7389,7 +6775,7 @@ public final class YaasModel {
         } else {
           imageBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
@@ -7397,8 +6783,7 @@ public final class YaasModel {
        */
       public Builder mergeImage(org.roylance.yaas.YaasModel.Image value) {
         if (imageBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              image_ != org.roylance.yaas.YaasModel.Image.getDefaultInstance()) {
+          if (image_ != null) {
             image_ =
               org.roylance.yaas.YaasModel.Image.newBuilder(image_).mergeFrom(value).buildPartial();
           } else {
@@ -7408,7 +6793,7 @@ public final class YaasModel {
         } else {
           imageBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
@@ -7416,19 +6801,20 @@ public final class YaasModel {
        */
       public Builder clearImage() {
         if (imageBuilder_ == null) {
-          image_ = org.roylance.yaas.YaasModel.Image.getDefaultInstance();
+          image_ = null;
           onChanged();
         } else {
-          imageBuilder_.clear();
+          image_ = null;
+          imageBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.Image image = 5;</code>
        */
       public org.roylance.yaas.YaasModel.Image.Builder getImageBuilder() {
-        bitField0_ |= 0x00000010;
+        
         onChanged();
         return getImageFieldBuilder().getBuilder();
       }
@@ -7439,7 +6825,8 @@ public final class YaasModel {
         if (imageBuilder_ != null) {
           return imageBuilder_.getMessageOrBuilder();
         } else {
-          return image_;
+          return image_ == null ?
+              org.roylance.yaas.YaasModel.Image.getDefaultInstance() : image_;
         }
       }
       /**
@@ -7463,12 +6850,6 @@ public final class YaasModel {
       /**
        * <code>optional int32 offset = 6;</code>
        */
-      public boolean hasOffset() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional int32 offset = 6;</code>
-       */
       public int getOffset() {
         return offset_;
       }
@@ -7476,7 +6857,7 @@ public final class YaasModel {
        * <code>optional int32 offset = 6;</code>
        */
       public Builder setOffset(int value) {
-        bitField0_ |= 0x00000020;
+        
         offset_ = value;
         onChanged();
         return this;
@@ -7485,19 +6866,13 @@ public final class YaasModel {
        * <code>optional int32 offset = 6;</code>
        */
       public Builder clearOffset() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        
         offset_ = 0;
         onChanged();
         return this;
       }
 
       private int limit_ ;
-      /**
-       * <code>optional int32 limit = 7;</code>
-       */
-      public boolean hasLimit() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
-      }
       /**
        * <code>optional int32 limit = 7;</code>
        */
@@ -7508,7 +6883,7 @@ public final class YaasModel {
        * <code>optional int32 limit = 7;</code>
        */
       public Builder setLimit(int value) {
-        bitField0_ |= 0x00000040;
+        
         limit_ = value;
         onChanged();
         return this;
@@ -7517,27 +6892,27 @@ public final class YaasModel {
        * <code>optional int32 limit = 7;</code>
        */
       public Builder clearLimit() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        
         limit_ = 0;
         onChanged();
         return this;
       }
 
-      private org.roylance.yaas.YaasModel.UIChangePassword changePassword_ = org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.UIChangePassword changePassword_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.UIChangePassword, org.roylance.yaas.YaasModel.UIChangePassword.Builder, org.roylance.yaas.YaasModel.UIChangePasswordOrBuilder> changePasswordBuilder_;
       /**
        * <code>optional .org.roylance.yaas.UIChangePassword change_password = 8;</code>
        */
       public boolean hasChangePassword() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return changePasswordBuilder_ != null || changePassword_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.UIChangePassword change_password = 8;</code>
        */
       public org.roylance.yaas.YaasModel.UIChangePassword getChangePassword() {
         if (changePasswordBuilder_ == null) {
-          return changePassword_;
+          return changePassword_ == null ? org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance() : changePassword_;
         } else {
           return changePasswordBuilder_.getMessage();
         }
@@ -7555,7 +6930,7 @@ public final class YaasModel {
         } else {
           changePasswordBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000080;
+
         return this;
       }
       /**
@@ -7569,7 +6944,7 @@ public final class YaasModel {
         } else {
           changePasswordBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000080;
+
         return this;
       }
       /**
@@ -7577,8 +6952,7 @@ public final class YaasModel {
        */
       public Builder mergeChangePassword(org.roylance.yaas.YaasModel.UIChangePassword value) {
         if (changePasswordBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080) &&
-              changePassword_ != org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance()) {
+          if (changePassword_ != null) {
             changePassword_ =
               org.roylance.yaas.YaasModel.UIChangePassword.newBuilder(changePassword_).mergeFrom(value).buildPartial();
           } else {
@@ -7588,7 +6962,7 @@ public final class YaasModel {
         } else {
           changePasswordBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000080;
+
         return this;
       }
       /**
@@ -7596,19 +6970,20 @@ public final class YaasModel {
        */
       public Builder clearChangePassword() {
         if (changePasswordBuilder_ == null) {
-          changePassword_ = org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance();
+          changePassword_ = null;
           onChanged();
         } else {
-          changePasswordBuilder_.clear();
+          changePassword_ = null;
+          changePasswordBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.UIChangePassword change_password = 8;</code>
        */
       public org.roylance.yaas.YaasModel.UIChangePassword.Builder getChangePasswordBuilder() {
-        bitField0_ |= 0x00000080;
+        
         onChanged();
         return getChangePasswordFieldBuilder().getBuilder();
       }
@@ -7619,7 +6994,8 @@ public final class YaasModel {
         if (changePasswordBuilder_ != null) {
           return changePasswordBuilder_.getMessageOrBuilder();
         } else {
-          return changePassword_;
+          return changePassword_ == null ?
+              org.roylance.yaas.YaasModel.UIChangePassword.getDefaultInstance() : changePassword_;
         }
       }
       /**
@@ -7638,16 +7014,53 @@ public final class YaasModel {
         }
         return changePasswordBuilder_;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.UIYaasRequest)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIYaasRequest)
+    private static final org.roylance.yaas.YaasModel.UIYaasRequest DEFAULT_INSTANCE;
     static {
-      defaultInstance = new UIYaasRequest(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.UIYaasRequest();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIYaasRequest)
+    public static org.roylance.yaas.YaasModel.UIYaasRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UIYaasRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UIYaasRequest>() {
+      public UIYaasRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UIYaasRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UIYaasRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UIYaasRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.UIYaasRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface UIYaasResponseOrBuilder extends
@@ -7657,16 +7070,8 @@ public final class YaasModel {
     /**
      * <code>optional bool authenticated = 1;</code>
      */
-    boolean hasAuthenticated();
-    /**
-     * <code>optional bool authenticated = 1;</code>
-     */
     boolean getAuthenticated();
 
-    /**
-     * <code>optional string error_message = 2;</code>
-     */
-    boolean hasErrorMessage();
     /**
      * <code>optional string error_message = 2;</code>
      */
@@ -7680,16 +7085,8 @@ public final class YaasModel {
     /**
      * <code>optional bool successful = 3;</code>
      */
-    boolean hasSuccessful();
-    /**
-     * <code>optional bool successful = 3;</code>
-     */
     boolean getSuccessful();
 
-    /**
-     * <code>optional string content = 4;</code>
-     */
-    boolean hasContent();
     /**
      * <code>optional string content = 4;</code>
      */
@@ -7700,10 +7097,6 @@ public final class YaasModel {
     com.google.protobuf.ByteString
         getContentBytes();
 
-    /**
-     * <code>optional bool is_admin = 5;</code>
-     */
-    boolean hasIsAdmin();
     /**
      * <code>optional bool is_admin = 5;</code>
      */
@@ -7762,40 +7155,34 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.UIYaasResponse}
    */
-  public static final class UIYaasResponse extends
+  public  static final class UIYaasResponse extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UIYaasResponse)
       UIYaasResponseOrBuilder {
     // Use UIYaasResponse.newBuilder() to construct.
     private UIYaasResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UIYaasResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final UIYaasResponse defaultInstance;
-    public static UIYaasResponse getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UIYaasResponse getDefaultInstanceForType() {
-      return defaultInstance;
+    private UIYaasResponse() {
+      authenticated_ = false;
+      errorMessage_ = "";
+      successful_ = false;
+      content_ = "";
+      isAdmin_ = false;
+      userDevices_ = java.util.Collections.emptyList();
     }
 
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private UIYaasResponse(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -7805,63 +7192,62 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
+
               authenticated_ = input.readBool();
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              errorMessage_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              errorMessage_ = s;
               break;
             }
             case 24: {
-              bitField0_ |= 0x00000004;
+
               successful_ = input.readBool();
               break;
             }
             case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              content_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
               break;
             }
             case 40: {
-              bitField0_ |= 0x00000010;
+
               isAdmin_ = input.readBool();
               break;
             }
             case 50: {
               org.roylance.yaas.YaasModel.UIAuthentication.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000020) == 0x00000020)) {
+              if (user_ != null) {
                 subBuilder = user_.toBuilder();
               }
-              user_ = input.readMessage(org.roylance.yaas.YaasModel.UIAuthentication.PARSER, extensionRegistry);
+              user_ = input.readMessage(org.roylance.yaas.YaasModel.UIAuthentication.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(user_);
                 user_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000020;
+
               break;
             }
             case 58: {
               org.roylance.yaas.YaasModel.UIAuthentications.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+              if (users_ != null) {
                 subBuilder = users_.toBuilder();
               }
-              users_ = input.readMessage(org.roylance.yaas.YaasModel.UIAuthentications.PARSER, extensionRegistry);
+              users_ = input.readMessage(org.roylance.yaas.YaasModel.UIAuthentications.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(users_);
                 users_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000040;
+
               break;
             }
             case 66: {
@@ -7869,7 +7255,7 @@ public final class YaasModel {
                 userDevices_ = new java.util.ArrayList<org.roylance.yaas.YaasModel.UserDevice>();
                 mutable_bitField0_ |= 0x00000080;
               }
-              userDevices_.add(input.readMessage(org.roylance.yaas.YaasModel.UserDevice.PARSER, extensionRegistry));
+              userDevices_.add(input.readMessage(org.roylance.yaas.YaasModel.UserDevice.parser(), extensionRegistry));
               break;
             }
           }
@@ -7878,12 +7264,11 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
           userDevices_ = java.util.Collections.unmodifiableList(userDevices_);
         }
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -7899,30 +7284,9 @@ public final class YaasModel {
               org.roylance.yaas.YaasModel.UIYaasResponse.class, org.roylance.yaas.YaasModel.UIYaasResponse.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<UIYaasResponse> PARSER =
-        new com.google.protobuf.AbstractParser<UIYaasResponse>() {
-      public UIYaasResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UIYaasResponse(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UIYaasResponse> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int AUTHENTICATED_FIELD_NUMBER = 1;
     private boolean authenticated_;
-    /**
-     * <code>optional bool authenticated = 1;</code>
-     */
-    public boolean hasAuthenticated() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
     /**
      * <code>optional bool authenticated = 1;</code>
      */
@@ -7931,13 +7295,7 @@ public final class YaasModel {
     }
 
     public static final int ERROR_MESSAGE_FIELD_NUMBER = 2;
-    private java.lang.Object errorMessage_;
-    /**
-     * <code>optional string error_message = 2;</code>
-     */
-    public boolean hasErrorMessage() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
+    private volatile java.lang.Object errorMessage_;
     /**
      * <code>optional string error_message = 2;</code>
      */
@@ -7949,9 +7307,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          errorMessage_ = s;
-        }
+        errorMessage_ = s;
         return s;
       }
     }
@@ -7977,24 +7333,12 @@ public final class YaasModel {
     /**
      * <code>optional bool successful = 3;</code>
      */
-    public boolean hasSuccessful() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional bool successful = 3;</code>
-     */
     public boolean getSuccessful() {
       return successful_;
     }
 
     public static final int CONTENT_FIELD_NUMBER = 4;
-    private java.lang.Object content_;
-    /**
-     * <code>optional string content = 4;</code>
-     */
-    public boolean hasContent() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
+    private volatile java.lang.Object content_;
     /**
      * <code>optional string content = 4;</code>
      */
@@ -8006,9 +7350,7 @@ public final class YaasModel {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          content_ = s;
-        }
+        content_ = s;
         return s;
       }
     }
@@ -8034,12 +7376,6 @@ public final class YaasModel {
     /**
      * <code>optional bool is_admin = 5;</code>
      */
-    public boolean hasIsAdmin() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional bool is_admin = 5;</code>
-     */
     public boolean getIsAdmin() {
       return isAdmin_;
     }
@@ -8050,19 +7386,19 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.UIAuthentication user = 6;</code>
      */
     public boolean hasUser() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return user_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.UIAuthentication user = 6;</code>
      */
     public org.roylance.yaas.YaasModel.UIAuthentication getUser() {
-      return user_;
+      return user_ == null ? org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance() : user_;
     }
     /**
      * <code>optional .org.roylance.yaas.UIAuthentication user = 6;</code>
      */
     public org.roylance.yaas.YaasModel.UIAuthenticationOrBuilder getUserOrBuilder() {
-      return user_;
+      return getUser();
     }
 
     public static final int USERS_FIELD_NUMBER = 7;
@@ -8071,19 +7407,19 @@ public final class YaasModel {
      * <code>optional .org.roylance.yaas.UIAuthentications users = 7;</code>
      */
     public boolean hasUsers() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return users_ != null;
     }
     /**
      * <code>optional .org.roylance.yaas.UIAuthentications users = 7;</code>
      */
     public org.roylance.yaas.YaasModel.UIAuthentications getUsers() {
-      return users_;
+      return users_ == null ? org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance() : users_;
     }
     /**
      * <code>optional .org.roylance.yaas.UIAuthentications users = 7;</code>
      */
     public org.roylance.yaas.YaasModel.UIAuthenticationsOrBuilder getUsersOrBuilder() {
-      return users_;
+      return getUsers();
     }
 
     public static final int USER_DEVICES_FIELD_NUMBER = 8;
@@ -8121,16 +7457,6 @@ public final class YaasModel {
       return userDevices_.get(index);
     }
 
-    private void initFields() {
-      authenticated_ = false;
-      errorMessage_ = "";
-      successful_ = false;
-      content_ = "";
-      isAdmin_ = false;
-      user_ = org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance();
-      users_ = org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance();
-      userDevices_ = java.util.Collections.emptyList();
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -8143,84 +7469,72 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (authenticated_ != false) {
         output.writeBool(1, authenticated_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getErrorMessageBytes());
+      if (!getErrorMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, errorMessage_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (successful_ != false) {
         output.writeBool(3, successful_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getContentBytes());
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, content_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (isAdmin_ != false) {
         output.writeBool(5, isAdmin_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, user_);
+      if (user_ != null) {
+        output.writeMessage(6, getUser());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeMessage(7, users_);
+      if (users_ != null) {
+        output.writeMessage(7, getUsers());
       }
       for (int i = 0; i < userDevices_.size(); i++) {
         output.writeMessage(8, userDevices_.get(i));
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (authenticated_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, authenticated_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getErrorMessageBytes());
+      if (!getErrorMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, errorMessage_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (successful_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, successful_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getContentBytes());
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, content_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (isAdmin_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(5, isAdmin_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, user_);
+          .computeMessageSize(6, getUser());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (users_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, users_);
+          .computeMessageSize(7, getUsers());
       }
       for (int i = 0; i < userDevices_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, userDevices_.get(i));
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8244,42 +7558,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIYaasResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIYaasResponse prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIYaasResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -8318,39 +7643,33 @@ public final class YaasModel {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getUserFieldBuilder();
-          getUsersFieldBuilder();
           getUserDevicesFieldBuilder();
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         authenticated_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         errorMessage_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         successful_ = false;
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         content_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
+
         isAdmin_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
+
         if (userBuilder_ == null) {
-          user_ = org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance();
+          user_ = null;
         } else {
-          userBuilder_.clear();
+          user_ = null;
+          userBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
         if (usersBuilder_ == null) {
-          users_ = org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance();
+          users_ = null;
         } else {
-          usersBuilder_.clear();
+          users_ = null;
+          usersBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
         if (userDevicesBuilder_ == null) {
           userDevices_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000080);
@@ -8358,10 +7677,6 @@ public final class YaasModel {
           userDevicesBuilder_.clear();
         }
         return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -8385,36 +7700,15 @@ public final class YaasModel {
         org.roylance.yaas.YaasModel.UIYaasResponse result = new org.roylance.yaas.YaasModel.UIYaasResponse(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.authenticated_ = authenticated_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.errorMessage_ = errorMessage_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.successful_ = successful_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
         result.content_ = content_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         result.isAdmin_ = isAdmin_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
         if (userBuilder_ == null) {
           result.user_ = user_;
         } else {
           result.user_ = userBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
         }
         if (usersBuilder_ == null) {
           result.users_ = users_;
@@ -8446,23 +7740,21 @@ public final class YaasModel {
 
       public Builder mergeFrom(org.roylance.yaas.YaasModel.UIYaasResponse other) {
         if (other == org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance()) return this;
-        if (other.hasAuthenticated()) {
+        if (other.getAuthenticated() != false) {
           setAuthenticated(other.getAuthenticated());
         }
-        if (other.hasErrorMessage()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getErrorMessage().isEmpty()) {
           errorMessage_ = other.errorMessage_;
           onChanged();
         }
-        if (other.hasSuccessful()) {
+        if (other.getSuccessful() != false) {
           setSuccessful(other.getSuccessful());
         }
-        if (other.hasContent()) {
-          bitField0_ |= 0x00000008;
+        if (!other.getContent().isEmpty()) {
           content_ = other.content_;
           onChanged();
         }
-        if (other.hasIsAdmin()) {
+        if (other.getIsAdmin() != false) {
           setIsAdmin(other.getIsAdmin());
         }
         if (other.hasUser()) {
@@ -8497,7 +7789,7 @@ public final class YaasModel {
             }
           }
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -8514,7 +7806,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.UIYaasResponse) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -8528,12 +7820,6 @@ public final class YaasModel {
       /**
        * <code>optional bool authenticated = 1;</code>
        */
-      public boolean hasAuthenticated() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional bool authenticated = 1;</code>
-       */
       public boolean getAuthenticated() {
         return authenticated_;
       }
@@ -8541,7 +7827,7 @@ public final class YaasModel {
        * <code>optional bool authenticated = 1;</code>
        */
       public Builder setAuthenticated(boolean value) {
-        bitField0_ |= 0x00000001;
+        
         authenticated_ = value;
         onChanged();
         return this;
@@ -8550,7 +7836,7 @@ public final class YaasModel {
        * <code>optional bool authenticated = 1;</code>
        */
       public Builder clearAuthenticated() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         authenticated_ = false;
         onChanged();
         return this;
@@ -8560,21 +7846,13 @@ public final class YaasModel {
       /**
        * <code>optional string error_message = 2;</code>
        */
-      public boolean hasErrorMessage() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string error_message = 2;</code>
-       */
       public java.lang.String getErrorMessage() {
         java.lang.Object ref = errorMessage_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            errorMessage_ = s;
-          }
+          errorMessage_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -8604,7 +7882,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         errorMessage_ = value;
         onChanged();
         return this;
@@ -8613,7 +7891,7 @@ public final class YaasModel {
        * <code>optional string error_message = 2;</code>
        */
       public Builder clearErrorMessage() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         errorMessage_ = getDefaultInstance().getErrorMessage();
         onChanged();
         return this;
@@ -8626,19 +7904,14 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         errorMessage_ = value;
         onChanged();
         return this;
       }
 
       private boolean successful_ ;
-      /**
-       * <code>optional bool successful = 3;</code>
-       */
-      public boolean hasSuccessful() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
       /**
        * <code>optional bool successful = 3;</code>
        */
@@ -8649,7 +7922,7 @@ public final class YaasModel {
        * <code>optional bool successful = 3;</code>
        */
       public Builder setSuccessful(boolean value) {
-        bitField0_ |= 0x00000004;
+        
         successful_ = value;
         onChanged();
         return this;
@@ -8658,7 +7931,7 @@ public final class YaasModel {
        * <code>optional bool successful = 3;</code>
        */
       public Builder clearSuccessful() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         successful_ = false;
         onChanged();
         return this;
@@ -8668,21 +7941,13 @@ public final class YaasModel {
       /**
        * <code>optional string content = 4;</code>
        */
-      public boolean hasContent() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional string content = 4;</code>
-       */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            content_ = s;
-          }
+          content_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -8712,7 +7977,7 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  
         content_ = value;
         onChanged();
         return this;
@@ -8721,7 +7986,7 @@ public final class YaasModel {
        * <code>optional string content = 4;</code>
        */
       public Builder clearContent() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        
         content_ = getDefaultInstance().getContent();
         onChanged();
         return this;
@@ -8734,19 +7999,14 @@ public final class YaasModel {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  checkByteStringIsUtf8(value);
+        
         content_ = value;
         onChanged();
         return this;
       }
 
       private boolean isAdmin_ ;
-      /**
-       * <code>optional bool is_admin = 5;</code>
-       */
-      public boolean hasIsAdmin() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
       /**
        * <code>optional bool is_admin = 5;</code>
        */
@@ -8757,7 +8017,7 @@ public final class YaasModel {
        * <code>optional bool is_admin = 5;</code>
        */
       public Builder setIsAdmin(boolean value) {
-        bitField0_ |= 0x00000010;
+        
         isAdmin_ = value;
         onChanged();
         return this;
@@ -8766,27 +8026,27 @@ public final class YaasModel {
        * <code>optional bool is_admin = 5;</code>
        */
       public Builder clearIsAdmin() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        
         isAdmin_ = false;
         onChanged();
         return this;
       }
 
-      private org.roylance.yaas.YaasModel.UIAuthentication user_ = org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.UIAuthentication user_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.UIAuthentication, org.roylance.yaas.YaasModel.UIAuthentication.Builder, org.roylance.yaas.YaasModel.UIAuthenticationOrBuilder> userBuilder_;
       /**
        * <code>optional .org.roylance.yaas.UIAuthentication user = 6;</code>
        */
       public boolean hasUser() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return userBuilder_ != null || user_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.UIAuthentication user = 6;</code>
        */
       public org.roylance.yaas.YaasModel.UIAuthentication getUser() {
         if (userBuilder_ == null) {
-          return user_;
+          return user_ == null ? org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance() : user_;
         } else {
           return userBuilder_.getMessage();
         }
@@ -8804,7 +8064,7 @@ public final class YaasModel {
         } else {
           userBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000020;
+
         return this;
       }
       /**
@@ -8818,7 +8078,7 @@ public final class YaasModel {
         } else {
           userBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000020;
+
         return this;
       }
       /**
@@ -8826,8 +8086,7 @@ public final class YaasModel {
        */
       public Builder mergeUser(org.roylance.yaas.YaasModel.UIAuthentication value) {
         if (userBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
-              user_ != org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance()) {
+          if (user_ != null) {
             user_ =
               org.roylance.yaas.YaasModel.UIAuthentication.newBuilder(user_).mergeFrom(value).buildPartial();
           } else {
@@ -8837,7 +8096,7 @@ public final class YaasModel {
         } else {
           userBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000020;
+
         return this;
       }
       /**
@@ -8845,19 +8104,20 @@ public final class YaasModel {
        */
       public Builder clearUser() {
         if (userBuilder_ == null) {
-          user_ = org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance();
+          user_ = null;
           onChanged();
         } else {
-          userBuilder_.clear();
+          user_ = null;
+          userBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.UIAuthentication user = 6;</code>
        */
       public org.roylance.yaas.YaasModel.UIAuthentication.Builder getUserBuilder() {
-        bitField0_ |= 0x00000020;
+        
         onChanged();
         return getUserFieldBuilder().getBuilder();
       }
@@ -8868,7 +8128,8 @@ public final class YaasModel {
         if (userBuilder_ != null) {
           return userBuilder_.getMessageOrBuilder();
         } else {
-          return user_;
+          return user_ == null ?
+              org.roylance.yaas.YaasModel.UIAuthentication.getDefaultInstance() : user_;
         }
       }
       /**
@@ -8888,21 +8149,21 @@ public final class YaasModel {
         return userBuilder_;
       }
 
-      private org.roylance.yaas.YaasModel.UIAuthentications users_ = org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance();
+      private org.roylance.yaas.YaasModel.UIAuthentications users_ = null;
       private com.google.protobuf.SingleFieldBuilder<
           org.roylance.yaas.YaasModel.UIAuthentications, org.roylance.yaas.YaasModel.UIAuthentications.Builder, org.roylance.yaas.YaasModel.UIAuthenticationsOrBuilder> usersBuilder_;
       /**
        * <code>optional .org.roylance.yaas.UIAuthentications users = 7;</code>
        */
       public boolean hasUsers() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return usersBuilder_ != null || users_ != null;
       }
       /**
        * <code>optional .org.roylance.yaas.UIAuthentications users = 7;</code>
        */
       public org.roylance.yaas.YaasModel.UIAuthentications getUsers() {
         if (usersBuilder_ == null) {
-          return users_;
+          return users_ == null ? org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance() : users_;
         } else {
           return usersBuilder_.getMessage();
         }
@@ -8920,7 +8181,7 @@ public final class YaasModel {
         } else {
           usersBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
@@ -8934,7 +8195,7 @@ public final class YaasModel {
         } else {
           usersBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
@@ -8942,8 +8203,7 @@ public final class YaasModel {
        */
       public Builder mergeUsers(org.roylance.yaas.YaasModel.UIAuthentications value) {
         if (usersBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040) &&
-              users_ != org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance()) {
+          if (users_ != null) {
             users_ =
               org.roylance.yaas.YaasModel.UIAuthentications.newBuilder(users_).mergeFrom(value).buildPartial();
           } else {
@@ -8953,7 +8213,7 @@ public final class YaasModel {
         } else {
           usersBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
@@ -8961,19 +8221,20 @@ public final class YaasModel {
        */
       public Builder clearUsers() {
         if (usersBuilder_ == null) {
-          users_ = org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance();
+          users_ = null;
           onChanged();
         } else {
-          usersBuilder_.clear();
+          users_ = null;
+          usersBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
+
         return this;
       }
       /**
        * <code>optional .org.roylance.yaas.UIAuthentications users = 7;</code>
        */
       public org.roylance.yaas.YaasModel.UIAuthentications.Builder getUsersBuilder() {
-        bitField0_ |= 0x00000040;
+        
         onChanged();
         return getUsersFieldBuilder().getBuilder();
       }
@@ -8984,7 +8245,8 @@ public final class YaasModel {
         if (usersBuilder_ != null) {
           return usersBuilder_.getMessageOrBuilder();
         } else {
-          return users_;
+          return users_ == null ?
+              org.roylance.yaas.YaasModel.UIAuthentications.getDefaultInstance() : users_;
         }
       }
       /**
@@ -9243,16 +8505,53 @@ public final class YaasModel {
         }
         return userDevicesBuilder_;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.UIYaasResponse)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIYaasResponse)
+    private static final org.roylance.yaas.YaasModel.UIYaasResponse DEFAULT_INSTANCE;
     static {
-      defaultInstance = new UIYaasResponse(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.UIYaasResponse();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIYaasResponse)
+    public static org.roylance.yaas.YaasModel.UIYaasResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UIYaasResponse>
+        PARSER = new com.google.protobuf.AbstractParser<UIYaasResponse>() {
+      public UIYaasResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UIYaasResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UIYaasResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UIYaasResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.UIYaasResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface UIAuthenticationsOrBuilder extends
@@ -9286,40 +8585,29 @@ public final class YaasModel {
   /**
    * Protobuf type {@code org.roylance.yaas.UIAuthentications}
    */
-  public static final class UIAuthentications extends
+  public  static final class UIAuthentications extends
       com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UIAuthentications)
       UIAuthenticationsOrBuilder {
     // Use UIAuthentications.newBuilder() to construct.
     private UIAuthentications(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UIAuthentications(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final UIAuthentications defaultInstance;
-    public static UIAuthentications getDefaultInstance() {
-      return defaultInstance;
+    private UIAuthentications() {
+      users_ = java.util.Collections.emptyList();
     }
 
-    public UIAuthentications getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private UIAuthentications(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
+      this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -9329,8 +8617,7 @@ public final class YaasModel {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
@@ -9340,7 +8627,7 @@ public final class YaasModel {
                 users_ = new java.util.ArrayList<org.roylance.yaas.YaasModel.UIAuthentication>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              users_.add(input.readMessage(org.roylance.yaas.YaasModel.UIAuthentication.PARSER, extensionRegistry));
+              users_.add(input.readMessage(org.roylance.yaas.YaasModel.UIAuthentication.parser(), extensionRegistry));
               break;
             }
           }
@@ -9349,12 +8636,11 @@ public final class YaasModel {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+            e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           users_ = java.util.Collections.unmodifiableList(users_);
         }
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -9368,21 +8654,6 @@ public final class YaasModel {
       return org.roylance.yaas.YaasModel.internal_static_org_roylance_yaas_UIAuthentications_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.roylance.yaas.YaasModel.UIAuthentications.class, org.roylance.yaas.YaasModel.UIAuthentications.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<UIAuthentications> PARSER =
-        new com.google.protobuf.AbstractParser<UIAuthentications>() {
-      public UIAuthentications parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UIAuthentications(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UIAuthentications> getParserForType() {
-      return PARSER;
     }
 
     public static final int USERS_FIELD_NUMBER = 1;
@@ -9420,9 +8691,6 @@ public final class YaasModel {
       return users_.get(index);
     }
 
-    private void initFields() {
-      users_ = java.util.Collections.emptyList();
-    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -9435,16 +8703,13 @@ public final class YaasModel {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       for (int i = 0; i < users_.size(); i++) {
         output.writeMessage(1, users_.get(i));
       }
-      getUnknownFields().writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -9452,18 +8717,11 @@ public final class YaasModel {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, users_.get(i));
       }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
     public static org.roylance.yaas.YaasModel.UIAuthentications parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9487,42 +8745,53 @@ public final class YaasModel {
     }
     public static org.roylance.yaas.YaasModel.UIAuthentications parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentications parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentications parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentications parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentications parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasModel.UIAuthentications parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIAuthentications prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(org.roylance.yaas.YaasModel.UIAuthentications prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -9564,10 +8833,6 @@ public final class YaasModel {
           getUsersFieldBuilder();
         }
       }
-      private static Builder create() {
-        return new Builder();
-      }
-
       public Builder clear() {
         super.clear();
         if (usersBuilder_ == null) {
@@ -9577,10 +8842,6 @@ public final class YaasModel {
           usersBuilder_.clear();
         }
         return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -9653,7 +8914,7 @@ public final class YaasModel {
             }
           }
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
         return this;
       }
 
@@ -9670,7 +8931,7 @@ public final class YaasModel {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (org.roylance.yaas.YaasModel.UIAuthentications) e.getUnfinishedMessage();
-          throw e;
+          throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -9919,61 +9180,98 @@ public final class YaasModel {
         }
         return usersBuilder_;
       }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
 
       // @@protoc_insertion_point(builder_scope:org.roylance.yaas.UIAuthentications)
     }
 
+    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIAuthentications)
+    private static final org.roylance.yaas.YaasModel.UIAuthentications DEFAULT_INSTANCE;
     static {
-      defaultInstance = new UIAuthentications(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new org.roylance.yaas.YaasModel.UIAuthentications();
     }
 
-    // @@protoc_insertion_point(class_scope:org.roylance.yaas.UIAuthentications)
+    public static org.roylance.yaas.YaasModel.UIAuthentications getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UIAuthentications>
+        PARSER = new com.google.protobuf.AbstractParser<UIAuthentications>() {
+      public UIAuthentications parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UIAuthentications(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UIAuthentications> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UIAuthentications> getParserForType() {
+      return PARSER;
+    }
+
+    public org.roylance.yaas.YaasModel.UIAuthentications getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UserDevice_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_UserDevice_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_Image_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_Image_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_User_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_User_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_Token_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_Token_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UIAuthentication_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_UIAuthentication_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UIChangePassword_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_UIChangePassword_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UIYaasRequest_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_UIYaasRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UIYaasResponse_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_UIYaasResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UIAuthentications_descriptor;
-  private static
+  private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_roylance_yaas_UIAuthentications_fieldAccessorTable;
 
@@ -9981,7 +9279,7 @@ public final class YaasModel {
       getDescriptor() {
     return descriptor;
   }
-  private static com.google.protobuf.Descriptors.FileDescriptor
+  private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -10021,7 +9319,7 @@ public final class YaasModel {
       "\030\001 \003(\0132#.org.roylance.yaas.UIAuthenticat" +
       "ion*6\n\016UserDeviceType\022\013\n\007ANDROID\020\000\022\007\n\003IO" +
       "S\020\001\022\016\n\nJAVASCRIPT\020\002*!\n\010UserRole\022\n\n\006NORMA" +
-      "L\020\000\022\t\n\005ADMIN\020\001"
+      "L\020\000\022\t\n\005ADMIN\020\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

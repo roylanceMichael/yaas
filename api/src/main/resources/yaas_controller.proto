@@ -1,32 +1,32 @@
-syntax = "proto2";
+syntax = "proto3";
 package org.roylance.yaas;
 
 import "yaas_model.proto";
 
 message RequestAction {
-    optional org.roylance.yaas.UIYaasRequest request = 1;
-    optional org.roylance.yaas.UIYaasResponse response = 2;
+    org.roylance.yaas.UIYaasRequest request = 1;
+    org.roylance.yaas.UIYaasResponse response = 2;
 }
 
 message AdminController {
-    optional RequestAction change_password_for_user = 1;
-    optional RequestAction get_all_users = 2;
-    optional RequestAction is_user_admin = 3;
-    optional RequestAction set_user_as_admin = 4;
-    optional RequestAction remove_user_as_admin = 5;
-    optional RequestAction delete_user = 6;
+    RequestAction change_password_for_user = 1;
+    RequestAction get_all_users = 2;
+    RequestAction is_user_admin = 3;
+    RequestAction set_user_as_admin = 4;
+    RequestAction remove_user_as_admin = 5;
+    RequestAction delete_user = 6;
 }
 
 message AuthenticationController {
-    optional RequestAction exists = 1;
-    optional RequestAction login = 2;
-    optional RequestAction authenticate = 3;
-    optional RequestAction register = 4;
-    optional RequestAction change_password = 5;
-    optional RequestAction save = 6;
+    RequestAction exists = 1;
+    RequestAction login = 2;
+    RequestAction authenticate = 3;
+    RequestAction register = 4;
+    RequestAction change_password = 5;
+    RequestAction save = 6;
 }
 
 message UserDeviceController {
-    optional RequestAction save = 1;
-    optional RequestAction all = 2;
+    RequestAction save = 1;
+    RequestAction all = 2;
 }

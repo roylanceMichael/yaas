@@ -57,7 +57,7 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.roylance.yaclib:core:0.53-SNAPSHOT"
+        classpath "org.roylance.yaclib:core:0.$yaclibVersion-SNAPSHOT"
     }
 }
 

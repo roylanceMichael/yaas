@@ -31,5 +31,7 @@ task execute(type: YaclibPlugin) {
     dependencyDescriptors = new ArrayList<>()
     thirdPartyServerDependencies = new ArrayList<>()
 
+    nugetKey = System.getenv('NUGET_KEY')
+
     println(parentDir)
 }

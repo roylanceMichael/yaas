@@ -6,7 +6,13 @@ package org.roylance.yaas;
 public final class YaasController {
   private YaasController() {}
   public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+
+  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface RequestActionOrBuilder extends
       // @@protoc_insertion_point(interface_extends:org.roylance.yaas.RequestAction)
@@ -42,11 +48,11 @@ public final class YaasController {
    * Protobuf type {@code org.roylance.yaas.RequestAction}
    */
   public  static final class RequestAction extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.RequestAction)
       RequestActionOrBuilder {
     // Use RequestAction.newBuilder() to construct.
-    private RequestAction(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private RequestAction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private RequestAction() {
@@ -119,7 +125,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -206,6 +212,50 @@ public final class YaasController {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.roylance.yaas.YaasController.RequestAction)) {
+        return super.equals(obj);
+      }
+      org.roylance.yaas.YaasController.RequestAction other = (org.roylance.yaas.YaasController.RequestAction) obj;
+
+      boolean result = true;
+      result = result && (hasRequest() == other.hasRequest());
+      if (hasRequest()) {
+        result = result && getRequest()
+            .equals(other.getRequest());
+      }
+      result = result && (hasResponse() == other.hasResponse());
+      if (hasResponse()) {
+        result = result && getResponse()
+            .equals(other.getResponse());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasRequest()) {
+        hash = (37 * hash) + REQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getRequest().hashCode();
+      }
+      if (hasResponse()) {
+        hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getResponse().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static org.roylance.yaas.YaasController.RequestAction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -229,39 +279,39 @@ public final class YaasController {
     }
     public static org.roylance.yaas.YaasController.RequestAction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.RequestAction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.RequestAction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.RequestAction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.RequestAction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.RequestAction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
@@ -279,7 +329,7 @@ public final class YaasController {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -287,7 +337,7 @@ public final class YaasController {
      * Protobuf type {@code org.roylance.yaas.RequestAction}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:org.roylance.yaas.RequestAction)
         org.roylance.yaas.YaasController.RequestActionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -295,7 +345,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -308,12 +358,13 @@ public final class YaasController {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -366,6 +417,32 @@ public final class YaasController {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.RequestAction) {
           return mergeFrom((org.roylance.yaas.YaasController.RequestAction)other);
@@ -410,7 +487,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasModel.UIYaasRequest request_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasModel.UIYaasRequest, org.roylance.yaas.YaasModel.UIYaasRequest.Builder, org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder> requestBuilder_;
       /**
        * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
@@ -512,11 +589,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.UIYaasRequest request = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasModel.UIYaasRequest, org.roylance.yaas.YaasModel.UIYaasRequest.Builder, org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder> 
           getRequestFieldBuilder() {
         if (requestBuilder_ == null) {
-          requestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          requestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasModel.UIYaasRequest, org.roylance.yaas.YaasModel.UIYaasRequest.Builder, org.roylance.yaas.YaasModel.UIYaasRequestOrBuilder>(
                   getRequest(),
                   getParentForChildren(),
@@ -527,7 +604,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasModel.UIYaasResponse response_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasModel.UIYaasResponse, org.roylance.yaas.YaasModel.UIYaasResponse.Builder, org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder> responseBuilder_;
       /**
        * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
@@ -629,11 +706,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.UIYaasResponse response = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasModel.UIYaasResponse, org.roylance.yaas.YaasModel.UIYaasResponse.Builder, org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder> 
           getResponseFieldBuilder() {
         if (responseBuilder_ == null) {
-          responseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          responseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasModel.UIYaasResponse, org.roylance.yaas.YaasModel.UIYaasResponse.Builder, org.roylance.yaas.YaasModel.UIYaasResponseOrBuilder>(
                   getResponse(),
                   getParentForChildren(),
@@ -777,11 +854,11 @@ public final class YaasController {
    * Protobuf type {@code org.roylance.yaas.AdminController}
    */
   public  static final class AdminController extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.AdminController)
       AdminControllerOrBuilder {
     // Use AdminController.newBuilder() to construct.
-    private AdminController(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private AdminController(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private AdminController() {
@@ -906,7 +983,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1105,6 +1182,86 @@ public final class YaasController {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.roylance.yaas.YaasController.AdminController)) {
+        return super.equals(obj);
+      }
+      org.roylance.yaas.YaasController.AdminController other = (org.roylance.yaas.YaasController.AdminController) obj;
+
+      boolean result = true;
+      result = result && (hasChangePasswordForUser() == other.hasChangePasswordForUser());
+      if (hasChangePasswordForUser()) {
+        result = result && getChangePasswordForUser()
+            .equals(other.getChangePasswordForUser());
+      }
+      result = result && (hasGetAllUsers() == other.hasGetAllUsers());
+      if (hasGetAllUsers()) {
+        result = result && getGetAllUsers()
+            .equals(other.getGetAllUsers());
+      }
+      result = result && (hasIsUserAdmin() == other.hasIsUserAdmin());
+      if (hasIsUserAdmin()) {
+        result = result && getIsUserAdmin()
+            .equals(other.getIsUserAdmin());
+      }
+      result = result && (hasSetUserAsAdmin() == other.hasSetUserAsAdmin());
+      if (hasSetUserAsAdmin()) {
+        result = result && getSetUserAsAdmin()
+            .equals(other.getSetUserAsAdmin());
+      }
+      result = result && (hasRemoveUserAsAdmin() == other.hasRemoveUserAsAdmin());
+      if (hasRemoveUserAsAdmin()) {
+        result = result && getRemoveUserAsAdmin()
+            .equals(other.getRemoveUserAsAdmin());
+      }
+      result = result && (hasDeleteUser() == other.hasDeleteUser());
+      if (hasDeleteUser()) {
+        result = result && getDeleteUser()
+            .equals(other.getDeleteUser());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasChangePasswordForUser()) {
+        hash = (37 * hash) + CHANGE_PASSWORD_FOR_USER_FIELD_NUMBER;
+        hash = (53 * hash) + getChangePasswordForUser().hashCode();
+      }
+      if (hasGetAllUsers()) {
+        hash = (37 * hash) + GET_ALL_USERS_FIELD_NUMBER;
+        hash = (53 * hash) + getGetAllUsers().hashCode();
+      }
+      if (hasIsUserAdmin()) {
+        hash = (37 * hash) + IS_USER_ADMIN_FIELD_NUMBER;
+        hash = (53 * hash) + getIsUserAdmin().hashCode();
+      }
+      if (hasSetUserAsAdmin()) {
+        hash = (37 * hash) + SET_USER_AS_ADMIN_FIELD_NUMBER;
+        hash = (53 * hash) + getSetUserAsAdmin().hashCode();
+      }
+      if (hasRemoveUserAsAdmin()) {
+        hash = (37 * hash) + REMOVE_USER_AS_ADMIN_FIELD_NUMBER;
+        hash = (53 * hash) + getRemoveUserAsAdmin().hashCode();
+      }
+      if (hasDeleteUser()) {
+        hash = (37 * hash) + DELETE_USER_FIELD_NUMBER;
+        hash = (53 * hash) + getDeleteUser().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static org.roylance.yaas.YaasController.AdminController parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1128,39 +1285,39 @@ public final class YaasController {
     }
     public static org.roylance.yaas.YaasController.AdminController parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.AdminController parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.AdminController parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.AdminController parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.AdminController parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.AdminController parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
@@ -1178,7 +1335,7 @@ public final class YaasController {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1186,7 +1343,7 @@ public final class YaasController {
      * Protobuf type {@code org.roylance.yaas.AdminController}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:org.roylance.yaas.AdminController)
         org.roylance.yaas.YaasController.AdminControllerOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1194,7 +1351,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1207,12 +1364,13 @@ public final class YaasController {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1309,6 +1467,32 @@ public final class YaasController {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.AdminController) {
           return mergeFrom((org.roylance.yaas.YaasController.AdminController)other);
@@ -1365,7 +1549,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction changePasswordForUser_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> changePasswordForUserBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction change_password_for_user = 1;</code>
@@ -1467,11 +1651,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction change_password_for_user = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getChangePasswordForUserFieldBuilder() {
         if (changePasswordForUserBuilder_ == null) {
-          changePasswordForUserBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          changePasswordForUserBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getChangePasswordForUser(),
                   getParentForChildren(),
@@ -1482,7 +1666,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction getAllUsers_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> getAllUsersBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction get_all_users = 2;</code>
@@ -1584,11 +1768,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction get_all_users = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getGetAllUsersFieldBuilder() {
         if (getAllUsersBuilder_ == null) {
-          getAllUsersBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getAllUsersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getGetAllUsers(),
                   getParentForChildren(),
@@ -1599,7 +1783,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction isUserAdmin_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> isUserAdminBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction is_user_admin = 3;</code>
@@ -1701,11 +1885,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction is_user_admin = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getIsUserAdminFieldBuilder() {
         if (isUserAdminBuilder_ == null) {
-          isUserAdminBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          isUserAdminBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getIsUserAdmin(),
                   getParentForChildren(),
@@ -1716,7 +1900,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction setUserAsAdmin_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> setUserAsAdminBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction set_user_as_admin = 4;</code>
@@ -1818,11 +2002,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction set_user_as_admin = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getSetUserAsAdminFieldBuilder() {
         if (setUserAsAdminBuilder_ == null) {
-          setUserAsAdminBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          setUserAsAdminBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getSetUserAsAdmin(),
                   getParentForChildren(),
@@ -1833,7 +2017,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction removeUserAsAdmin_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> removeUserAsAdminBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction remove_user_as_admin = 5;</code>
@@ -1935,11 +2119,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction remove_user_as_admin = 5;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getRemoveUserAsAdminFieldBuilder() {
         if (removeUserAsAdminBuilder_ == null) {
-          removeUserAsAdminBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          removeUserAsAdminBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getRemoveUserAsAdmin(),
                   getParentForChildren(),
@@ -1950,7 +2134,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction deleteUser_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> deleteUserBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction delete_user = 6;</code>
@@ -2052,11 +2236,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction delete_user = 6;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getDeleteUserFieldBuilder() {
         if (deleteUserBuilder_ == null) {
-          deleteUserBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          deleteUserBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getDeleteUser(),
                   getParentForChildren(),
@@ -2200,11 +2384,11 @@ public final class YaasController {
    * Protobuf type {@code org.roylance.yaas.AuthenticationController}
    */
   public  static final class AuthenticationController extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.AuthenticationController)
       AuthenticationControllerOrBuilder {
     // Use AuthenticationController.newBuilder() to construct.
-    private AuthenticationController(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private AuthenticationController(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private AuthenticationController() {
@@ -2329,7 +2513,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -2528,6 +2712,86 @@ public final class YaasController {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.roylance.yaas.YaasController.AuthenticationController)) {
+        return super.equals(obj);
+      }
+      org.roylance.yaas.YaasController.AuthenticationController other = (org.roylance.yaas.YaasController.AuthenticationController) obj;
+
+      boolean result = true;
+      result = result && (hasExists() == other.hasExists());
+      if (hasExists()) {
+        result = result && getExists()
+            .equals(other.getExists());
+      }
+      result = result && (hasLogin() == other.hasLogin());
+      if (hasLogin()) {
+        result = result && getLogin()
+            .equals(other.getLogin());
+      }
+      result = result && (hasAuthenticate() == other.hasAuthenticate());
+      if (hasAuthenticate()) {
+        result = result && getAuthenticate()
+            .equals(other.getAuthenticate());
+      }
+      result = result && (hasRegister() == other.hasRegister());
+      if (hasRegister()) {
+        result = result && getRegister()
+            .equals(other.getRegister());
+      }
+      result = result && (hasChangePassword() == other.hasChangePassword());
+      if (hasChangePassword()) {
+        result = result && getChangePassword()
+            .equals(other.getChangePassword());
+      }
+      result = result && (hasSave() == other.hasSave());
+      if (hasSave()) {
+        result = result && getSave()
+            .equals(other.getSave());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasExists()) {
+        hash = (37 * hash) + EXISTS_FIELD_NUMBER;
+        hash = (53 * hash) + getExists().hashCode();
+      }
+      if (hasLogin()) {
+        hash = (37 * hash) + LOGIN_FIELD_NUMBER;
+        hash = (53 * hash) + getLogin().hashCode();
+      }
+      if (hasAuthenticate()) {
+        hash = (37 * hash) + AUTHENTICATE_FIELD_NUMBER;
+        hash = (53 * hash) + getAuthenticate().hashCode();
+      }
+      if (hasRegister()) {
+        hash = (37 * hash) + REGISTER_FIELD_NUMBER;
+        hash = (53 * hash) + getRegister().hashCode();
+      }
+      if (hasChangePassword()) {
+        hash = (37 * hash) + CHANGE_PASSWORD_FIELD_NUMBER;
+        hash = (53 * hash) + getChangePassword().hashCode();
+      }
+      if (hasSave()) {
+        hash = (37 * hash) + SAVE_FIELD_NUMBER;
+        hash = (53 * hash) + getSave().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static org.roylance.yaas.YaasController.AuthenticationController parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2551,39 +2815,39 @@ public final class YaasController {
     }
     public static org.roylance.yaas.YaasController.AuthenticationController parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.AuthenticationController parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.AuthenticationController parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.AuthenticationController parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.AuthenticationController parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.AuthenticationController parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
@@ -2601,7 +2865,7 @@ public final class YaasController {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2609,7 +2873,7 @@ public final class YaasController {
      * Protobuf type {@code org.roylance.yaas.AuthenticationController}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:org.roylance.yaas.AuthenticationController)
         org.roylance.yaas.YaasController.AuthenticationControllerOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -2617,7 +2881,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2630,12 +2894,13 @@ public final class YaasController {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -2732,6 +2997,32 @@ public final class YaasController {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.AuthenticationController) {
           return mergeFrom((org.roylance.yaas.YaasController.AuthenticationController)other);
@@ -2788,7 +3079,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction exists_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> existsBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction exists = 1;</code>
@@ -2890,11 +3181,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction exists = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getExistsFieldBuilder() {
         if (existsBuilder_ == null) {
-          existsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          existsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getExists(),
                   getParentForChildren(),
@@ -2905,7 +3196,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction login_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> loginBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction login = 2;</code>
@@ -3007,11 +3298,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction login = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getLoginFieldBuilder() {
         if (loginBuilder_ == null) {
-          loginBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          loginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getLogin(),
                   getParentForChildren(),
@@ -3022,7 +3313,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction authenticate_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> authenticateBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction authenticate = 3;</code>
@@ -3124,11 +3415,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction authenticate = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getAuthenticateFieldBuilder() {
         if (authenticateBuilder_ == null) {
-          authenticateBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          authenticateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getAuthenticate(),
                   getParentForChildren(),
@@ -3139,7 +3430,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction register_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> registerBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction register = 4;</code>
@@ -3241,11 +3532,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction register = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getRegisterFieldBuilder() {
         if (registerBuilder_ == null) {
-          registerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          registerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getRegister(),
                   getParentForChildren(),
@@ -3256,7 +3547,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction changePassword_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> changePasswordBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction change_password = 5;</code>
@@ -3358,11 +3649,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction change_password = 5;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getChangePasswordFieldBuilder() {
         if (changePasswordBuilder_ == null) {
-          changePasswordBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          changePasswordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getChangePassword(),
                   getParentForChildren(),
@@ -3373,7 +3664,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction save_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> saveBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction save = 6;</code>
@@ -3475,11 +3766,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction save = 6;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getSaveFieldBuilder() {
         if (saveBuilder_ == null) {
-          saveBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          saveBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getSave(),
                   getParentForChildren(),
@@ -3571,11 +3862,11 @@ public final class YaasController {
    * Protobuf type {@code org.roylance.yaas.UserDeviceController}
    */
   public  static final class UserDeviceController extends
-      com.google.protobuf.GeneratedMessage implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:org.roylance.yaas.UserDeviceController)
       UserDeviceControllerOrBuilder {
     // Use UserDeviceController.newBuilder() to construct.
-    private UserDeviceController(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private UserDeviceController(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
     private UserDeviceController() {
@@ -3648,7 +3939,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -3735,6 +4026,50 @@ public final class YaasController {
     }
 
     private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.roylance.yaas.YaasController.UserDeviceController)) {
+        return super.equals(obj);
+      }
+      org.roylance.yaas.YaasController.UserDeviceController other = (org.roylance.yaas.YaasController.UserDeviceController) obj;
+
+      boolean result = true;
+      result = result && (hasSave() == other.hasSave());
+      if (hasSave()) {
+        result = result && getSave()
+            .equals(other.getSave());
+      }
+      result = result && (hasAll() == other.hasAll());
+      if (hasAll()) {
+        result = result && getAll()
+            .equals(other.getAll());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (hasSave()) {
+        hash = (37 * hash) + SAVE_FIELD_NUMBER;
+        hash = (53 * hash) + getSave().hashCode();
+      }
+      if (hasAll()) {
+        hash = (37 * hash) + ALL_FIELD_NUMBER;
+        hash = (53 * hash) + getAll().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
     public static org.roylance.yaas.YaasController.UserDeviceController parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3758,39 +4093,39 @@ public final class YaasController {
     }
     public static org.roylance.yaas.YaasController.UserDeviceController parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.UserDeviceController parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.UserDeviceController parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.UserDeviceController parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static org.roylance.yaas.YaasController.UserDeviceController parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
     public static org.roylance.yaas.YaasController.UserDeviceController parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
+      return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
@@ -3808,7 +4143,7 @@ public final class YaasController {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3816,7 +4151,7 @@ public final class YaasController {
      * Protobuf type {@code org.roylance.yaas.UserDeviceController}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:org.roylance.yaas.UserDeviceController)
         org.roylance.yaas.YaasController.UserDeviceControllerOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -3824,7 +4159,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -3837,12 +4172,13 @@ public final class YaasController {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -3895,6 +4231,32 @@ public final class YaasController {
         return result;
       }
 
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.UserDeviceController) {
           return mergeFrom((org.roylance.yaas.YaasController.UserDeviceController)other);
@@ -3939,7 +4301,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction save_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> saveBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction save = 1;</code>
@@ -4041,11 +4403,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction save = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getSaveFieldBuilder() {
         if (saveBuilder_ == null) {
-          saveBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          saveBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getSave(),
                   getParentForChildren(),
@@ -4056,7 +4418,7 @@ public final class YaasController {
       }
 
       private org.roylance.yaas.YaasController.RequestAction all_ = null;
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> allBuilder_;
       /**
        * <code>optional .org.roylance.yaas.RequestAction all = 2;</code>
@@ -4158,11 +4520,11 @@ public final class YaasController {
       /**
        * <code>optional .org.roylance.yaas.RequestAction all = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilder<
+      private com.google.protobuf.SingleFieldBuilderV3<
           org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder> 
           getAllFieldBuilder() {
         if (allBuilder_ == null) {
-          allBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          allBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               org.roylance.yaas.YaasController.RequestAction, org.roylance.yaas.YaasController.RequestAction.Builder, org.roylance.yaas.YaasController.RequestActionOrBuilder>(
                   getAll(),
                   getParentForChildren(),
@@ -4223,22 +4585,22 @@ public final class YaasController {
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_RequestAction_descriptor;
   private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_roylance_yaas_RequestAction_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_AdminController_descriptor;
   private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_roylance_yaas_AdminController_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_AuthenticationController_descriptor;
   private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_roylance_yaas_AuthenticationController_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_roylance_yaas_UserDeviceController_descriptor;
   private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_org_roylance_yaas_UserDeviceController_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
@@ -4292,25 +4654,25 @@ public final class YaasController {
     internal_static_org_roylance_yaas_RequestAction_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_org_roylance_yaas_RequestAction_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_roylance_yaas_RequestAction_descriptor,
         new java.lang.String[] { "Request", "Response", });
     internal_static_org_roylance_yaas_AdminController_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_roylance_yaas_AdminController_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_roylance_yaas_AdminController_descriptor,
         new java.lang.String[] { "ChangePasswordForUser", "GetAllUsers", "IsUserAdmin", "SetUserAsAdmin", "RemoveUserAsAdmin", "DeleteUser", });
     internal_static_org_roylance_yaas_AuthenticationController_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_org_roylance_yaas_AuthenticationController_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_roylance_yaas_AuthenticationController_descriptor,
         new java.lang.String[] { "Exists", "Login", "Authenticate", "Register", "ChangePassword", "Save", });
     internal_static_org_roylance_yaas_UserDeviceController_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_org_roylance_yaas_UserDeviceController_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_roylance_yaas_UserDeviceController_descriptor,
         new java.lang.String[] { "Save", "All", });
     org.roylance.yaas.YaasModel.getDescriptor();

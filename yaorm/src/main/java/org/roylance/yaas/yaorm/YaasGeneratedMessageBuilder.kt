@@ -1,6 +1,6 @@
 package org.roylance.yaas.yaorm
 
-import com.google.protobuf.GeneratedMessage
+import com.google.protobuf.GeneratedMessageV3
 import org.roylance.yaas.YaasModel
 import org.roylance.yaorm.services.proto.BaseProtoGeneratedMessageBuilder
 
@@ -8,7 +8,7 @@ class YaasGeneratedMessageBuilder: BaseProtoGeneratedMessageBuilder() {
     override val name: String
         get() = "YaasModel"
 
-    override fun buildGeneratedMessage(name: String): GeneratedMessage {
+    override fun buildGeneratedMessage(name: String): GeneratedMessageV3 {
         if (YaasModel.Image.getDescriptor().name.equals(name)) {
             return YaasModel.Image.getDefaultInstance()
         }

@@ -1,5 +1,4 @@
 import org.roylance.yaclib.YaclibPlugin
-import org.roylance.yaclib.core.models.DependencyDescriptor
 
 group 'org.roylance.yaas'
 version = "0.$actualVersion-SNAPSHOT"

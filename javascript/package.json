@@ -1,6 +1,6 @@
 {
   "name": "org.roylance.yaas.api",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "description": "models to interface with the org.roylance.yaas.api system",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

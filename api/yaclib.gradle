@@ -1,7 +1,7 @@
 import org.roylance.yaclib.YaclibPlugin
 
 group 'org.roylance.yaas'
-version = "0.$actualVersion-SNAPSHOT"
+version = "${actualMajor}.${actualMinor}"
 
 apply plugin: 'java'
 
@@ -10,11 +10,11 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
-        maven { url 'http://chaperapp.dyndns-server.com:8081/artifactory/libs-snapshot-local' }
+        maven { url "http://dl.bintray.com/roylancemichael/maven" }
     }
     dependencies {
-        classpath "org.roylance.yaclib:core:0.$yaclibVersion-SNAPSHOT"
-        classpath "org.roylance.yaas:api:0.$actualVersion-SNAPSHOT"
+        classpath "org.roylance.yaclib:core:${yaclibMajor}.${yaclibMinor}"
+        classpath "org.roylance.yaas:api:${actualMajor}.${actualMinor}"
     }
 }
 
@@ -22,7 +22,8 @@ task execute(type: YaclibPlugin) {
     def parentDir = new File(System.getProperty("user.dir")).parentFile.toString()
 
     typeScriptModelFile = "YaasModel"
-    version = actualVersion.toInteger()
+    majorVersion = actualMajor.toInteger()
+    minorVersion = actualMinor.toInteger()
     location = parentDir
     mainModel = "org.roylance.yaas.YaasModel"
     mainController = "org.roylance.yaas.YaasController"

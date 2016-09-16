@@ -1,3 +1,4 @@
+// THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
 import {IAdminService} from "./IAdminService";
 import {IHttpExecute} from "./IHttpExecute";
 import ProtoBufBuilder = org.roylance.yaas.ProtoBufBuilder;

@@ -1,3 +1,4 @@
+// THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
 import {YaasModel} from "../node_modules/org.roylance.yaas.api/YaasModelFactory";
 
 import {AdminService} from "../node_modules/org.roylance.yaas.api/AdminService";

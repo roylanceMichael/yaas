@@ -9,10 +9,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.roylance.yaas:api:0.45-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup.retrofit2:converter-scalars:2.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.roylance.yaas:capi:0.45-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.roylance:common:0.3-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.roylance.yaas:api:0.110" level="project" />
+    <orderEntry type="library" name="Maven: org.roylance.yaas:capi:0.110" level="project" />
+    <orderEntry type="library" name="Maven: org.roylance:common:0.6" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.retrofit2:retrofit:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.8.0" level="project" />
@@ -56,6 +55,8 @@
     <orderEntry type="library" name="Maven: org.glassfish.jersey.media:jersey-media-jaxb:2.22.2" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.jersey.media:jersey-media-multipart:2.22.2" level="project" />
+    <orderEntry type="library" name="Maven: org.jvnet.mimepull:mimepull:1.9.6" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-json:1.19.1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jettison:jettison:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.3-1" level="project" />
@@ -73,7 +74,7 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.3" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
-    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.0.0-beta-3" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
   </component>
 </module>

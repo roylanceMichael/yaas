@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.0.3'
-    ext.project_version = "0.108"
+    ext.project_version = "0.111"
     repositories {
         jcenter()
         mavenCentral()
@@ -44,7 +44,7 @@ bintray {
         repo = 'maven'
         name = "${group}.${rootProject.name}"
         userOrg = user
-        licenses = ['Apache-2.0']
+        licenses = ['MIT']
         labels = [rootProject.name]
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/roylanceMichael/yaas.git'

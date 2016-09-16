@@ -1,4 +1,4 @@
-
+// THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
 buildscript {
     ext.kotlin_version = '1.0.3'
     repositories {
@@ -12,7 +12,7 @@ buildscript {
 }
 
 group 'org.roylance.yaas'
-version '0.108'
+version '0.111'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -39,19 +39,23 @@ bintray {
         repo = 'maven'
         name = "org.roylance.yaas.capi"
         userOrg = user
-        licenses = ['Apache-2.0']
+        licenses = ['MIT']
         labels = [rootProject.name]
         publicDownloadNumbers = true
-        vcsUrl = 'https://github.com/roylanceMichael/Roylance.Common.git'
+        vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
         version {
-            name = "0.108"
+            name = "0.111"
         }
     }
 }
 
 repositories {
     mavenCentral()
-    maven { url 'http://dl.bintray.com/roylancemichael/maven' }
+    maven { url 'http://dl.bintray.com/roylancemichael/maven'}
+    maven {
+    url "http://dl.bintray.com/roylancemichael/maven"
+}
+
 }
 
 dependencies {
@@ -59,6 +63,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
 
     compile 'org.roylance:common:0.6'
-    compile 'org.roylance.yaas:api:0.108'
+    compile 'org.roylance.yaas:api:0.111'
 
 }

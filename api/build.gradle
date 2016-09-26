@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.0.3'
+    ext.kotlin_version = '1.0.4'
     ext.project_version = "${actualMajor}.${actualMinor}"
 
     repositories {
@@ -61,7 +61,7 @@ bintray {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
-    compile "org.roylance:common:0.6"
+    compile "org.roylance:common:0.7"
 }
 
 task runYaclib(type: GradleBuild) {

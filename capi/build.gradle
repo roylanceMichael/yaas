@@ -1,18 +1,18 @@
 // THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
 buildscript {
-    ext.kotlin_version = '1.0.3'
+    ext.kotlin_version = '1.0.4'
     repositories {
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.4"
     }
 }
 
 group 'org.roylance.yaas'
-version '0.111'
+version '0.112'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -44,7 +44,7 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
         version {
-            name = "0.111"
+            name = "0.112"
         }
     }
 }
@@ -62,7 +62,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
 
-    compile 'org.roylance:common:0.6'
-    compile 'org.roylance.yaas:api:0.111'
+    compile 'org.roylance:common:0.7'
+    compile 'org.roylance.yaas:api:0.112'
 
 }

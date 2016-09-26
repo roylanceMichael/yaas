@@ -6,7 +6,7 @@
 
     <groupId>org.roylance.yaas</groupId>
     <artifactId>sapi</artifactId>
-    <version>0.111</version>
+    <version>0.112</version>
 
     <repositories>
 
@@ -52,18 +52,18 @@
         <dependency>
             <groupId>org.roylance.yaas</groupId>
             <artifactId>api</artifactId>
-            <version>0.111</version>
+            <version>0.112</version>
         </dependency>
         <dependency>
             <groupId>org.roylance.yaas</groupId>
             <artifactId>capi</artifactId>
-            <version>0.111</version>
+            <version>0.112</version>
         </dependency>
 
         <dependency>
             <groupId>org.roylance</groupId>
             <artifactId>common</artifactId>
-            <version>0.6</version>
+            <version>0.7</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
@@ -108,7 +108,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
@@ -237,7 +237,7 @@
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
-                <version>1.0.3</version>
+                <version>1.0.4</version>
 
                 <executions>
                     <execution>

@@ -55,12 +55,12 @@ class UserService(private val secureCachingService: ISecureCachingService): IUse
     override fun isConnectedToInternet(website:String, port:Int): Boolean {
         var socket: Socket? = null
         val reachable: Boolean
-        try {
+        reachable = try {
             socket = Socket(website, port)
-            reachable = true
+            true
         }
         catch(e: Exception) {
-            reachable = false
+            false
         }
         finally {
             if (socket != null) {

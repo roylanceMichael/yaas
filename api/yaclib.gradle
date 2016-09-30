@@ -1,3 +1,4 @@
+import org.roylance.yaclib.YaclibModel
 import org.roylance.yaclib.YaclibPlugin
 
 group 'org.roylance.yaas'
@@ -25,12 +26,13 @@ task execute(type: YaclibPlugin) {
     majorVersion = actualMajor.toInteger()
     minorVersion = actualMinor.toInteger()
     location = parentDir
+
     mainModel = "org.roylance.yaas.YaasModel"
     mainController = "org.roylance.yaas.YaasController"
 
     dependencyDescriptors = new ArrayList<>()
     thirdPartyServerDependencies = new ArrayList<>()
-
+    repositoryType = YaclibModel.RepositoryType.BINTRAY
     nugetKey = System.getenv('NUGET_KEY')
 
     githubRepo = githubRepo_

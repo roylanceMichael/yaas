@@ -20,28 +20,25 @@ buildscript {
 }
 
 task execute(type: YaclibPlugin) {
-    def parentDir = new File(System.getProperty("user.dir")).parentFile.toString()
-
-    typeScriptModelFile = "YaasModel"
-    majorVersion = actualMajor.toInteger()
-    minorVersion = actualMinor.toInteger()
-    location = parentDir
+    location = new File(System.getProperty("user.dir")).parentFile.toString()
 
     mainModel = "org.roylance.yaas.YaasModel"
     mainController = "org.roylance.yaas.YaasController"
 
     dependencyDescriptors = new ArrayList<>()
     thirdPartyServerDependencies = new ArrayList<>()
-    repositoryType = YaclibModel.RepositoryType.BINTRAY
     nugetKey = System.getenv('NUGET_KEY')
 
-    githubRepo = githubRepo_
-    repoUrl = repoUrl_
-    repoUser = ""
-    repoName = repoName_
-    license = license_
-    author = author_
-
-    println(githubRepo)
-    println(parentDir)
+    mainDependency = YaclibModel.Dependency.newBuilder()
+        .setAuthorName(author_)
+        .setLicense(license_)
+        .setGithubRepo(githubRepo_)
+        .setMajorVersion(actualMajor.toInteger())
+        .setMinorVersion(actualMinor.toInteger())
+        .setTypescriptModelFile("YaasModel")
+        .setMavenRepository(YaclibModel.Repository.newBuilder()
+            .setName(repoName_)
+            .setUrl(repoUrl_)
+            .setRepositoryType(YaclibModel.RepositoryType.BINTRAY).build())
+            .build()
 }

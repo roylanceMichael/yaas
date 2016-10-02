@@ -6,7 +6,7 @@
 
     <groupId>org.roylance.yaas</groupId>
     <artifactId>sapi</artifactId>
-    <version>0.119</version>
+    <version>0.120</version>
 
     <repositories>
         <repository>
@@ -52,12 +52,12 @@
         <dependency>
             <groupId>org.roylance.yaas</groupId>
             <artifactId>api</artifactId>
-            <version>0.119</version>
+            <version>0.120</version>
         </dependency>
         <dependency>
             <groupId>org.roylance.yaas</groupId>
             <artifactId>capi</artifactId>
-            <version>0.119</version>
+            <version>0.120</version>
         </dependency>
 
         <dependency>

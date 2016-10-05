@@ -7,10 +7,10 @@
     <properties>		<group>org.roylance.yaas</group>
 		<name>api</name>
 		<fullName>org.roylance.yaas.api</fullName>
-		<minor>125</minor>
+		<minor>128</minor>
 		<major>0</major>
-		<fullVersion>0.125</fullVersion>
-		<org_roylance_yaas_api>0.125</org_roylance_yaas_api>
+		<fullVersion>0.128</fullVersion>
+		<org_roylance_yaas_api>0.128</org_roylance_yaas_api>
 	</properties>
 
 
@@ -279,25 +279,6 @@
                         <include>proc.sh</include>
                     </includes>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <files>
-                                <file>gradle.properties</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
 

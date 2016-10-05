@@ -15,26 +15,25 @@ class RedisAuthenticationService(
         private val serializerService: IProtoSerializerService,
         private val tokenService: IServerTokenService,
         private val logger: ILogger): RedisBase(host, port, password), IAuthenticationService {
-    override fun authenticate(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun authenticate(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val auth = this.tokenService.validateUser(request.token)
-        return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()    }
+        return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+    }
 
-    override fun change_password(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun change_password(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val client = this.buildJedisClient()
         try {
+            val authModel = this.login(request).user
+
+            if (!authModel.authenticated) {
+                this.logger.info("unable to authenticate user: " + request.changePassword.userName)
+                return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(false).build()
+            }
+
             val model = request.changePassword
             val tempUserModel = YaasModel.User.newBuilder()
                     .setUserName(model.userName)
                     .setPassword(model.oldPassword)
-
-            val tempRequest = YaasModel.UIRequest.newBuilder().setUser(tempUserModel).build()
-
-            val authModel = this.login(tempRequest).user
-
-            if (!authModel.authenticated) {
-                this.logger.info("unable to authenticate user: " + model.userName)
-                return YaasModel.UIResponse.newBuilder().setAuthenticated(false).build()
-            }
 
             tempUserModel.display = authModel.display
 
@@ -52,7 +51,7 @@ class RedisAuthenticationService(
 
             this.logger.info("updated password for user: " + model.userName)
             val auth = this.tokenService.generateToken(tempUserModel.build())
-            return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+            return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
 
         }
         finally {
@@ -60,7 +59,7 @@ class RedisAuthenticationService(
         }
     }
 
-    override fun exists(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun exists(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val client = this.buildJedisClient()
         try {
             val key = "${CommonKeys.UserTemplate}${request.content}"
@@ -68,14 +67,42 @@ class RedisAuthenticationService(
             logger.info("checking key if exists: " + key)
             val existsOrNot = client
                     .get(key) != null
-            return YaasModel.UIResponse.newBuilder().setContent(existsOrNot.toString()).build()
+            return YaasModel.UIYaasResponse.newBuilder().setContent(existsOrNot.toString()).build()
         }
         finally {
             client.close()
         }
     }
 
-    override fun register(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun login(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
+        val client = this.buildJedisClient()
+        val user = request.user
+        try {
+            val key = "${CommonKeys.UserTemplate}${user.userName}"
+            val hashedPassword = DigestUtils.md5Hex(user.password)
+
+            val existingHashedPassword = client.get(key)
+            if (existingHashedPassword == null ||
+                    hashedPassword != existingHashedPassword) {
+
+                val auth = YaasModel.UIAuthentication.newBuilder()
+                        .setAuthenticated(false)
+                        .setUserName(user.userName)
+                        .setDisplay(user.display)
+                        .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
+                        .build()
+                return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+            }
+
+            val auth = this.tokenService.generateToken(user)
+            return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+        }
+        finally {
+            client.close()
+        }
+    }
+
+    override fun register(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val client = this.buildJedisClient()
         try {
             val user = request.user
@@ -90,13 +117,13 @@ class RedisAuthenticationService(
                 client.sadd(CommonKeys.AllUsersKey, user.userName)
                 this.logger.info("registering new user: " + user.userName)
                 val auth = this.tokenService.generateToken(user)
-                return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+                return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
             }
 
-            if (hashedPassword.equals(existingHashedPassword)) {
+            if (hashedPassword == existingHashedPassword) {
                 this.logger.info("user exists already, password correct")
                 val auth = this.tokenService.generateToken(user)
-                return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+                return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
             }
 
             this.logger.info("user exists already, password incorrect")
@@ -106,42 +133,14 @@ class RedisAuthenticationService(
                     .setDisplay(user.display)
                     .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
                     .build()
-            return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
+            return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
         }
         finally {
             client.close()
         }
     }
 
-    override fun login(request: YaasModel.UIRequest): YaasModel.UIResponse {
-        val client = this.buildJedisClient()
-        val user = request.user
-        try {
-            val key = "${CommonKeys.UserTemplate}${user.userName}"
-            val hashedPassword = DigestUtils.md5Hex(user.password)
-
-            val existingHashedPassword = client.get(key)
-            if (existingHashedPassword == null ||
-                    !hashedPassword.equals(existingHashedPassword)) {
-
-                val auth = YaasModel.UIAuthentication.newBuilder()
-                        .setAuthenticated(false)
-                        .setUserName(user.userName)
-                        .setDisplay(user.display)
-                        .setIsAdmin(client.sismember(CommonKeys.UserAdminsKey, user.userName))
-                        .build()
-                return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
-            }
-
-            val auth = this.tokenService.generateToken(user)
-            return YaasModel.UIResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
-        }
-        finally {
-            client.close()
-        }
-    }
-
-    override fun save(request: YaasModel.UIRequest): YaasModel.UIResponse {
+    override fun save(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
         val client = this.buildJedisClient()
         try {
             val key = "${CommonKeys.TokenTemplate}${request.token}"
@@ -156,7 +155,7 @@ class RedisAuthenticationService(
             client.close()
         }
 
-        return YaasModel.UIResponse.newBuilder().setSuccessful(true).build()
+        return YaasModel.UIYaasResponse.newBuilder().setSuccessful(true).build()
     }
 
     private fun updateUserPassword(userName:String, password:String, client: Jedis) {

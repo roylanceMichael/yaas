@@ -1,6 +1,5 @@
 buildscript {
     ext.kotlin_version = '1.0.4'
-    ext.project_version = "0.122"
     repositories {
         jcenter()
         mavenCentral()
@@ -11,8 +10,8 @@ buildscript {
     }
 }
 
-group 'org.roylance.yaas'
-version project_version
+group "$group"
+version "$fullVersion"
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -49,7 +48,7 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
         version {
-            name = project_version
+            name = "${fullVersion}"
         }
     }
 }
@@ -63,5 +62,5 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
     compile 'org.roylance:yaorm:0.131'
-    compile "org.roylance.yaas:capi:${project_version}"
+    compile "org.roylance.yaas:capi:$org_roylance_yaas_api"
 }

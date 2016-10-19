@@ -29,7 +29,6 @@ task execute(type: YaclibPlugin) {
     thirdPartyServerDependencies = new ArrayList<>()
     nugetKey = System.getenv('NUGET_KEY')
 
-
     mainDependency = YaclibModel.Dependency.newBuilder()
         .setGroup("org.roylance.yaas")
         .setName("api")
@@ -82,6 +81,11 @@ task execute(type: YaclibPlugin) {
                 .setGroup("org.roylance.yaas")
                 .setName("yaorm").build())
             .addFromDependencies(mainDependency)
+            .addFromDependencies(YaclibModel.Dependency.newBuilder()
+                .setGroup("org.roylance")
+                .setName("yaorm")
+                .setMajorVersion(0)
+                .setMinorVersion(yaormVersion.toInteger()).build())
             .build()
 
     def redis = YaclibModel.AuxiliaryProject.newBuilder()

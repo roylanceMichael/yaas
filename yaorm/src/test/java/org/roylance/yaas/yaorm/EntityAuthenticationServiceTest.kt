@@ -14,6 +14,7 @@ import org.roylance.yaorm.services.proto.EntityProtoService
 import org.roylance.yaorm.services.sqlite.SQLiteConnectionSourceFactory
 import org.roylance.yaorm.services.sqlite.SQLiteGeneratorService
 import org.roylance.yaorm.services.sqlite.SQLiteProtoBuilder
+import org.roylance.yaorm.utilities.YaormUtils
 import java.io.File
 import java.util.*
 
@@ -35,7 +36,6 @@ class EntityAuthenticationServiceTest {
         val entityService = EntityProtoService(granularDatabaseService, postgresGeneratorService)
         val protoService = YaasGeneratedMessageBuilder()
         val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
-
         entityMessageService.dropAndCreateEntireSchema(YaasModel.getDescriptor())
 
         val newUser = YaasModel.User.newBuilder()
@@ -57,7 +57,7 @@ class EntityAuthenticationServiceTest {
         val userNameExists = authenticationService.exists(tempRequest)
 
         // assert
-        Assert.assertTrue(userNameExists.content.equals(true.toString()))
+        Assert.assertTrue(userNameExists.content == true.toString())
     }
 
     @Test
@@ -96,7 +96,7 @@ class EntityAuthenticationServiceTest {
 
             // assert
             System.out.println(userNameExists)
-            Assert.assertTrue(userNameExists.content.equals(true.toString()))
+            Assert.assertTrue(userNameExists.content == true.toString())
         }
         finally {
             database.deleteOnExit()
@@ -145,8 +145,8 @@ class EntityAuthenticationServiceTest {
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
-            Assert.assertTrue(foundUser.display.equals(newUser.display))
-            Assert.assertTrue(foundUser.userName.equals(newUser.userName))
+            Assert.assertTrue(foundUser.display == newUser.display)
+            Assert.assertTrue(foundUser.userName == newUser.userName)
         }
         finally {
             database.deleteOnExit()
@@ -197,8 +197,8 @@ class EntityAuthenticationServiceTest {
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
-            Assert.assertTrue(foundUser.display.equals(newUser.display))
-            Assert.assertTrue(foundUser.userName.equals(newUser.userName))
+            Assert.assertTrue(foundUser.display == newUser.display)
+            Assert.assertTrue(foundUser.userName == newUser.userName)
             Assert.assertTrue(foundUser.isAdmin)
         }
         finally {
@@ -249,8 +249,8 @@ class EntityAuthenticationServiceTest {
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
-            Assert.assertTrue(foundUser.display.equals(newUser.display))
-            Assert.assertTrue(foundUser.userName.equals(newUser.userName))
+            Assert.assertTrue(foundUser.display == newUser.display)
+            Assert.assertTrue(foundUser.userName == newUser.userName)
         }
         finally {
             database.deleteOnExit()
@@ -305,8 +305,8 @@ class EntityAuthenticationServiceTest {
             Assert.assertTrue(foundUsers.users.usersCount == 1)
 
             val foundUser = foundUsers.users.usersList.first()
-            Assert.assertTrue(foundUser.display.equals(newUser.display))
-            Assert.assertTrue(foundUser.userName.equals(newUser.userName))
+            Assert.assertTrue(foundUser.display == newUser.display)
+            Assert.assertTrue(foundUser.userName == newUser.userName)
         }
         finally {
             database.deleteOnExit()
@@ -354,8 +354,8 @@ class EntityAuthenticationServiceTest {
             Assert.assertTrue(foundUsers.size == 1)
 
             val foundUser = foundUsers.first()
-            Assert.assertTrue(foundUser.display.equals(newUser.display))
-            Assert.assertTrue(foundUser.userName.equals(newUser.userName))
+            Assert.assertTrue(foundUser.display == newUser.display)
+            Assert.assertTrue(foundUser.userName == newUser.userName)
         }
         finally {
             database.deleteOnExit()

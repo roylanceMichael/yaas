@@ -15,7 +15,7 @@
 	"UserDeviceService.ts",
 	"IHttpExecute.ts",
 	"YaasModel.d.ts",
-	"YaasModelFactory.ts"
-
+	"YaasModelFactory.ts",
+	"bytebuffer.d.ts",	"long.d.ts"
     ]
 }

@@ -61,6 +61,6 @@ dependencies {
 
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
-    compile "org.roylance:yaorm:$org_roylance_yaorm"
+    compile "org.roylance.yaorm:api:$org_roylance_yaorm_api"
     compile "org.roylance.yaas:capi:$org_roylance_yaas_api"
 }

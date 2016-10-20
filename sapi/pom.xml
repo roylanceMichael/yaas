@@ -7,16 +7,16 @@
     <properties>		<group>org.roylance.yaas</group>
 		<name>api</name>
 		<fullName>org.roylance.yaas.api</fullName>
-		<minor>133</minor>
+		<minor>134</minor>
 		<major>0</major>
-		<fullVersion>0.133</fullVersion>
-		<org_roylance_yaas_api>0.133</org_roylance_yaas_api>
+		<fullVersion>0.134</fullVersion>
+		<org_roylance_yaas_api>0.134</org_roylance_yaas_api>
 	</properties>
 
 
     <groupId>org.roylance.yaas</groupId>
     <artifactId>sapi</artifactId>
-    <version>0.133</version>
+    <version>0.134</version>
 
     <repositories>
         <repository>

@@ -16,6 +16,6 @@
 	"IHttpExecute.ts",
 	"YaasModel.d.ts",
 	"YaasModelFactory.ts",
-	"bytebuffer.d.ts",	"long.d.ts"
+	"node_modules/roylance.common/bytebuffer.d.ts"
     ]
 }

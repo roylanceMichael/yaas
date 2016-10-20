@@ -1,6 +1,6 @@
 {
   "name": "org.roylance.yaas.api",
-  "version": "0.133.0",
+  "version": "0.134.0",
   "description": "base template for org.roylance.yaas.api",
   "author": "roylance.michael@gmail.com",
   "license": "MIT",
@@ -29,7 +29,7 @@
 , "jquery": "^2.2.4"
 , "protobufjs": "^5.0.1"
 , "webpack-stream": "^3.2.0"
-,"org.roylance.yaas.api": "0.133.0"
+,"org.roylance.yaas.api": "0.134.0"
 
   }
 }

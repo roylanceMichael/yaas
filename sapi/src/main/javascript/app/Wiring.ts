@@ -1,4 +1,5 @@
 // THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
+/// <reference path="../node_modules/roylance.common/bytebuffer.d.ts" />
 import {YaasModel} from "../node_modules/org.roylance.yaas.api/YaasModelFactory";
 
 import {AdminService} from "../node_modules/org.roylance.yaas.api/AdminService";

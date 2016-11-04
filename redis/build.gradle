@@ -11,7 +11,7 @@ buildscript {
 }
 
 group "$group"
-version "$fullVersion"
+version "$major.$minor"
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -48,7 +48,7 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
         version {
-            name = "${fullVersion}"
+            name = "$major.$minor"
         }
     }
 }

@@ -1,12 +1,10 @@
-#generated from yaclib on Tue Nov 01 14:55:50 MDT 2016
-#Tue Nov 01 14:55:50 MDT 2016
-name="api"
-fullName="org_roylance_yaas_api"
-author="roylance.michael@gmail.com"
-license="MIT"
-minor="136"
+#generated from yaclib on Fri Nov 04 15:28:29 MDT 2016
+#Fri Nov 04 15:28:29 MDT 2016
 major="0"
-fullVersion="0.136"
+name="api"
 githubUrl="https\://github.com/roylanceMichael/yaas.git"
+author="roylance.michael@gmail.com"
 description="models to interface with the org.roylance.yaas.api system"
+license="MIT"
+minor="137"
 group="org.roylance.yaas"

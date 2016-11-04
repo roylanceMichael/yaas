@@ -6,17 +6,15 @@
 
     <properties>		<group>org.roylance.yaas</group>
 		<name>api</name>
-		<fullName>org.roylance.yaas.api</fullName>
-		<minor>136</minor>
+		<minor>137</minor>
 		<major>0</major>
-		<fullVersion>0.136</fullVersion>
-		<org_roylance_yaas_api>0.136</org_roylance_yaas_api>
+		<org_roylance_yaas_api>0.137</org_roylance_yaas_api>
 	</properties>
 
 
     <groupId>org.roylance.yaas</groupId>
     <artifactId>sapi</artifactId>
-    <version>0.136</version>
+    <version>0.137</version>
 
     <repositories>
         <repository>
@@ -270,7 +268,7 @@
                 <version>1.0.3</version>
                 <configuration>
                     <jdkVersion>1.8</jdkVersion>
-                    <appName>$fullName</appName>
+                    <appName>org.roylance.yaas</appName>
                     <processTypes>
                         <web>sh proc.sh</web>
                     </processTypes>

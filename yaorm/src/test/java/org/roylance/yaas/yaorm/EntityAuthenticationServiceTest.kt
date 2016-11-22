@@ -14,7 +14,6 @@ import org.roylance.yaorm.services.proto.EntityProtoService
 import org.roylance.yaorm.services.sqlite.SQLiteConnectionSourceFactory
 import org.roylance.yaorm.services.sqlite.SQLiteGeneratorService
 import org.roylance.yaorm.services.sqlite.SQLiteProtoBuilder
-import org.roylance.yaorm.utilities.YaormUtils
 import java.io.File
 import java.util.*
 
@@ -364,12 +363,16 @@ class EntityAuthenticationServiceTest {
 
     companion object {
         val logger = object: ILogger {
+            override fun debug(message: String) {
+                println(message)
+            }
+
             override fun error(message: String) {
-                System.out.println(message)
+                println(message)
             }
 
             override fun info(message: String) {
-                System.out.println(message)
+                println(message)
             }
         }
     }

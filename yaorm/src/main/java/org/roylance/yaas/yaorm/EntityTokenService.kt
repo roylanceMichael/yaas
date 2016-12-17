@@ -13,7 +13,7 @@ class EntityTokenService(
         val whereClause = this.buildWhereClauseForToken(token)
         val records = this.entityMessageService.where(YaasModel.Token.getDefaultInstance(), whereClause)
 
-        if (records.size == 0) {
+        if (records.isEmpty()) {
             this.logger.info("unable to find user with key: " + token)
             return this.buildUnauthenticated()
         }
@@ -26,7 +26,7 @@ class EntityTokenService(
                 .setAuthenticated(true)
                 .setDisplay(foundUser.display)
                 .setToken(token)
-                .setIsAdmin(foundUser.rolesList.any { it.number.equals(YaasModel.UserRole.ADMIN.number) })
+                .setIsAdmin(foundUser.rolesList.any { it.number == YaasModel.UserRole.ADMIN.number })
                 .setUserName(foundUser.userName)
                 .build()
 
@@ -43,7 +43,7 @@ class EntityTokenService(
                 ).build()
         val records = this.entityMessageService.where(YaasModel.Token.getDefaultInstance(), whereClause)
 
-        if (records.size == 0) {
+        if (records.isEmpty()) {
             val cal = Calendar.getInstance()
             cal.time = Date()
             cal.add(Calendar.MONTH, 1)
@@ -61,7 +61,7 @@ class EntityTokenService(
                     .setAuthenticated(true)
                     .setDisplay(user.display)
                     .setToken(newToken.id)
-                    .setIsAdmin(user.rolesList.any { it.number.equals(YaasModel.UserRole.ADMIN.number) })
+                    .setIsAdmin(user.rolesList.any { it.number == YaasModel.UserRole.ADMIN.number })
                     .setUserName(user.userName)
                     .build()
         }
@@ -70,7 +70,7 @@ class EntityTokenService(
                 .setAuthenticated(true)
                 .setDisplay(user.display)
                 .setToken(records.first().id)
-                .setIsAdmin(user.rolesList.any { it.number.equals(YaasModel.UserRole.ADMIN.number) })
+                .setIsAdmin(user.rolesList.any { it.number == YaasModel.UserRole.ADMIN.number })
                 .setUserName(user.userName)
                 .build()
     }

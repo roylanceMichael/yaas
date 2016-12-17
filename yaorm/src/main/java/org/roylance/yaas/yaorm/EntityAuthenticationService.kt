@@ -42,7 +42,7 @@ class EntityAuthenticationService(
                     .build()
 
             val foundRecord = entityMessageService.where(tempUser.build(), whereClause)
-            if (foundRecord.size > 0) {
+            if (foundRecord.isNotEmpty()) {
                 return YaasModel.UIYaasResponse.getDefaultInstance()
             }
 
@@ -99,7 +99,7 @@ class EntityAuthenticationService(
                 return YaasModel.UIYaasResponse.newBuilder().setAuthenticated(auth.authenticated).setUser(auth).build()
             }
 
-            if (existingUser.password.equals(hashedPassword)) {
+            if (existingUser.password == hashedPassword) {
                 // ok
                 val tokenService = EntityTokenService(entityMessageService, this.logger)
                 this.logger.info("user exists already, password correct")
@@ -129,7 +129,7 @@ class EntityAuthenticationService(
             val hashedPassword = DigestUtils.md5Hex(request.user.password)
 
             val existingUser = entityMessageService.get(request.user, request.user.id)
-            if (existingUser == null || !hashedPassword.equals(existingUser.password)) {
+            if (existingUser == null || hashedPassword != existingUser.password) {
                 return YaasModel.UIYaasResponse.getDefaultInstance()
             }
             val tokenService = EntityTokenService(entityMessageService, this.logger)

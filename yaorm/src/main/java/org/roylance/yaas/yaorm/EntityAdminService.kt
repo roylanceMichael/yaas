@@ -5,10 +5,10 @@ import org.roylance.common.service.ILogger
 import org.roylance.yaas.YaasModel
 import org.roylance.yaas.services.IAdminService
 import org.roylance.yaorm.YaormModel
-import org.roylance.yaorm.services.proto.IEntityProtoBuilder
+import org.roylance.yaorm.services.IEntityBuilder
 
 class EntityAdminService(
-        private val entityProtoBuilder: IEntityProtoBuilder,
+        private val entityProtoBuilder: IEntityBuilder,
         private val connectionInfo: YaormModel.ConnectionInfo,
         private val logger: ILogger
 ): IAdminService {

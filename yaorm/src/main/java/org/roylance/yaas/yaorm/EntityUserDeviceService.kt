@@ -4,9 +4,9 @@ import org.roylance.common.service.ILogger
 import org.roylance.yaas.YaasModel
 import org.roylance.yaas.services.IUserDeviceService
 import org.roylance.yaorm.YaormModel
-import org.roylance.yaorm.services.proto.IEntityProtoBuilder
+import org.roylance.yaorm.services.IEntityBuilder
 
-class EntityUserDeviceService(private val entityProtoBuilder: IEntityProtoBuilder,
+class EntityUserDeviceService(private val entityProtoBuilder: IEntityBuilder,
                               private val connectionInfo: YaormModel.ConnectionInfo,
                               private val logger: ILogger) : IUserDeviceService {
     override fun all(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {

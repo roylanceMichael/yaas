@@ -3,7 +3,7 @@ package org.roylance.yaas.yaorm
 import org.roylance.common.service.ILogger
 import org.roylance.yaas.YaasModel
 import org.roylance.yaorm.YaormModel
-import org.roylance.yaorm.services.proto.IEntityMessageService
+import org.roylance.yaorm.services.IEntityMessageService
 import java.util.*
 
 class EntityTokenService(
@@ -21,7 +21,7 @@ class EntityTokenService(
         val foundUser = this.entityMessageService.get(YaasModel.User.getDefaultInstance(), foundToken.userId)
                 ?: return this.buildUnauthenticated()
 
-        this.logger.info("found user with key: " + token)
+        this.logger.info("found user ${foundUser.userName} with key: $token")
         return YaasModel.UIAuthentication.newBuilder()
                 .setAuthenticated(true)
                 .setDisplay(foundUser.display)

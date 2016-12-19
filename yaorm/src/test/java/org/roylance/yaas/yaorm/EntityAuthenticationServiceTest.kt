@@ -5,15 +5,15 @@ import org.junit.Test
 import org.roylance.common.service.ILogger
 import org.roylance.yaas.YaasModel
 import org.roylance.yaorm.YaormModel
-import org.roylance.yaorm.services.jdbc.JDBCGranularDatabaseProtoService
+import org.roylance.yaorm.services.EntityMessageService
+import org.roylance.yaorm.services.EntityService
+import org.roylance.yaorm.services.jdbc.JDBCGranularDatabaseService
+import org.roylance.yaorm.services.postgres.PostgresBuilder
 import org.roylance.yaorm.services.postgres.PostgresConnectionSourceFactory
 import org.roylance.yaorm.services.postgres.PostgresGeneratorService
-import org.roylance.yaorm.services.postgres.PostgresProtoBuilder
-import org.roylance.yaorm.services.proto.EntityMessageService
-import org.roylance.yaorm.services.proto.EntityProtoService
+import org.roylance.yaorm.services.sqlite.SQLiteBuilder
 import org.roylance.yaorm.services.sqlite.SQLiteConnectionSourceFactory
 import org.roylance.yaorm.services.sqlite.SQLiteGeneratorService
-import org.roylance.yaorm.services.sqlite.SQLiteProtoBuilder
 import java.io.File
 import java.util.*
 
@@ -28,11 +28,11 @@ class EntityAuthenticationServiceTest {
                 "postgres",
                 "postgres",
                 false)
-        val granularDatabaseService = JDBCGranularDatabaseProtoService(
+        val granularDatabaseService = JDBCGranularDatabaseService(
                 sourceConnection,
                 false)
         val postgresGeneratorService = PostgresGeneratorService()
-        val entityService = EntityProtoService(granularDatabaseService, postgresGeneratorService)
+        val entityService = EntityService(granularDatabaseService, postgresGeneratorService)
         val protoService = YaasGeneratedMessageBuilder()
         val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
         entityMessageService.dropAndCreateEntireSchema(YaasModel.getDescriptor())
@@ -45,7 +45,7 @@ class EntityAuthenticationServiceTest {
                 .build()
 
         val authenticationService = EntityAuthenticationService(
-                PostgresProtoBuilder(),
+                PostgresBuilder(),
                 YaormModel.ConnectionInfo.newBuilder().setHost("localhost").setPort(5432).setUser("postgres").setPassword("postgres").setSchema("postgres").build(),
                 logger)
 
@@ -65,11 +65,11 @@ class EntityAuthenticationServiceTest {
         val database = File(UUID.randomUUID().toString().replace("-", ""))
         try {
             val sourceConnection = SQLiteConnectionSourceFactory(database.absolutePath)
-            val granularDatabaseService = JDBCGranularDatabaseProtoService(
+            val granularDatabaseService = JDBCGranularDatabaseService(
                     sourceConnection,
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
-            val entityService = EntityProtoService(granularDatabaseService, sqliteGeneratorService)
+            val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
@@ -83,7 +83,7 @@ class EntityAuthenticationServiceTest {
                 .build()
 
             val authenticationService = EntityAuthenticationService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
@@ -108,11 +108,11 @@ class EntityAuthenticationServiceTest {
         val database = File(UUID.randomUUID().toString().replace("-", ""))
         try {
             val sourceConnection = SQLiteConnectionSourceFactory(database.absolutePath)
-            val granularDatabaseService = JDBCGranularDatabaseProtoService(
+            val granularDatabaseService = JDBCGranularDatabaseService(
                     sourceConnection,
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
-            val entityService = EntityProtoService(granularDatabaseService, sqliteGeneratorService)
+            val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
@@ -129,7 +129,7 @@ class EntityAuthenticationServiceTest {
             val tokenService = EntityTokenService(entityMessageService, logger)
 
             val adminService = EntityAdminService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
@@ -158,11 +158,11 @@ class EntityAuthenticationServiceTest {
         val database = File(UUID.randomUUID().toString().replace("-", ""))
         try {
             val sourceConnection = SQLiteConnectionSourceFactory(database.absolutePath)
-            val granularDatabaseService = JDBCGranularDatabaseProtoService(
+            val granularDatabaseService = JDBCGranularDatabaseService(
                     sourceConnection,
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
-            val entityService = EntityProtoService(granularDatabaseService, sqliteGeneratorService)
+            val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
@@ -179,7 +179,7 @@ class EntityAuthenticationServiceTest {
             val tokenService = EntityTokenService(entityMessageService, logger)
 
             val adminService = EntityAdminService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
@@ -211,11 +211,11 @@ class EntityAuthenticationServiceTest {
         val database = File(UUID.randomUUID().toString().replace("-", ""))
         try {
             val sourceConnection = SQLiteConnectionSourceFactory(database.absolutePath)
-            val granularDatabaseService = JDBCGranularDatabaseProtoService(
+            val granularDatabaseService = JDBCGranularDatabaseService(
                     sourceConnection,
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
-            val entityService = EntityProtoService(granularDatabaseService, sqliteGeneratorService)
+            val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
@@ -230,12 +230,12 @@ class EntityAuthenticationServiceTest {
                     .build()
 
             val authenticationService = EntityAuthenticationService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             val adminService = EntityAdminService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
@@ -262,11 +262,11 @@ class EntityAuthenticationServiceTest {
         val database = File(UUID.randomUUID().toString().replace("-", ""))
         try {
             val sourceConnection = SQLiteConnectionSourceFactory(database.absolutePath)
-            val granularDatabaseService = JDBCGranularDatabaseProtoService(
+            val granularDatabaseService = JDBCGranularDatabaseService(
                     sourceConnection,
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
-            val entityService = EntityProtoService(granularDatabaseService, sqliteGeneratorService)
+            val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
@@ -281,12 +281,12 @@ class EntityAuthenticationServiceTest {
                     .build()
 
             val authenticationService = EntityAuthenticationService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
             val adminService = EntityAdminService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 
@@ -318,11 +318,11 @@ class EntityAuthenticationServiceTest {
         val database = File(UUID.randomUUID().toString().replace("-", ""))
         try {
             val sourceConnection = SQLiteConnectionSourceFactory(database.absolutePath)
-            val granularDatabaseService = JDBCGranularDatabaseProtoService(
+            val granularDatabaseService = JDBCGranularDatabaseService(
                     sourceConnection,
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
-            val entityService = EntityProtoService(granularDatabaseService, sqliteGeneratorService)
+            val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
             val protoService = YaasGeneratedMessageBuilder()
             val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
 
@@ -336,7 +336,7 @@ class EntityAuthenticationServiceTest {
                     .build()
 
             val authenticationService = EntityAuthenticationService(
-                    SQLiteProtoBuilder(),
+                    SQLiteBuilder(),
                     YaormModel.ConnectionInfo.newBuilder().setSchema(database.name).build(),
                     logger)
 

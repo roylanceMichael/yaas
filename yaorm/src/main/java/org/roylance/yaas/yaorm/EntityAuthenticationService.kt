@@ -28,6 +28,7 @@ class EntityAuthenticationService(
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val tempUser = YaasModel.User.newBuilder()
+                    .setId(request.changePassword.userName)
                     .setUserName(request.changePassword.userName)
                     .setPassword(request.changePassword.oldPassword)
 

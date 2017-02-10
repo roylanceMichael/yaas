@@ -15,12 +15,13 @@ class UserService(private val secureCachingService: ISecureCachingService): IUse
 
     override fun getCachedUserModel(includePassword: Boolean): YaasModel.User? {
         val userName = this.secureCachingService.getValue(UserInfoEnums.UserNameKey)
-        if (userName != null && userName.length > 0) {
+        if (userName != null && userName.isNotEmpty()) {
             val user = YaasModel.User.newBuilder()
+                    .setId(userName)
                     .setUserName(userName)
             if (includePassword) {
                 val password = this.secureCachingService.getValue(UserInfoEnums.PasswordKey)
-                if (password != null && password.length > 0) {
+                if (password != null && password.isNotEmpty()) {
                     user.password = password
                 }
             }

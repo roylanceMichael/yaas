@@ -125,7 +125,6 @@ class EntityAdminService(
             if (foundUser != null) {
                 val builder = foundUser.toBuilder()
                 builder.clearRoles()
-
                 entityMessageService.merge(builder.build())
             }
 
@@ -143,7 +142,14 @@ class EntityAdminService(
             val authenticatedUser = tokenService.validateUser(request.token)
 
             if (authenticatedUser.isAdmin) {
-                val builder = request.user.toBuilder()
+                val existingUser = entityMessageService.get(YaasModel.User.getDefaultInstance(), request.user.id)
+                        ?: return YaasModel.UIYaasResponse.newBuilder().setSuccessful(false).build()
+
+                if (existingUser.rolesList.any { it == YaasModel.UserRole.ADMIN }) {
+                    return YaasModel.UIYaasResponse.newBuilder().setSuccessful(false).build()
+                }
+
+                val builder = existingUser.toBuilder()
                 builder.addRoles(YaasModel.UserRole.ADMIN)
                 entityMessageService.merge(builder.build())
             }

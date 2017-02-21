@@ -10,3 +10,7 @@ javascript/node_modules
 
 csharp/Org.Roylance.Yaas.Api/bin
 csharp/Org.Roylance.Yaas.Api/obj
+
+build
+Carthage
+Cartfile.resolved

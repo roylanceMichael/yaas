@@ -5,7 +5,7 @@ import SwiftProtobuf
 
 public class UserDeviceService: IUserDeviceService {
     let baseUrl: String
-    init(baseUrl: String) {
+    public init(baseUrl: String) {
         self.baseUrl = baseUrl
     }
 	public func save(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {

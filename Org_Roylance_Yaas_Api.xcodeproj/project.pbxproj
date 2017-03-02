@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24094638BD5463916E83045C /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D04DCBB4B7A0FD75360D90 /* AdminService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		306D4653872FCF2D859B34C0 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09E49498A1BB3FE63288CC5 /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		59414A9194C9B57B9B7D168F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C01D450A8523C6C5ECD42FE8 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5A404C56A64A102C0598AE91 /* yaas_model.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87B416E944E9B2F50145CFC /* yaas_model.pb.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5FD84809AA8BBA37872C3F83 /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A09E49498A1BB3FE63288CC5 /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7EA7490096D94AA942EF7A6A /* UserDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA446C926132CB405FEE51 /* UserDeviceService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		874C439F8EF38FB6A545D5DE /* yaas_controller.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC04BE082F12A57F54E52C6 /* yaas_controller.pb.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8807427F81727F094D56708A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01D450A8523C6C5ECD42FE8 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		908B4DDD955B4FD9F48CFCF6 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45648B4AD9ADDFD108925B4 /* AuthenticationService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B378469F97F61610267BD1D3 /* IAdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8904E9095E13A873FB2DF65 /* IAdminService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F059459D816E22D56A4E6896 /* IUserDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F014103BE5A34563C74BFAD /* IUserDeviceService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F4744789B7E378CEA59E3252 /* IAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD684F45B2FB20E18698AFBE /* IAuthenticationService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07674C79A864AC36DC92A555 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4C4EEB8B4378F822462700 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		122A485CB3FEB8C742A52F08 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD4C4EEB8B4378F822462700 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		497F4C83B47F3112733008A5 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5354EA0ACD83400E78F946B /* AdminService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		51AB4458B156F9FF8DC8DBA9 /* yaas_controller.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60734ECC874D8215E41A588A /* yaas_controller.pb.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C5D4907A9178CA22C9D8F92 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A146B782CED86A99778D1E /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9C364CA4966AB4D5C4175B40 /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A146B782CED86A99778D1E /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9EA04A38A809F6DA6E863024 /* IAdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179240A8B98D9B5F5B563242 /* IAdminService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A30145549691D29CFA7D4CC9 /* IAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B4735A03F0DAC4586B38A /* IAuthenticationService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BC2A473189D0333E1B19DCB8 /* IUserDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F14A89BE1329C937F66BE6 /* IUserDeviceService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC5D49059EF868EB89F48811 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA40CE86ADFC3054591293 /* AuthenticationService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DCC147CB96E54BEA4EF865F7 /* yaas_model.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D4A248FCBE1C9565CC18D /* yaas_model.pb.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8B84C308A4BC896E047135B /* UserDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21434EAAB2D48A6DE013997D /* UserDeviceService.swift */; settings = {ATTRIBUTES = (Weak, CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FD8755A61E5A30C400087F70 /* Org_Roylance_Yaas_Api.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD87559C1E5A30C300087F70 /* Org_Roylance_Yaas_Api.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,14 +33,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		934C46FCB317BF5E8D7C90B9 /* Embed Frameworks */ = {
+		48B84DADB3DDC6EC8496F22D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				59414A9194C9B57B9B7D168F /* Alamofire.framework in Embed Frameworks */,
-				5FD84809AA8BBA37872C3F83 /* SwiftProtobuf.framework in Embed Frameworks */,
+				122A485CB3FEB8C742A52F08 /* Alamofire.framework in Embed Frameworks */,
+				9C364CA4966AB4D5C4175B40 /* SwiftProtobuf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,16 +48,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0CC04BE082F12A57F54E52C6 /* yaas_controller.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = yaas_controller.pb.swift; path = swift/Source/yaas_controller.pb.swift; sourceTree = SOURCE_ROOT; };
-		4F014103BE5A34563C74BFAD /* IUserDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IUserDeviceService.swift; path = swift/Source/IUserDeviceService.swift; sourceTree = SOURCE_ROOT; };
-		A09E49498A1BB3FE63288CC5 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = SOURCE_ROOT; };
-		A7FA446C926132CB405FEE51 /* UserDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDeviceService.swift; path = swift/Source/UserDeviceService.swift; sourceTree = SOURCE_ROOT; };
-		C01D450A8523C6C5ECD42FE8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = SOURCE_ROOT; };
-		C45648B4AD9ADDFD108925B4 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationService.swift; path = swift/Source/AuthenticationService.swift; sourceTree = SOURCE_ROOT; };
-		D87B416E944E9B2F50145CFC /* yaas_model.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = yaas_model.pb.swift; path = swift/Source/yaas_model.pb.swift; sourceTree = SOURCE_ROOT; };
-		E5D04DCBB4B7A0FD75360D90 /* AdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdminService.swift; path = swift/Source/AdminService.swift; sourceTree = SOURCE_ROOT; };
-		E8904E9095E13A873FB2DF65 /* IAdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IAdminService.swift; path = swift/Source/IAdminService.swift; sourceTree = SOURCE_ROOT; };
-		FD684F45B2FB20E18698AFBE /* IAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IAuthenticationService.swift; path = swift/Source/IAuthenticationService.swift; sourceTree = SOURCE_ROOT; };
+		179240A8B98D9B5F5B563242 /* IAdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IAdminService.swift; path = swift/Source/IAdminService.swift; sourceTree = SOURCE_ROOT; };
+		21434EAAB2D48A6DE013997D /* UserDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDeviceService.swift; path = swift/Source/UserDeviceService.swift; sourceTree = SOURCE_ROOT; };
+		60734ECC874D8215E41A588A /* yaas_controller.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = yaas_controller.pb.swift; path = swift/Source/yaas_controller.pb.swift; sourceTree = SOURCE_ROOT; };
+		8CDA40CE86ADFC3054591293 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationService.swift; path = swift/Source/AuthenticationService.swift; sourceTree = SOURCE_ROOT; };
+		A0A146B782CED86A99778D1E /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = SOURCE_ROOT; };
+		A26B4735A03F0DAC4586B38A /* IAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IAuthenticationService.swift; path = swift/Source/IAuthenticationService.swift; sourceTree = SOURCE_ROOT; };
+		A5354EA0ACD83400E78F946B /* AdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdminService.swift; path = swift/Source/AdminService.swift; sourceTree = SOURCE_ROOT; };
+		AD4C4EEB8B4378F822462700 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = SOURCE_ROOT; };
+		B07D4A248FCBE1C9565CC18D /* yaas_model.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = yaas_model.pb.swift; path = swift/Source/yaas_model.pb.swift; sourceTree = SOURCE_ROOT; };
+		D5F14A89BE1329C937F66BE6 /* IUserDeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IUserDeviceService.swift; path = swift/Source/IUserDeviceService.swift; sourceTree = SOURCE_ROOT; };
 		FD87559C1E5A30C300087F70 /* Org_Roylance_Yaas_Api.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Org_Roylance_Yaas_Api.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8755A01E5A30C300087F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,8 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8807427F81727F094D56708A /* Alamofire.framework in Frameworks */,
-				306D4653872FCF2D859B34C0 /* SwiftProtobuf.framework in Frameworks */,
+				07674C79A864AC36DC92A555 /* Alamofire.framework in Frameworks */,
+				7C5D4907A9178CA22C9D8F92 /* SwiftProtobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,16 +88,16 @@
 			children = (
 				FD87559E1E5A30C300087F70,
 				FD87559D1E5A30C300087F70 /* Products */,
-				E5D04DCBB4B7A0FD75360D90 /* AdminService.swift */,
-				C45648B4AD9ADDFD108925B4 /* AuthenticationService.swift */,
-				E8904E9095E13A873FB2DF65 /* IAdminService.swift */,
-				FD684F45B2FB20E18698AFBE /* IAuthenticationService.swift */,
-				4F014103BE5A34563C74BFAD /* IUserDeviceService.swift */,
-				A7FA446C926132CB405FEE51 /* UserDeviceService.swift */,
-				0CC04BE082F12A57F54E52C6 /* yaas_controller.pb.swift */,
-				D87B416E944E9B2F50145CFC /* yaas_model.pb.swift */,
-				C01D450A8523C6C5ECD42FE8 /* Alamofire.framework */,
-				A09E49498A1BB3FE63288CC5 /* SwiftProtobuf.framework */,
+				A5354EA0ACD83400E78F946B /* AdminService.swift */,
+				8CDA40CE86ADFC3054591293 /* AuthenticationService.swift */,
+				179240A8B98D9B5F5B563242 /* IAdminService.swift */,
+				A26B4735A03F0DAC4586B38A /* IAuthenticationService.swift */,
+				D5F14A89BE1329C937F66BE6 /* IUserDeviceService.swift */,
+				21434EAAB2D48A6DE013997D /* UserDeviceService.swift */,
+				60734ECC874D8215E41A588A /* yaas_controller.pb.swift */,
+				B07D4A248FCBE1C9565CC18D /* yaas_model.pb.swift */,
+				AD4C4EEB8B4378F822462700 /* Alamofire.framework */,
+				A0A146B782CED86A99778D1E /* SwiftProtobuf.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,7 +130,7 @@
 				FD8755981E5A30C300087F70 /* Frameworks */,
 				FD8755991E5A30C300087F70 /* Headers */,
 				FD87559A1E5A30C300087F70 /* Resources */,
-				934C46FCB317BF5E8D7C90B9 /* Embed Frameworks */,
+				48B84DADB3DDC6EC8496F22D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,14 +202,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24094638BD5463916E83045C /* AdminService.swift in Sources */,
-				908B4DDD955B4FD9F48CFCF6 /* AuthenticationService.swift in Sources */,
-				B378469F97F61610267BD1D3 /* IAdminService.swift in Sources */,
-				F4744789B7E378CEA59E3252 /* IAuthenticationService.swift in Sources */,
-				F059459D816E22D56A4E6896 /* IUserDeviceService.swift in Sources */,
-				7EA7490096D94AA942EF7A6A /* UserDeviceService.swift in Sources */,
-				874C439F8EF38FB6A545D5DE /* yaas_controller.pb.swift in Sources */,
-				5A404C56A64A102C0598AE91 /* yaas_model.pb.swift in Sources */,
+				497F4C83B47F3112733008A5 /* AdminService.swift in Sources */,
+				DC5D49059EF868EB89F48811 /* AuthenticationService.swift in Sources */,
+				9EA04A38A809F6DA6E863024 /* IAdminService.swift in Sources */,
+				A30145549691D29CFA7D4CC9 /* IAuthenticationService.swift in Sources */,
+				BC2A473189D0333E1B19DCB8 /* IUserDeviceService.swift in Sources */,
+				E8B84C308A4BC896E047135B /* UserDeviceService.swift in Sources */,
+				51AB4458B156F9FF8DC8DBA9 /* yaas_controller.pb.swift in Sources */,
+				DCC147CB96E54BEA4EF865F7 /* yaas_model.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +247,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.168;
+				CURRENT_PROJECT_VERSION = 0.170;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -300,7 +300,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 0.168;
+				CURRENT_PROJECT_VERSION = 0.170;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

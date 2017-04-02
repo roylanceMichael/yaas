@@ -6,15 +6,15 @@
 
     <properties>		<group>org.roylance.yaas</group>
 		<name>api</name>
-		<minor>172</minor>
+		<minor>173</minor>
 		<major>0</major>
-		<org_roylance_yaas_api>0.172</org_roylance_yaas_api>
+		<org_roylance_yaas_api>0.173</org_roylance_yaas_api>
 	</properties>
 
 
     <groupId>org.roylance.yaas</groupId>
     <artifactId>sapi</artifactId>
-    <version>0.172</version>
+    <version>0.173</version>
 
     <repositories>
         <repository>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.roylance</groupId>
             <artifactId>common</artifactId>
-            <version>0.15</version>
+            <version>0.17</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
@@ -161,7 +161,7 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>3.0.0</version>
+            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>

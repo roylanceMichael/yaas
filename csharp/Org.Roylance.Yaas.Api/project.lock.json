@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETFramework,Version=v4.5": {
-      "Google.Protobuf/3.0.0": {
+      "Google.Protobuf/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net45/Google.Protobuf.dll": {}
@@ -14,7 +14,7 @@
       }
     },
     ".NETStandard,Version=v1.0": {
-      "Google.Protobuf/3.0.0": {
+      "Google.Protobuf/3.2.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.11",
@@ -233,13 +233,13 @@
     }
   },
   "libraries": {
-    "Google.Protobuf/3.0.0": {
-      "sha512": "l5CH4IoWys8hIQR53F+nM3RpFOX12Jj9iXVOh30ejoz0TRHApzvAHc+5T5mGnMWa/vCVfYFZkhqStn+IuK8+5g==",
+    "Google.Protobuf/3.2.0": {
+      "sha512": "qwqIqIWLdQOD/uyh5Kitz1R1RovK1cF4VgBVbVZEHAKLmLqKZJ2Lgx8KGeD8Sua5+2IvKEzNEqv7dHFcwA9Ueg==",
       "type": "package",
-      "path": "Google.Protobuf/3.0.0",
+      "path": "Google.Protobuf/3.2.0",
       "files": [
-        "Google.Protobuf.3.0.0.nupkg.sha512",
-        "Google.Protobuf.nuspec",
+        "google.protobuf.3.2.0.nupkg.sha512",
+        "google.protobuf.nuspec",
         "lib/net45/Google.Protobuf.dll",
         "lib/net45/Google.Protobuf.xml",
         "lib/netstandard1.0/Google.Protobuf.dll",
@@ -1412,7 +1412,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Google.Protobuf >= 3.0.0"
+      "Google.Protobuf >= 3.2.0"
     ],
     ".NETFramework,Version=v4.5": [],
     ".NETStandard,Version=v1.0": [

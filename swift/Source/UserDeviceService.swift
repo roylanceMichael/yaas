@@ -11,7 +11,7 @@ public class UserDeviceService: IUserDeviceService {
 	public func save(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/userdevice/save")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -22,7 +22,7 @@ public class UserDeviceService: IUserDeviceService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {
@@ -37,7 +37,7 @@ public class UserDeviceService: IUserDeviceService {
 	public func all(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/userdevice/all")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -48,7 +48,7 @@ public class UserDeviceService: IUserDeviceService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {

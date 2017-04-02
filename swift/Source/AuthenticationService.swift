@@ -11,7 +11,7 @@ public class AuthenticationService: IAuthenticationService {
 	public func exists(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/authentication/exists")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -22,7 +22,7 @@ public class AuthenticationService: IAuthenticationService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {
@@ -37,7 +37,7 @@ public class AuthenticationService: IAuthenticationService {
 	public func login(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/authentication/login")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -48,7 +48,7 @@ public class AuthenticationService: IAuthenticationService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {
@@ -63,7 +63,7 @@ public class AuthenticationService: IAuthenticationService {
 	public func authenticate(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/authentication/authenticate")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -74,7 +74,7 @@ public class AuthenticationService: IAuthenticationService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {
@@ -89,7 +89,7 @@ public class AuthenticationService: IAuthenticationService {
 	public func register(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/authentication/register")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -100,7 +100,7 @@ public class AuthenticationService: IAuthenticationService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {
@@ -115,7 +115,7 @@ public class AuthenticationService: IAuthenticationService {
 	public func change_password(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/authentication/change-password")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -126,7 +126,7 @@ public class AuthenticationService: IAuthenticationService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {
@@ -141,7 +141,7 @@ public class AuthenticationService: IAuthenticationService {
 	public func save(request: Org_Roylance_Yaas_UIYaasRequest, onSuccess: @escaping (_ response: Org_Roylance_Yaas_UIYaasResponse) -> Void, onError: @escaping (_ response: String) -> Void) {
 
             do {
-                let serializedRequest = try request.serializeProtobuf()
+                let serializedRequest = try request.serializedData()
                 var urlRequest = URLRequest(url: URL(string: self.baseUrl + "/rest/authentication/save")!)
                 urlRequest.httpMethod = HTTPMethod.post.rawValue
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -152,7 +152,7 @@ public class AuthenticationService: IAuthenticationService {
                         let base64String = String(data: alamoResponse.data!, encoding: String.Encoding.utf8)
                         let decodedData = Data(base64Encoded: base64String!)!
                         do {
-                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(protobuf: decodedData)
+                            let actualResponse = try Org_Roylance_Yaas_UIYaasResponse(serializedData: decodedData)
                             onSuccess(actualResponse)
                         }
                         catch {

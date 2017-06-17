@@ -1,6 +1,7 @@
 // THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
 package org.roylance.yaas.services
 
+import com.google.protobuf.util.JsonFormat;
 import org.roylance.common.service.IProtoSerializerService
 
 class UserDeviceService(

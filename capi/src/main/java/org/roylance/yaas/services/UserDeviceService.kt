@@ -2,25 +2,27 @@
 package org.roylance.yaas.services
 
 import com.google.protobuf.util.JsonFormat;
-import org.roylance.common.service.IProtoSerializerService
 
 class UserDeviceService(
-        private val restUserDevice: IUserDeviceRest,
-        private val protoSerializer: IProtoSerializerService): IUserDeviceService {
+        private val restUserDevice: IUserDeviceRest): IUserDeviceService {
+        private val parser = JsonFormat.parser()
+        private val printer = JsonFormat.printer()
 
     override fun save(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val base64request = protoSerializer.serializeToBase64(request)
-        val responseCall = restUserDevice.save(base64request)
+        val jsonrequest = this.printer.print(request)
+        val responseCall = restUserDevice.save(jsonrequest)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
-                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
+        this.parser.merge(response.body(), actualResponse);
+        return actualResponse.build()
     }
 
     override fun all(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val base64request = protoSerializer.serializeToBase64(request)
-        val responseCall = restUserDevice.all(base64request)
+        val jsonrequest = this.printer.print(request)
+        val responseCall = restUserDevice.all(jsonrequest)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
-                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
+        this.parser.merge(response.body(), actualResponse);
+        return actualResponse.build()
     }
 }

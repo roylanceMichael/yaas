@@ -6,6 +6,7 @@ import org.roylance.common.service.IProtoSerializerService;
 import org.roylance.yaas.utilities.ServiceLocator;
 import org.roylance.yaas.services.IUserDeviceService;
 
+import com.google.protobuf.util.JsonFormat;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +26,12 @@ public class UserDeviceController {
     private HttpServletResponse response;
 
     private final IUserDeviceService userDeviceService;
-    private final IProtoSerializerService serializerService;
+    private final JsonFormat.Parser parser;
+    private final JsonFormat.Printer printer;
 
     public UserDeviceController() {
-        this.serializerService = ServiceLocator.INSTANCE.getProtobufSerializerService();
+        this.parser = JsonFormat.parser();
+        this.printer = JsonFormat.printer();
         this.userDeviceService = ServiceLocator.INSTANCE.getUserDeviceService();
     }
 
@@ -37,12 +40,19 @@ public class UserDeviceController {
     public void save(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
+            try {
+                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
+                this.parser.merge(request, requestTemp);
+                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
 
-            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.userDeviceService.save(requestActual);
-            final String deserializeResponse = this.serializerService.serializeToBase64(response);
-            asyncResponse.resume(deserializeResponse);
+                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.userDeviceService.save(requestActual);
+                final String serializedResponse = this.printer.print(response);
+                asyncResponse.resume(serializedResponse);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                asyncResponse.resume("");
+            }
 
         }).start();
     }
@@ -52,12 +62,19 @@ public class UserDeviceController {
     public void all(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
-                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
+            try {
+                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
+                this.parser.merge(request, requestTemp);
+                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
 
-            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.userDeviceService.all(requestActual);
-            final String deserializeResponse = this.serializerService.serializeToBase64(response);
-            asyncResponse.resume(deserializeResponse);
+                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.userDeviceService.all(requestActual);
+                final String serializedResponse = this.printer.print(response);
+                asyncResponse.resume(serializedResponse);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                asyncResponse.resume("");
+            }
 
         }).start();
     }

@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 var UserService = (function () {
     function UserService(authenticationService, modelFactory, actionIfLoggedIn, actionIfNotLoggedIn) {
         this.accessTokenName = "org.roylance.yaas.accessToken";

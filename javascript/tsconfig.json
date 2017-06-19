@@ -15,7 +15,6 @@
 	"UserDeviceService.ts",
 	"IHttpExecute.ts",
 	"YaasModel.d.ts",
-	"YaasModelFactory.ts",
 	"node_modules/roylance.common/bytebuffer.d.ts"
     ]
 }

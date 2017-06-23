@@ -2,63 +2,57 @@
 package org.roylance.yaas.services
 
 import com.google.protobuf.util.JsonFormat;
+import org.roylance.common.service.IProtoSerializerService
 
 class AuthenticationService(
-        private val restAuthentication: IAuthenticationRest): IAuthenticationService {
-        private val parser = JsonFormat.parser()
-        private val printer = JsonFormat.printer()
+        private val restAuthentication: IAuthenticationRest,
+        private val protoSerializer: IProtoSerializerService): IAuthenticationService {
 
     override fun exists(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val jsonrequest = this.printer.print(request)
-        val responseCall = restAuthentication.exists(jsonrequest)
+        val base64request = protoSerializer.serializeToBase64(request)
+        val responseCall = restAuthentication.exists(base64request)
         val response = responseCall.execute()
-        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
-        this.parser.merge(response.body(), actualResponse);
-        return actualResponse.build()
+        return protoSerializer.deserializeFromBase64(response.body(),
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
     override fun login(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val jsonrequest = this.printer.print(request)
-        val responseCall = restAuthentication.login(jsonrequest)
+        val base64request = protoSerializer.serializeToBase64(request)
+        val responseCall = restAuthentication.login(base64request)
         val response = responseCall.execute()
-        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
-        this.parser.merge(response.body(), actualResponse);
-        return actualResponse.build()
+        return protoSerializer.deserializeFromBase64(response.body(),
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
     override fun authenticate(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val jsonrequest = this.printer.print(request)
-        val responseCall = restAuthentication.authenticate(jsonrequest)
+        val base64request = protoSerializer.serializeToBase64(request)
+        val responseCall = restAuthentication.authenticate(base64request)
         val response = responseCall.execute()
-        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
-        this.parser.merge(response.body(), actualResponse);
-        return actualResponse.build()
+        return protoSerializer.deserializeFromBase64(response.body(),
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
     override fun register(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val jsonrequest = this.printer.print(request)
-        val responseCall = restAuthentication.register(jsonrequest)
+        val base64request = protoSerializer.serializeToBase64(request)
+        val responseCall = restAuthentication.register(base64request)
         val response = responseCall.execute()
-        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
-        this.parser.merge(response.body(), actualResponse);
-        return actualResponse.build()
+        return protoSerializer.deserializeFromBase64(response.body(),
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
     override fun change_password(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val jsonrequest = this.printer.print(request)
-        val responseCall = restAuthentication.change_password(jsonrequest)
+        val base64request = protoSerializer.serializeToBase64(request)
+        val responseCall = restAuthentication.change_password(base64request)
         val response = responseCall.execute()
-        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
-        this.parser.merge(response.body(), actualResponse);
-        return actualResponse.build()
+        return protoSerializer.deserializeFromBase64(response.body(),
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
     override fun save(request: org.roylance.yaas.YaasModel.UIYaasRequest): org.roylance.yaas.YaasModel.UIYaasResponse {
-        val jsonrequest = this.printer.print(request)
-        val responseCall = restAuthentication.save(jsonrequest)
+        val base64request = protoSerializer.serializeToBase64(request)
+        val responseCall = restAuthentication.save(base64request)
         val response = responseCall.execute()
-        val actualResponse = org.roylance.yaas.YaasModel.UIYaasResponse.newBuilder()
-        this.parser.merge(response.body(), actualResponse);
-        return actualResponse.build()
+        return protoSerializer.deserializeFromBase64(response.body(),
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 }

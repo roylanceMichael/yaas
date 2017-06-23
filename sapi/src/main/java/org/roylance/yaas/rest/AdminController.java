@@ -6,7 +6,6 @@ import org.roylance.common.service.IProtoSerializerService;
 import org.roylance.yaas.utilities.ServiceLocator;
 import org.roylance.yaas.services.IAdminService;
 
-import com.google.protobuf.util.JsonFormat;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,12 +25,10 @@ public class AdminController {
     private HttpServletResponse response;
 
     private final IAdminService adminService;
-    private final JsonFormat.Parser parser;
-    private final JsonFormat.Printer printer;
+    private final IProtoSerializerService serializerService;
 
     public AdminController() {
-        this.parser = JsonFormat.parser();
-        this.printer = JsonFormat.printer();
+        this.serializerService = ServiceLocator.INSTANCE.getProtobufSerializerService();
         this.adminService = ServiceLocator.INSTANCE.getAdminService();
     }
 
@@ -40,19 +37,12 @@ public class AdminController {
     public void change_password_for_user(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            try {
-                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
-                this.parser.merge(request, requestTemp);
-                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.change_password_for_user(requestActual);
-                final String serializedResponse = this.printer.print(response);
-                asyncResponse.resume(serializedResponse);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                asyncResponse.resume("");
-            }
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.change_password_for_user(requestActual);
+            final String deserializeResponse = this.serializerService.serializeToBase64(response);
+            asyncResponse.resume(deserializeResponse);
 
         }).start();
     }
@@ -62,19 +52,12 @@ public class AdminController {
     public void get_all_users(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            try {
-                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
-                this.parser.merge(request, requestTemp);
-                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.get_all_users(requestActual);
-                final String serializedResponse = this.printer.print(response);
-                asyncResponse.resume(serializedResponse);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                asyncResponse.resume("");
-            }
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.get_all_users(requestActual);
+            final String deserializeResponse = this.serializerService.serializeToBase64(response);
+            asyncResponse.resume(deserializeResponse);
 
         }).start();
     }
@@ -84,19 +67,12 @@ public class AdminController {
     public void is_user_admin(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            try {
-                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
-                this.parser.merge(request, requestTemp);
-                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.is_user_admin(requestActual);
-                final String serializedResponse = this.printer.print(response);
-                asyncResponse.resume(serializedResponse);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                asyncResponse.resume("");
-            }
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.is_user_admin(requestActual);
+            final String deserializeResponse = this.serializerService.serializeToBase64(response);
+            asyncResponse.resume(deserializeResponse);
 
         }).start();
     }
@@ -106,19 +82,12 @@ public class AdminController {
     public void set_user_as_admin(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            try {
-                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
-                this.parser.merge(request, requestTemp);
-                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.set_user_as_admin(requestActual);
-                final String serializedResponse = this.printer.print(response);
-                asyncResponse.resume(serializedResponse);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                asyncResponse.resume("");
-            }
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.set_user_as_admin(requestActual);
+            final String deserializeResponse = this.serializerService.serializeToBase64(response);
+            asyncResponse.resume(deserializeResponse);
 
         }).start();
     }
@@ -128,19 +97,12 @@ public class AdminController {
     public void remove_user_as_admin(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            try {
-                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
-                this.parser.merge(request, requestTemp);
-                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.remove_user_as_admin(requestActual);
-                final String serializedResponse = this.printer.print(response);
-                asyncResponse.resume(serializedResponse);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                asyncResponse.resume("");
-            }
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.remove_user_as_admin(requestActual);
+            final String deserializeResponse = this.serializerService.serializeToBase64(response);
+            asyncResponse.resume(deserializeResponse);
 
         }).start();
     }
@@ -150,19 +112,12 @@ public class AdminController {
     public void delete_user(@Suspended AsyncResponse asyncResponse, String request) throws Exception {
         new Thread(() -> {
             
-            try {
-                final org.roylance.yaas.YaasModel.UIYaasRequest.Builder requestTemp = org.roylance.yaas.YaasModel.UIYaasRequest.newBuilder();
-                this.parser.merge(request, requestTemp);
-                final org.roylance.yaas.YaasModel.UIYaasRequest requestActual = requestTemp.build();
+            final org.roylance.yaas.YaasModel.UIYaasRequest requestActual =
+                    this.serializerService.deserializeFromBase64(request, org.roylance.yaas.YaasModel.UIYaasRequest.getDefaultInstance());
 
-                final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.delete_user(requestActual);
-                final String serializedResponse = this.printer.print(response);
-                asyncResponse.resume(serializedResponse);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-                asyncResponse.resume("");
-            }
+            final org.roylance.yaas.YaasModel.UIYaasResponse response = this.adminService.delete_user(requestActual);
+            final String deserializeResponse = this.serializerService.serializeToBase64(response);
+            asyncResponse.resume(deserializeResponse);
 
         }).start();
     }

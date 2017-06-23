@@ -6,15 +6,15 @@
 
     <properties>		<group>org.roylance.yaas</group>
 		<name>api</name>
-		<minor>177</minor>
+		<minor>178</minor>
 		<major>0</major>
-		<org_roylance_yaas_api>0.177</org_roylance_yaas_api>
+		<org_roylance_yaas_api>0.178</org_roylance_yaas_api>
 	</properties>
 
 
     <groupId>org.roylance.yaas</groupId>
     <artifactId>sapi</artifactId>
-    <version>0.177</version>
+    <version>0.178</version>
 
     <repositories>
         <repository>
@@ -116,7 +116,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
-            <version>1.1.2-5</version>
+            <version>1.1.3</version>
         </dependency>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
@@ -250,7 +250,7 @@
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
-                <version>1.1.2-5</version>
+                <version>1.1.3</version>
 
                 <executions>
                     <execution>

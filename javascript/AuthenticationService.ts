@@ -1,54 +1,69 @@
 // THIS FILE WAS AUTO-GENERATED. DO NOT ALTER!
 import {IAuthenticationService} from "./IAuthenticationService";
 import {IHttpExecute} from "./IHttpExecute";
-import {org} from "./YaasModel";
+import ProtoBufBuilder = org.roylance.yaas.ProtoBufBuilder;
 
 export class AuthenticationService implements IAuthenticationService {
     httpExecute:IHttpExecute;
+    modelFactory:ProtoBufBuilder;
 
-    constructor(httpExecute:IHttpExecute) {
+    constructor(httpExecute:IHttpExecute,
+                modelFactory:ProtoBufBuilder) {
         this.httpExecute = httpExecute;
+        this.modelFactory = modelFactory;
     }
 	exists(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/authentication/exists",
-                    request,
-                    onSuccess,
+                    request.toBase64(),
+                    function(result:string) {
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
+                    },
                     onError);
         }
 	login(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/authentication/login",
-                    request,
-                    onSuccess,
+                    request.toBase64(),
+                    function(result:string) {
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
+                    },
                     onError);
         }
 	authenticate(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/authentication/authenticate",
-                    request,
-                    onSuccess,
+                    request.toBase64(),
+                    function(result:string) {
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
+                    },
                     onError);
         }
 	register(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/authentication/register",
-                    request,
-                    onSuccess,
+                    request.toBase64(),
+                    function(result:string) {
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
+                    },
                     onError);
         }
 	change_password(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/authentication/change-password",
-                    request,
-                    onSuccess,
+                    request.toBase64(),
+                    function(result:string) {
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
+                    },
                     onError);
         }
 	save(request: org.roylance.yaas.UIYaasRequest, onSuccess:(response: org.roylance.yaas.UIYaasResponse)=>void, onError:(response:any)=>void) {
             const self = this;
             this.httpExecute.performPost("/rest/authentication/save",
-                    request,
-                    onSuccess,
+                    request.toBase64(),
+                    function(result:string) {
+                        onSuccess(self.modelFactory.UIYaasResponse.decode64(result));
+                    },
                     onError);
         }
 }

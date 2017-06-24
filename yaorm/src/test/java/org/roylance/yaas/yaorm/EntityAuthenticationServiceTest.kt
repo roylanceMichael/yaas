@@ -19,6 +19,7 @@ import java.util.*
 
 class EntityAuthenticationServiceTest {
     @Test
+    @org.junit.Ignore
     fun userNameExistsPostgresTest() {
         // arrange
         val sourceConnection = PostgresConnectionSourceFactory(

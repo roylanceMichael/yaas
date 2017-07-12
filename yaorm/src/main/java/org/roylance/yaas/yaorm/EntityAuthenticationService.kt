@@ -12,7 +12,7 @@ class EntityAuthenticationService(
         private val connectionInfo: YaormModel.ConnectionInfo,
         private val logger: ILogger): IAuthenticationService {
     override fun authenticate(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val auth = tokenService.validateUser(request.token)
@@ -24,7 +24,7 @@ class EntityAuthenticationService(
     }
 
     override fun change_password(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val tempUser = YaasModel.User.newBuilder()
@@ -71,7 +71,7 @@ class EntityAuthenticationService(
     }
 
     override fun exists(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
 
         try {
             val exists = entityMessageService.get(YaasModel.User.getDefaultInstance(), request.content) != null
@@ -83,7 +83,7 @@ class EntityAuthenticationService(
     }
 
     override fun register(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
 
         try {
             val hashedPassword = DigestUtils.md5Hex(request.user.password)
@@ -124,7 +124,7 @@ class EntityAuthenticationService(
     }
 
     override fun login(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
 
         try {
             val hashedPassword = DigestUtils.md5Hex(request.user.password)
@@ -144,7 +144,7 @@ class EntityAuthenticationService(
     }
 
     override fun save(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
 
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)

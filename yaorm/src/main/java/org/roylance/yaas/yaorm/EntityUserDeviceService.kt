@@ -10,7 +10,7 @@ class EntityUserDeviceService(private val entityProtoBuilder: IEntityBuilder,
                               private val connectionInfo: YaormModel.ConnectionInfo,
                               private val logger: ILogger) : IUserDeviceService {
     override fun all(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val authenticatedUser = tokenService.validateUser(request.token)
@@ -36,7 +36,7 @@ class EntityUserDeviceService(private val entityProtoBuilder: IEntityBuilder,
     }
 
     override fun save(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val authenticatedUser = tokenService.validateUser(request.token)

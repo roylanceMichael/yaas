@@ -34,8 +34,7 @@ class EntityAuthenticationServiceTest {
                 false)
         val postgresGeneratorService = PostgresGeneratorService()
         val entityService = EntityService(granularDatabaseService, postgresGeneratorService)
-        val protoService = YaasGeneratedMessageBuilder()
-        val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+        val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
         entityMessageService.dropAndCreateEntireSchema(YaasModel.getDescriptor())
 
         val newUser = YaasModel.User.newBuilder()
@@ -71,8 +70,7 @@ class EntityAuthenticationServiceTest {
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
             val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
-            val protoService = YaasGeneratedMessageBuilder()
-            val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+            val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
 
             entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
@@ -114,8 +112,7 @@ class EntityAuthenticationServiceTest {
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
             val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
-            val protoService = YaasGeneratedMessageBuilder()
-            val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+            val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
 
             entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
@@ -164,8 +161,7 @@ class EntityAuthenticationServiceTest {
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
             val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
-            val protoService = YaasGeneratedMessageBuilder()
-            val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+            val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
 
             entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
@@ -217,8 +213,7 @@ class EntityAuthenticationServiceTest {
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
             val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
-            val protoService = YaasGeneratedMessageBuilder()
-            val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+            val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
 
             entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
@@ -268,8 +263,7 @@ class EntityAuthenticationServiceTest {
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
             val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
-            val protoService = YaasGeneratedMessageBuilder()
-            val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+            val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
 
             entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 
@@ -324,8 +318,7 @@ class EntityAuthenticationServiceTest {
                     false)
             val sqliteGeneratorService = SQLiteGeneratorService()
             val entityService = EntityService(granularDatabaseService, sqliteGeneratorService)
-            val protoService = YaasGeneratedMessageBuilder()
-            val entityMessageService = EntityMessageService(protoService, entityService, YaasIndexes.indexes)
+            val entityMessageService = EntityMessageService(entityService, YaasIndexes.indexes)
 
             entityMessageService.createEntireSchema(YaasModel.getDescriptor())
 

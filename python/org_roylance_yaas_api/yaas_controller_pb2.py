@@ -23,7 +23,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n\x15yaas_controller.proto\x12\x11org.roylance.yaas\x1a\x10yaas_model.proto\"w\n\rRequestAction\x12\x31\n\x07request\x18\x01 \x01(\x0b\x32 .org.roylance.yaas.UIYaasRequest\x12\x33\n\x08response\x18\x02 \x01(\x0b\x32!.org.roylance.yaas.UIYaasResponse\"\xfb\x02\n\x0f\x41\x64minController\x12\x42\n\x18\x63hange_password_for_user\x18\x01 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12\x37\n\rget_all_users\x18\x02 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12\x37\n\ris_user_admin\x18\x03 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12;\n\x11set_user_as_admin\x18\x04 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12>\n\x14remove_user_as_admin\x18\x05 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12\x35\n\x0b\x64\x65lete_user\x18\x06 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\"\xd4\x02\n\x18\x41uthenticationController\x12\x30\n\x06\x65xists\x18\x01 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12/\n\x05login\x18\x02 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12\x36\n\x0c\x61uthenticate\x18\x03 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12\x32\n\x08register\x18\x04 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12\x39\n\x0f\x63hange_password\x18\x05 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12.\n\x04save\x18\x06 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\"u\n\x14UserDeviceController\x12.\n\x04save\x18\x01 \x01(\x0b\x32 .org.roylance.yaas.RequestAction\x12-\n\x03\x61ll\x18\x02 \x01(\x0b\x32 .org.roylance.yaas.RequestActionb\x06proto3')
   ,
   dependencies=[yaas__model__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -255,6 +254,7 @@ DESCRIPTOR.message_types_by_name['RequestAction'] = _REQUESTACTION
 DESCRIPTOR.message_types_by_name['AdminController'] = _ADMINCONTROLLER
 DESCRIPTOR.message_types_by_name['AuthenticationController'] = _AUTHENTICATIONCONTROLLER
 DESCRIPTOR.message_types_by_name['UserDeviceController'] = _USERDEVICECONTROLLER
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 RequestAction = _reflection.GeneratedProtocolMessageType('RequestAction', (_message.Message,), dict(
   DESCRIPTOR = _REQUESTACTION,

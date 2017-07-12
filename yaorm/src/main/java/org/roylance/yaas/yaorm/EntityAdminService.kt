@@ -13,7 +13,7 @@ class EntityAdminService(
         private val logger: ILogger
 ): IAdminService {
     override fun change_password_for_user(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
 
@@ -36,7 +36,7 @@ class EntityAdminService(
     }
 
     override fun delete_user(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
 
@@ -69,7 +69,7 @@ class EntityAdminService(
     }
 
     override fun get_all_users(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
 
@@ -101,7 +101,7 @@ class EntityAdminService(
     }
 
     override fun is_user_admin(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val authenticatedUser = tokenService.validateUser(request.token)
@@ -113,7 +113,7 @@ class EntityAdminService(
     }
 
     override fun remove_user_as_admin(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val authenticatedUser = tokenService.validateUser(request.token)
@@ -136,7 +136,7 @@ class EntityAdminService(
     }
 
     override fun set_user_as_admin(request: YaasModel.UIYaasRequest): YaasModel.UIYaasResponse {
-        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasGeneratedMessageBuilder(), YaasIndexes.indexes)
+        val entityMessageService = this.entityProtoBuilder.buildMessageService(connectionInfo, YaasIndexes.indexes)
         try {
             val tokenService = EntityTokenService(entityMessageService, this.logger)
             val authenticatedUser = tokenService.validateUser(request.token)

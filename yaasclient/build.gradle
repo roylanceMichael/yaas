@@ -47,7 +47,7 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
         version {
-            name = "0.184"
+            name = "0.185"
         }
     }
 }

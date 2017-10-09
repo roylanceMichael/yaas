@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{CA9571A9-84A2-406C-B637-295A934CE11C}") = "Org.Roylance.Yaas", "Org.Roylance.Yaas.xproj", "{229C2987-6906-477D-A052-7C81EB402776}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{229C2987-6906-477D-A052-7C81EB402776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229C2987-6906-477D-A052-7C81EB402776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229C2987-6906-477D-A052-7C81EB402776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229C2987-6906-477D-A052-7C81EB402776}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

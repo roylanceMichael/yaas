@@ -2,14 +2,13 @@
 */.idea
 */build
 */node_modules
-api/javascript/node_modules
-swift/yaas/.idea
-sapi/target
-sapi/src/main/javascript/node_modules
-javascript/node_modules
+yaasswift/yaas/.idea
+yaasserver/target
+yaasserver/src/main/javascript/node_modules
+yaasjs/node_modules
 
-csharp/Org.Roylance.Yaas.Api/bin
-csharp/Org.Roylance.Yaas.Api/obj
+yaascs/Org.Roylance.Yaas.Api/bin
+yaascs/Org.Roylance.Yaas.Api/obj
 
 build
 Carthage

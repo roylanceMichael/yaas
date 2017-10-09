@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$yaclib_kotlin"
+    }
+}
+
+group "$group"
+version "$major.$minor"
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+    maven { url "http://dl.bintray.com/roylancemichael/maven" }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['mavenJava']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = "${group}.${rootProject.name}"
+        userOrg = user
+        licenses = ['MIT']
+        labels = [rootProject.name]
+        publicDownloadNumbers = true
+        vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
+        version {
+            name = "$major.$minor"
+        }
+    }
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.xerial:sqlite-jdbc:3.8.10.1'
+    testCompile 'org.postgresql:postgresql:9.4.1208'
+
+    compile 'commons-codec:commons-codec:1.10'
+    compile "org.roylance:yaorm:$org_roylance_yaorm"
+    compile "org.roylance:yaasclient:$org_roylance_yaas"
+}

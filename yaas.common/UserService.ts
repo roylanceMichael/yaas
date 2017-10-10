@@ -1,5 +1,5 @@
 import {IUserService} from "./All";
-import {IAuthenticationService} from "org.roylance.yaas.api/IAuthenticationService"
+import {IAuthenticationService} from "org.roylance.yaas/IAuthenticationService"
 declare var localStorage:any;
 export class UserService implements IUserService {
     accessTokenName = "org.roylance.yaas.accessToken";

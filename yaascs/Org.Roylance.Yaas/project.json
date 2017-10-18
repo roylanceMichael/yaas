@@ -1,5 +1,5 @@
 {
-  "version": "0.189.0-*",
+  "version": "0.191.0-*",
 
   "dependencies": {
     "Google.Protobuf": "3.2.0"

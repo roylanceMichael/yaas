@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>44756467-2C50-4FFD-94FF-070D9A130EA0</ProjectGuid>
+    <ProjectGuid>CB1F9B9B-FF46-4E1D-BAA7-DB07C86C2E4B</ProjectGuid>
     <RootNamespace>Org.Roylance.Yaas</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)' == ''">.\bin\</OutputPath>

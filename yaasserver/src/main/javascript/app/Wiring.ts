@@ -19,7 +19,7 @@ app.factory("httpExecute", function ($window, $http) {
 });
 
 app.factory("yaasModel", function () {
-    return YaasModel.org.roylance;
+    return YaasModel.org.roylance.yaas;
 });
 
 app.factory("adminService", function(httpExecute:HttpExecute, yaasModel:org.roylance.yaas.ProtoBufBuilder) {

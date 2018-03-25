@@ -1,6 +1,6 @@
 {
   "name": "org.roylance.yaas",
-  "version": "0.191.0",
+  "version": "0.192.0",
   "description": "base template for org.roylance.yaas",
   "author": "roylance.michael@gmail.com",
   "license": "MIT",
@@ -16,20 +16,18 @@
     "gulp-tsc": "^1.1.5",
     "gulp-uglify": "^1.5.3"
   },
-  
   "dependencies": {
-"angular": "^1.5.7"
-, "angular-route": "^1.5.7"
-, "bytebuffer": "^5.0.1"
-, "long": "^3.2.0"
-, "bootstrap": "^3.3.6"
-, "d3": "^3.5.17"
-, "dagre-d3": "^0.4.17"
-, "font-awesome": "^4.6.3"
-, "jquery": "^2.2.4"
-, "protobufjs": "5.0.1"
-, "webpack-stream": "^3.2.0"
-,"org.roylance.yaas": "0.191.0"
-
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "bytebuffer": "^5.0.1",
+    "long": "^3.2.0",
+    "bootstrap": "^3.3.6",
+    "d3": "^3.5.17",
+    "dagre-d3": "^0.4.17",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.0.0",
+    "protobufjs": "5.0.1",
+    "webpack-stream": "^3.2.0",
+    "org.roylance.yaas": "0.192.0"
   }
 }

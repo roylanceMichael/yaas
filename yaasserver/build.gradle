@@ -1,5 +1,5 @@
 // This file was auto-generated, but can be altered. It will not be overwritten.
-import org.roylance.yaclib.YaclibPackagePlugin;
+import org.roylance.yaclib.YaclibPackageTask;
 
 buildscript {
     ext.kotlin_version = "$yaclib_kotlin"
@@ -32,6 +32,14 @@ repositories {
 }
 }
 
+sourceSets {
+    main {
+      java.srcDirs = ['src/main/java',
+                      '../yaas/src/main/java',
+                      '../yaasclient/src/main/java']
+    }
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
@@ -45,12 +53,14 @@ dependencies {
     compile "org.glassfish.jersey.media:jersey-media-multipart:$yaclib_jersey"
 
     compile "org.apache.httpcomponents:httpclient:$yaclib_http_components"
+    compile "com.squareup.retrofit2:retrofit:$yaclib_retrofit"
 
-    compile "org.roylance:yaasclient:$org_roylance_yaas"
+    compile "org.roylance:roylance.common:${YaclibStatics.RoylanceCommonVersion}"
+
 
 }
 
-task packageApp(type: YaclibPackagePlugin) {
+task packageApp(type: YaclibPackageTask) {
     appName = rootProject.name
     serverVersion = "$major.$minor"
     maintainerInfo = "roylance.michael@gmail.com"

@@ -4,11 +4,13 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url 'http://dl.bintray.com/roylancemichael/maven'}
     }
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:$yaclib_artifacatory"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$yaclib_bintray"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$yaclib_kotlin"
+        classpath "org.roylance:yaclib.core:$yaclib_version"
     }
 }
 
@@ -47,7 +49,7 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = 'https://github.com/roylanceMichael/yaas.git'
         version {
-            name = "0.191"
+            name = "0.192"
         }
     }
 }
@@ -60,11 +62,18 @@ repositories {
 }
 }
 
+// pull in models - uncomment to compile total
+//sourceSets {
+//    main {
+//      java.srcDirs = ['src/main/java',
+//                      '../yaas/src/main/java']
+//    }
+//}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile "com.squareup.retrofit2:retrofit:$yaclib_retrofit"
 
-    compile "org.roylance:roylance.common:$yaclib_roylance_common"
+    compile "org.roylance:roylance.common:${YaclibStatics.RoylanceCommonVersion}"
     compile "org.roylance:yaas:$org_roylance_yaas"
 
 }

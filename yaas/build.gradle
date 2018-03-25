@@ -1,16 +1,21 @@
-buildscript {
-    ext.project_version = "${actualMajor}.${actualMinor}"
+import org.roylance.yaclib.YaclibPlugin
+import org.roylance.yaclib.YaclibPluginTask
+import org.roylance.yaclib.YaclibModel
 
-    repositories {
-        jcenter()
-        mavenCentral()
-        maven { url repoUrl_ }
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$yaclib_kotlin"
-        classpath "org.roylance:yaclib.core:${yaclibMajor}.${yaclibMinor}"
-    }
+buildscript {
+  ext.project_version = "${actualMajor}.${actualMinor}"
+
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven { url repoUrl_ }
+  }
+  dependencies {
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.1"
+    classpath "org.roylance:yaclib.core:${yaclib_version}"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$yaclib_kotlin"
+  }
 }
 
 group 'org.roylance'
@@ -21,49 +26,153 @@ apply plugin: 'kotlin'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'com.google.protobuf'
+apply plugin: YaclibPlugin
+
+protobuf {
+  protoc {
+    artifact = "com.google.protobuf:protoc:3.4.0"
+  }
+}
+
+sourceSets {
+  main {
+    proto {
+      // In addition to the default 'src/main/proto'
+      srcDir 'src/main/proto'
+      include 'src/main/proto/*.proto'
+    }
+  }
+}
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 repositories {
-    mavenCentral()
-    maven { url repoUrl_ }
+  mavenCentral()
+  maven { url repoUrl_ }
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
     }
+  }
 }
 
 bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    publications = ['mavenJava']
-    publish = true
-    pkg {
-        repo = repoName_
-        name = "${group}.${rootProject.name}"
-        userOrg = user
-        licenses = [license_]
-        labels = [rootProject.name]
-        publicDownloadNumbers = true
-        vcsUrl = githubRepo_
-        version {
-            name = project_version
-        }
+  user = System.getenv('BINTRAY_USER')
+  key = System.getenv('BINTRAY_KEY')
+  publications = ['mavenJava']
+  publish = true
+  pkg {
+    repo = repoName_
+    name = "${group}.${rootProject.name}"
+    userOrg = user
+    licenses = [license_]
+    labels = [rootProject.name]
+    publicDownloadNumbers = true
+    vcsUrl = githubRepo_
+    version {
+      name = project_version
     }
+  }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile "org.roylance:roylance.common:$yaclib_roylance_common"
+  testCompile group: 'junit', name: 'junit', version: '4.11'
+  compile "org.roylance:roylance.common:$yaclib_roylance_common"
 }
 
-task runYaclib(type: GradleBuild) {
-    buildFile = 'yaclib.gradle'
-    tasks = ['execute']
+task runYaclib(type: YaclibPluginTask) {
+  location = new File(System.getProperty("user.dir")).parentFile.toString()
+  processSwift = true
+  mainModel = "org.roylance.yaas.YaasModel"
+  mainController = "org.roylance.yaas.YaasController"
+
+  dependencyDescriptors = new ArrayList<>()
+  thirdPartyServerDependencies = new ArrayList<>()
+  nugetKey = System.getenv('NUGET_KEY')
+
+  mainDependency = YaclibModel.Dependency.newBuilder()
+      .setGroup("org.roylance")
+      .setName("yaas")
+      .setAuthorName(author_)
+      .setLicense(license_)
+      .setGithubRepo(githubRepo_)
+      .setMajorVersion(actualMajor)
+      .setMinorVersion(actualMinor)
+      .setTypescriptModelFile("YaasModel")
+      .setServerPort(8080)
+      .setServerType(YaclibModel.ServerType.GRADLE_JETTY_EMBEDDED)
+      .setNugetRepository(YaclibModel.Repository.newBuilder()
+      .setRepositoryType(YaclibModel.RepositoryType.NUGET)
+      .build())
+      .setNpmRepository(YaclibModel.Repository.newBuilder()
+      .setRepositoryType(YaclibModel.RepositoryType.NPMJS)
+      .build())
+      .setMavenRepository(YaclibModel.Repository.newBuilder()
+      .setName(repoName_)
+      .setUrl(repoUrl_)
+      .setRepositoryType(YaclibModel.RepositoryType.BINTRAY).build())
+      .build()
+
+  def tempAuxiliaryProjects = YaclibModel.AuxiliaryProjects.newBuilder()
+  def javascriptCommon = YaclibModel.AuxiliaryProject.newBuilder()
+      .setProjectType(YaclibModel.ProjectType.NPM_PROJECT_TYPE)
+      .setHandleBefore(YaclibModel.ExecutionPhase.BUILD_TYPESCRIPT_SERVER)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_SET_VERSION)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_UPDATE_DEPENDENCIES)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_CLEAN)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_BUILD)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_PUBLISH)
+      .setTargetDependency(YaclibModel.Dependency.newBuilder()
+      .setMinorVersion(mainDependency.minorVersion)
+      .setMajorVersion(mainDependency.majorVersion)
+      .setGroup("org.roylance")
+      .setName("yaas.common").build())
+      .addFromDependencies(mainDependency)
+      .build()
+
+  def yaorm = YaclibModel.AuxiliaryProject.newBuilder()
+      .setProjectType(YaclibModel.ProjectType.GRADLE_PROJECT_TYPE)
+      .setHandleBefore(YaclibModel.ExecutionPhase.BUILD_TYPESCRIPT_SERVER)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_SET_VERSION)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_UPDATE_DEPENDENCIES)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_CLEAN)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_BUILD)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_PUBLISH)
+      .setTargetDependency(YaclibModel.Dependency.newBuilder()
+      .setMinorVersion(mainDependency.minorVersion)
+      .setMajorVersion(mainDependency.majorVersion)
+      .setGroup("org.roylance")
+      .setName("yaas.yaorm").build())
+      .addFromDependencies(mainDependency)
+      .addFromDependencies(YaclibModel.Dependency.newBuilder()
+      .setGroup("org.roylance")
+      .setName("yaorm")
+      .setMajorVersion("0")
+      .setMinorVersion(yaormVersion).build())
+      .build()
+
+  def redis = YaclibModel.AuxiliaryProject.newBuilder()
+      .setProjectType(YaclibModel.ProjectType.GRADLE_PROJECT_TYPE)
+      .setHandleBefore(YaclibModel.ExecutionPhase.BUILD_TYPESCRIPT_SERVER)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_SET_VERSION)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_UPDATE_DEPENDENCIES)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_CLEAN)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_BUILD)
+      .addExecutions(YaclibModel.CustomExecutionType.CUSTOM_PUBLISH)
+      .setTargetDependency(YaclibModel.Dependency.newBuilder()
+      .setMinorVersion(mainDependency.minorVersion)
+      .setMajorVersion(mainDependency.majorVersion)
+      .setGroup("org.roylance")
+      .setName("yaas.redis").build())
+      .addFromDependencies(mainDependency)
+      .build()
+
+  tempAuxiliaryProjects.addProjects(javascriptCommon).addProjects(yaorm).addProjects(redis)
+  auxiliaryProjects = tempAuxiliaryProjects.build()
 }
 

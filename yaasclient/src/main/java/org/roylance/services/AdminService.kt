@@ -12,7 +12,11 @@ class AdminService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restAdmin.change_password_for_user(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
@@ -20,7 +24,11 @@ class AdminService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restAdmin.get_all_users(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
@@ -28,7 +36,11 @@ class AdminService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restAdmin.is_user_admin(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
@@ -36,7 +48,11 @@ class AdminService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restAdmin.set_user_as_admin(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
@@ -44,7 +60,11 @@ class AdminService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restAdmin.remove_user_as_admin(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
@@ -52,7 +72,11 @@ class AdminService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restAdmin.delete_user(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 }

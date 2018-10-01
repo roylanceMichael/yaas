@@ -12,7 +12,11 @@ class UserDeviceService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restUserDevice.save(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 
@@ -20,7 +24,11 @@ class UserDeviceService(
         val base64request = protoSerializer.serializeToBase64(request)
         val responseCall = restUserDevice.all(base64request)
         val response = responseCall.execute()
-        return protoSerializer.deserializeFromBase64(response.body(),
+        response.body()?.let {
+            return protoSerializer.deserializeFromBase64(it,
+                org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
+        }
+        return protoSerializer.deserializeFromBase64("",
                 org.roylance.yaas.YaasModel.UIYaasResponse.getDefaultInstance())
     }
 }

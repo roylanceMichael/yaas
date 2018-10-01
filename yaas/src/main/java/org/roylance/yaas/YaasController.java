@@ -69,6 +69,9 @@ public final class YaasController {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -80,13 +83,6 @@ public final class YaasController {
             case 0:
               done = true;
               break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
             case 10: {
               org.roylance.yaas.YaasModel.UIYaasRequest.Builder subBuilder = null;
               if (request_ != null) {
@@ -113,6 +109,13 @@ public final class YaasController {
 
               break;
             }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -130,6 +133,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_fieldAccessorTable
@@ -180,6 +184,7 @@ public final class YaasController {
     }
 
     private byte memoizedIsInitialized = -1;
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -189,6 +194,7 @@ public final class YaasController {
       return true;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (request_ != null) {
@@ -200,6 +206,7 @@ public final class YaasController {
       unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -333,6 +340,7 @@ public final class YaasController {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -340,6 +348,7 @@ public final class YaasController {
     public static Builder newBuilder(org.roylance.yaas.YaasController.RequestAction prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
@@ -363,6 +372,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_descriptor;
       }
 
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_fieldAccessorTable
@@ -385,6 +395,7 @@ public final class YaasController {
                 .alwaysUseFieldBuilders) {
         }
       }
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (requestBuilder_ == null) {
@@ -402,15 +413,18 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_RequestAction_descriptor;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.RequestAction getDefaultInstanceForType() {
         return org.roylance.yaas.YaasController.RequestAction.getDefaultInstance();
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.RequestAction build() {
         org.roylance.yaas.YaasController.RequestAction result = buildPartial();
         if (!result.isInitialized()) {
@@ -419,6 +433,7 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.RequestAction buildPartial() {
         org.roylance.yaas.YaasController.RequestAction result = new org.roylance.yaas.YaasController.RequestAction(this);
         if (requestBuilder_ == null) {
@@ -435,32 +450,39 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public Builder clone() {
         return (Builder) super.clone();
       }
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.RequestAction) {
           return mergeFrom((org.roylance.yaas.YaasController.RequestAction)other);
@@ -483,10 +505,12 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -738,11 +762,13 @@ public final class YaasController {
         }
         return responseBuilder_;
       }
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -764,11 +790,12 @@ public final class YaasController {
 
     private static final com.google.protobuf.Parser<RequestAction>
         PARSER = new com.google.protobuf.AbstractParser<RequestAction>() {
+      @java.lang.Override
       public RequestAction parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new RequestAction(input, extensionRegistry);
+        return new RequestAction(input, extensionRegistry);
       }
     };
 
@@ -781,6 +808,7 @@ public final class YaasController {
       return PARSER;
     }
 
+    @java.lang.Override
     public org.roylance.yaas.YaasController.RequestAction getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -894,6 +922,9 @@ public final class YaasController {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -905,13 +936,6 @@ public final class YaasController {
             case 0:
               done = true;
               break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
             case 10: {
               org.roylance.yaas.YaasController.RequestAction.Builder subBuilder = null;
               if (changePasswordForUser_ != null) {
@@ -990,6 +1014,13 @@ public final class YaasController {
 
               break;
             }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1007,6 +1038,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_fieldAccessorTable
@@ -1141,6 +1173,7 @@ public final class YaasController {
     }
 
     private byte memoizedIsInitialized = -1;
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1150,6 +1183,7 @@ public final class YaasController {
       return true;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (changePasswordForUser_ != null) {
@@ -1173,6 +1207,7 @@ public final class YaasController {
       unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1358,6 +1393,7 @@ public final class YaasController {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -1365,6 +1401,7 @@ public final class YaasController {
     public static Builder newBuilder(org.roylance.yaas.YaasController.AdminController prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
@@ -1388,6 +1425,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_descriptor;
       }
 
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_fieldAccessorTable
@@ -1410,6 +1448,7 @@ public final class YaasController {
                 .alwaysUseFieldBuilders) {
         }
       }
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (changePasswordForUserBuilder_ == null) {
@@ -1451,15 +1490,18 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AdminController_descriptor;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.AdminController getDefaultInstanceForType() {
         return org.roylance.yaas.YaasController.AdminController.getDefaultInstance();
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.AdminController build() {
         org.roylance.yaas.YaasController.AdminController result = buildPartial();
         if (!result.isInitialized()) {
@@ -1468,6 +1510,7 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.AdminController buildPartial() {
         org.roylance.yaas.YaasController.AdminController result = new org.roylance.yaas.YaasController.AdminController(this);
         if (changePasswordForUserBuilder_ == null) {
@@ -1504,32 +1547,39 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public Builder clone() {
         return (Builder) super.clone();
       }
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.AdminController) {
           return mergeFrom((org.roylance.yaas.YaasController.AdminController)other);
@@ -1564,10 +1614,12 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2287,11 +2339,13 @@ public final class YaasController {
         }
         return deleteUserBuilder_;
       }
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2313,11 +2367,12 @@ public final class YaasController {
 
     private static final com.google.protobuf.Parser<AdminController>
         PARSER = new com.google.protobuf.AbstractParser<AdminController>() {
+      @java.lang.Override
       public AdminController parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new AdminController(input, extensionRegistry);
+        return new AdminController(input, extensionRegistry);
       }
     };
 
@@ -2330,6 +2385,7 @@ public final class YaasController {
       return PARSER;
     }
 
+    @java.lang.Override
     public org.roylance.yaas.YaasController.AdminController getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -2443,6 +2499,9 @@ public final class YaasController {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -2454,13 +2513,6 @@ public final class YaasController {
             case 0:
               done = true;
               break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
             case 10: {
               org.roylance.yaas.YaasController.RequestAction.Builder subBuilder = null;
               if (exists_ != null) {
@@ -2539,6 +2591,13 @@ public final class YaasController {
 
               break;
             }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2556,6 +2615,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_fieldAccessorTable
@@ -2690,6 +2750,7 @@ public final class YaasController {
     }
 
     private byte memoizedIsInitialized = -1;
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2699,6 +2760,7 @@ public final class YaasController {
       return true;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (exists_ != null) {
@@ -2722,6 +2784,7 @@ public final class YaasController {
       unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2907,6 +2970,7 @@ public final class YaasController {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -2914,6 +2978,7 @@ public final class YaasController {
     public static Builder newBuilder(org.roylance.yaas.YaasController.AuthenticationController prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
@@ -2937,6 +3002,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_descriptor;
       }
 
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_fieldAccessorTable
@@ -2959,6 +3025,7 @@ public final class YaasController {
                 .alwaysUseFieldBuilders) {
         }
       }
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (existsBuilder_ == null) {
@@ -3000,15 +3067,18 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_AuthenticationController_descriptor;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.AuthenticationController getDefaultInstanceForType() {
         return org.roylance.yaas.YaasController.AuthenticationController.getDefaultInstance();
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.AuthenticationController build() {
         org.roylance.yaas.YaasController.AuthenticationController result = buildPartial();
         if (!result.isInitialized()) {
@@ -3017,6 +3087,7 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.AuthenticationController buildPartial() {
         org.roylance.yaas.YaasController.AuthenticationController result = new org.roylance.yaas.YaasController.AuthenticationController(this);
         if (existsBuilder_ == null) {
@@ -3053,32 +3124,39 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public Builder clone() {
         return (Builder) super.clone();
       }
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.AuthenticationController) {
           return mergeFrom((org.roylance.yaas.YaasController.AuthenticationController)other);
@@ -3113,10 +3191,12 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3836,11 +3916,13 @@ public final class YaasController {
         }
         return saveBuilder_;
       }
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3862,11 +3944,12 @@ public final class YaasController {
 
     private static final com.google.protobuf.Parser<AuthenticationController>
         PARSER = new com.google.protobuf.AbstractParser<AuthenticationController>() {
+      @java.lang.Override
       public AuthenticationController parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new AuthenticationController(input, extensionRegistry);
+        return new AuthenticationController(input, extensionRegistry);
       }
     };
 
@@ -3879,6 +3962,7 @@ public final class YaasController {
       return PARSER;
     }
 
+    @java.lang.Override
     public org.roylance.yaas.YaasController.AuthenticationController getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -3940,6 +4024,9 @@ public final class YaasController {
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -3951,13 +4038,6 @@ public final class YaasController {
             case 0:
               done = true;
               break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
             case 10: {
               org.roylance.yaas.YaasController.RequestAction.Builder subBuilder = null;
               if (save_ != null) {
@@ -3984,6 +4064,13 @@ public final class YaasController {
 
               break;
             }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4001,6 +4088,7 @@ public final class YaasController {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_fieldAccessorTable
@@ -4051,6 +4139,7 @@ public final class YaasController {
     }
 
     private byte memoizedIsInitialized = -1;
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4060,6 +4149,7 @@ public final class YaasController {
       return true;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (save_ != null) {
@@ -4071,6 +4161,7 @@ public final class YaasController {
       unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -4204,6 +4295,7 @@ public final class YaasController {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -4211,6 +4303,7 @@ public final class YaasController {
     public static Builder newBuilder(org.roylance.yaas.YaasController.UserDeviceController prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
@@ -4234,6 +4327,7 @@ public final class YaasController {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_descriptor;
       }
 
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_fieldAccessorTable
@@ -4256,6 +4350,7 @@ public final class YaasController {
                 .alwaysUseFieldBuilders) {
         }
       }
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (saveBuilder_ == null) {
@@ -4273,15 +4368,18 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return org.roylance.yaas.YaasController.internal_static_org_roylance_yaas_UserDeviceController_descriptor;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.UserDeviceController getDefaultInstanceForType() {
         return org.roylance.yaas.YaasController.UserDeviceController.getDefaultInstance();
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.UserDeviceController build() {
         org.roylance.yaas.YaasController.UserDeviceController result = buildPartial();
         if (!result.isInitialized()) {
@@ -4290,6 +4388,7 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public org.roylance.yaas.YaasController.UserDeviceController buildPartial() {
         org.roylance.yaas.YaasController.UserDeviceController result = new org.roylance.yaas.YaasController.UserDeviceController(this);
         if (saveBuilder_ == null) {
@@ -4306,32 +4405,39 @@ public final class YaasController {
         return result;
       }
 
+      @java.lang.Override
       public Builder clone() {
         return (Builder) super.clone();
       }
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.roylance.yaas.YaasController.UserDeviceController) {
           return mergeFrom((org.roylance.yaas.YaasController.UserDeviceController)other);
@@ -4354,10 +4460,12 @@ public final class YaasController {
         return this;
       }
 
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4609,11 +4717,13 @@ public final class YaasController {
         }
         return allBuilder_;
       }
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -4635,11 +4745,12 @@ public final class YaasController {
 
     private static final com.google.protobuf.Parser<UserDeviceController>
         PARSER = new com.google.protobuf.AbstractParser<UserDeviceController>() {
+      @java.lang.Override
       public UserDeviceController parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new UserDeviceController(input, extensionRegistry);
+        return new UserDeviceController(input, extensionRegistry);
       }
     };
 
@@ -4652,6 +4763,7 @@ public final class YaasController {
       return PARSER;
     }
 
+    @java.lang.Override
     public org.roylance.yaas.YaasController.UserDeviceController getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -4696,7 +4808,7 @@ public final class YaasController {
       "g.roylance.yaas.RequestAction\0227\n\rget_all" +
       "_users\030\002 \001(\0132 .org.roylance.yaas.Request" +
       "Action\0227\n\ris_user_admin\030\003 \001(\0132 .org.royl" +
-      "ance.yaas.RequestAction\022;\n\021set_user_as_a",
+      "ance.yaas.RequestAction\022;\n\021set_user_as_a" +
       "dmin\030\004 \001(\0132 .org.roylance.yaas.RequestAc" +
       "tion\022>\n\024remove_user_as_admin\030\005 \001(\0132 .org" +
       ".roylance.yaas.RequestAction\0225\n\013delete_u" +
@@ -4706,7 +4818,7 @@ public final class YaasController {
       "on\022/\n\005login\030\002 \001(\0132 .org.roylance.yaas.Re" +
       "questAction\0226\n\014authenticate\030\003 \001(\0132 .org." +
       "roylance.yaas.RequestAction\0222\n\010register\030" +
-      "\004 \001(\0132 .org.roylance.yaas.RequestAction\022",
+      "\004 \001(\0132 .org.roylance.yaas.RequestAction\022" +
       "9\n\017change_password\030\005 \001(\0132 .org.roylance." +
       "yaas.RequestAction\022.\n\004save\030\006 \001(\0132 .org.r" +
       "oylance.yaas.RequestAction\"u\n\024UserDevice" +

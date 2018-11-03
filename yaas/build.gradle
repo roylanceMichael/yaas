@@ -11,7 +11,7 @@ buildscript {
     maven { url repoUrl_ }
   }
   dependencies {
-    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.6"
     classpath "org.roylance:yaclib.core:${yaclib_version}"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$yaclib_kotlin"
@@ -82,7 +82,7 @@ bintray {
 
 dependencies {
   testCompile group: 'junit', name: 'junit', version: '4.11'
-  compile "org.roylance:roylance.common:$yaclib_roylance_common"
+  compile "org.roylance:roylance.common:${YaclibStatics.RoylanceCommonVersion}"
 }
 
 task runYaclib(type: YaclibPluginTask) {

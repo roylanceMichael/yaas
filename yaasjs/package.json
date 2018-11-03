@@ -1,11 +1,11 @@
 {
   "name": "org.roylance.yaas",
-  "version": "0.195.0",
+  "version": "0.197.0",
   "description": "models to interface with the org.roylance.yaas system",
   "author": "roylance.michael@gmail.com",
   "license": "MIT",
   "dependencies": {
     "protobufjs": "5.0.1",
-    "roylance.common": "^0.27.0"
+    "roylance.common": "^0.30.0"
   }
 }
